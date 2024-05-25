@@ -1,9 +1,16 @@
-var express = require('express');
-var router = express.Router();
+/* .routes/index.js */
+const express = require("express");
+const user = require("../controller/UserController");
+const router = express.Router();
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
-});
+router.get("/", user.index);
+router.post("/join", user.post_user);
 
-module.exports = router;
+router.get("/login", user.login);
+router.post("/login", user.post_login);
+
+router.post("/edit", user.edit);
+router.patch("/edit", user.patch_user);
+router.delete("/delete", user.delete_user);
+
+module.exports = router; 
