@@ -5,6 +5,11 @@ exports.index = (req, res) => {
     res.render("join");
 }
 
+// /main 경로를 처리할 main 함수 추가 (메인 화면을 렌더링)
+exports.main = (req, res) => {
+    res.render("main"); // 여기서 "main"은 main 화면을 위한 템플릿 이름입니다.
+}
+
 //User 정보 저장하기
 exports.post_user = (req, res) => {
 
