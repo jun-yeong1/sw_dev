@@ -24,7 +24,7 @@ exports.post_login = (req, res) => {
         if (result == null) {
             return res.send({result: result, flag: false});
         } else{
-            if (req.body.password != result.pw) {
+            if (req.body.password != result.password) {
                 return res.send({result: result, flag: false});
             }else {
                 return res.send({result: result, flag: true});

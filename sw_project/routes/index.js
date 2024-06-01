@@ -19,5 +19,8 @@ router.get("/test", user.main);
 router.get('/menu', cartController.getMenuPage);
 router.get('/cart', cartController.getCartPage);
 router.post('/add-to-cart', cartController.addToCart);
+// 입금 페이지
+router.get('/user/add-money', user.getAddMoneyPage);
+router.post('/user/add-money', user.addMoney);
 
 module.exports = router; 
