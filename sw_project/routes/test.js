@@ -1,23 +1,43 @@
-var express = require('express');
-var router = express.Router();
+let menu = document.querySelector('#menu-btn');
+let navbar = document.querySelector('.navbar');
 
-// 데이터를 준비합니다.
-var menu = [
-  { name: '아메리카노' },
-  { name: '카페 라떼' },
-  { name: '카푸치노' }
-];
-
-var contact = {
-  address: '서울특별시 종로구',
-  phoneNumber: '02-123-4567'
+menu.onclick = () => {
+    menu.classList.toggle('fa-times');
+    navbar.classList.toggle('active');
 };
 
-var year = new Date().getFullYear();
+window.onscroll = () => {
+    menu.classList.remove('fa-times');
+    navbar.classList.remove('active');
+};
 
-// 라우트 설정
-router.get('/test', function(req, res, next) {
-  res.render('test', { menu: menu, contact: contact, year: year });
+document.querySelectorAll('.image-slider img').forEach(images => {
+    images.onclick = () => {
+        var src = images.getAttribute('src');
+        document.querySelector('.main-home-image').src = src;
+    };
+});
+
+var swiper = new Swiper(".review-slider", {
+    spaceBetween: 20,
+    pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+    },
+    loop: true,
+    grabCursor: true,
+    autoplay: {
+        delay: 7500,
+        disableOnInteraction: false,
+    },
+    breakpoints: {
+        0: {
+            slidesPerView: 1
+        },
+        768: {
+            slidesPerView: 2
+        }
+    },
 });
 
 module.exports = router;
