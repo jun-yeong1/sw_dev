@@ -39,3 +39,5 @@ var swiper = new Swiper(".review-slider", {
         }
     },
 });
+
+module.exports = router;
