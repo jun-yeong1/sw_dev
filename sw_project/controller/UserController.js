@@ -61,10 +61,6 @@ exports.delete_user = (req, res) => {
     });
 }
 
-exports.main = (req, res) => {
-    res.render('test'); 
-}
-
 // 로그인 후에 addmoney 페이지 생성
 exports.getAddMoneyPage = (req, res) => {
     if (!req.session.user) {
