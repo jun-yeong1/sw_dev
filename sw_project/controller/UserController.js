@@ -55,3 +55,34 @@ exports.delete_user = (req, res) => {
         res.send("success Delete!");
     });
 }
+
+exports.main = (req, res) => {
+    res.render('test'); 
+}
+
+// 로그인 후에 addmoney 페이지 생성
+exports.getAddMoneyPage = (req, res) => {
+    if (!req.session.user) {
+        return res.redirect('/user/login');
+    }
+    res.render('addMoney', { user: req.session.user });
+};
+
+exports.addMoney = (req, res) => {
+    if (!req.session.user) {
+        return res.redirect('/user/login');
+    }
+    const { amount } = req.body;
+    const parsedAmount = parseFloat(amount);
+
+    if (isNaN(parsedAmount) || parsedAmount < 0) {
+        return res.send('Invalid amount. Please enter a positive number.');
+    }
+    
+    const newAmount = parseFloat(req.session.user.amount) + parseFloat(amount);
+    db.query('UPDATE user SET amount = ? WHERE id = ?', [newAmount, req.session.user.id], (err) => {
+        if (err) throw err;
+        req.session.user.amount = newAmount;
+        res.redirect('/user/add-money');
+    });
+};

@@ -88,22 +88,22 @@
             <p>가격: 3,300원</p>
             <button onclick="addTocart('바닐라라떼', '3300', 'coffee4.jpg')">장바구니에 담기</button>
         </div>
-        <!--추가한 자바스크립트-->
-        <script>
-            function addToCart(name, price, image) {
-                const cart = JSON.parse(localStorage.getItem('cart')) || [];
-                const itemIndex = cart.findIndex(item => item.name === name);
-                
-                if (itemIndex !== -1) {
-                    cart[itemIndex].quantity += 1;
-                } else {
-                    cart.push({ name, price, image, quantity: 1 });
-                }
-                
-                localStorage.setItem('cart', JSON.stringify(cart));
-                alert('장바구니에 추가되었습니다!');
+    </div>
+    <!--추가한 자바스크립트-->
+    <script>
+        function addToCart(name, price, image) {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const itemIndex = cart.findIndex(item => item.name === name);
+            
+            if (itemIndex !== -1) {
+                cart[itemIndex].quantity += 1;
+            } else {
+                cart.push({ name, price, image, quantity: 1 });
             }
-        </script>
-        
+            
+            localStorage.setItem('cart', JSON.stringify(cart));
+            alert('장바구니에 추가되었습니다!');
+        }
+    </script>
 </body>
 </html>
