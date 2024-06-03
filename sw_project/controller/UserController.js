@@ -2,7 +2,7 @@ const User = require("../model/User");
 
 //메인화면=회원가입화면
 exports.index = (req, res) => {
-    res.render("join");
+    res.render("/main");
 }
 
 // /main 경로를 처리할 main 함수 추가 (메인 화면을 렌더링)
@@ -12,7 +12,6 @@ exports.main = (req, res) => {
 
 //User 정보 저장하기
 exports.post_user = (req, res) => {
-
     User.insert( req.body, function (result) {  
         res.send({ id: result});
     })
@@ -32,6 +31,10 @@ exports.post_login = (req, res) => {
             if (req.body.password != result.password) {
                 return res.send({result: result, flag: false});
             }else {
+                req.session.user = {
+                    id: result.id,
+                    amount: result.amount
+                }
                 return res.send({result: result, flag: true});
             }
         }
