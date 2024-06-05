@@ -62,7 +62,7 @@ exports.delete_user = (req, res) => {
 }
 
 exports.main = (req, res) => {
-    res.render('test'); 
+    res.render('main'); 
 }
 
 // 로그인 후에 addmoney 페이지 생성
