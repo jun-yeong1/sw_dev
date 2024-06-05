@@ -1,34 +1,47 @@
 var createError = require('http-errors');
 var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
+const port = 8080;
+const session = require('express-session');
+const bodyParser = require("body-parser");
+//var path = require('path');
+//var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-var testRouter = require('./routes/test'); // 추가된 라우트 파일
 
 var app = express();
 
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
+//app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
 app.use(logger('dev'));
 app.use(express.json());
+app.use( express.static( "uploads" ));
 app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+//app.use(cookieParser());
+//app.use(express.static(path.join(__dirname, 'public')));
+app.use( bodyParser.json() );
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.use('/test', testRouter); // 추가된 라우트 사용
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
 });
+// 세션 
+app.use(session({
+  secret: 'your_secret_key',
+  resave: false,
+  saveUninitialized: true,
+  cookie: { secure: false }
+}));
 
+app.listen(port, () => {
+  console.log( "Server Port: ", port);
+}) 
 // error handler
 app.use(function(err, req, res, next) {
   // set locals, only providing error in development
