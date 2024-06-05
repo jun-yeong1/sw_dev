@@ -1,19 +1,19 @@
 const User = require("../model/User");
 
-//메인화면=회원가입화면
-exports.index = (req, res) => {
+//메인화면
+exports.main = (req, res) => {
+    res.render("main");
+}
+// 회원가입 페이지
+exports.in_join = (req, res) => {
     res.render("join");
 }
-
-// /main 경로를 처리할 main 함수 추가 (메인 화면을 렌더링)
-exports.main = (req, res) => {
-    res.render("main"); // 여기서 "main"은 main 화면을 위한 템플릿 이름입니다.
-}
-
 //User 정보 저장하기
 exports.post_user = (req, res) => {
-
     User.insert( req.body, function (result) {  
+        if (err) {
+            return res.status(500).send({ error: '데이터베이스 오류가 발생했습니다' });
+        }
         res.send({ id: result});
     })
 }

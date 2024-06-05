@@ -1,13 +1,5 @@
 /* ./model/User.js */
-const mysql = require("mysql");
-
-const cnn = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: '1234',
-    database: 'sw_dev'
-});
-
+const cnn = require("../db/db.js");
 
 //회원가입 정보 입력
 exports.insert = ( data, cb ) => {

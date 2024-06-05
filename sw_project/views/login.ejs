@@ -19,8 +19,6 @@
                 let alert_html = "<h6 class='fw-bold text-center mt-5'>다시 로그인해주세요.</h6>";
                 document.getElementById("alert").innerHTML = alert_html;
             } else {
-                alert("로그인 성공");
-
                 var form_info = document.getElementById("form_info");
                 form_info.id.value = form.id.value;
                 form_info.submit();
@@ -64,7 +62,7 @@
     </div>
 </form>
 
-<form id="form_info" action="/edit" method="POST">
+<form id="form_info" action="/" method="GET">
     <input type="hidden" name="id">
 </form>
 </body>
