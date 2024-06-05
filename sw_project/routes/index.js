@@ -5,7 +5,8 @@ const cartController = require('../controller/cartController');
 const router = express.Router();
 const auth = require('../middleware/auth');
 
-router.get("/", user.index);
+router.get("/", user.main);
+router.get("/join", user.in_join);
 router.post("/join", user.post_user);
 
 router.get("/login", user.login);
@@ -23,6 +24,6 @@ router.get('/user/add-money', auth, user.getAddMoneyPage);
 router.post('/user/add-money', auth, user.addMoney);
 
 // /main 페이지 경로 추가
-router.get("/main", user.main);
+//router.get("/main", user.main);
 
 module.exports = router; 
