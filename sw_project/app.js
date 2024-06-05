@@ -1,9 +1,9 @@
 var createError = require('http-errors');
-var express = require('express');
+const express = require('express');
 const port = 8080;
 const session = require('express-session');
 const bodyParser = require("body-parser");
-//var path = require('path');
+const path = require('path');
 //var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
@@ -16,6 +16,7 @@ var app = express();
 //app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
+app.use('/html_scripts', express.static(path.join(__dirname, 'views/html_scripts')));
 app.use(logger('dev'));
 app.use(express.json());
 app.use( express.static( "uploads" ));
