@@ -2,7 +2,7 @@ const User = require("../model/User");
 
 //메인화면
 exports.main = (req, res) => {
-    res.render("main");
+    res.render("main", {user: req.session.user}); // 여기서 "main"은 main 화면을 위한 템플릿 이름입니다.
 }
 // 회원가입 페이지
 exports.in_join = (req, res) => {
@@ -11,9 +11,6 @@ exports.in_join = (req, res) => {
 //User 정보 저장하기
 exports.post_user = (req, res) => {
     User.insert( req.body, function (result) {  
-        if (err) {
-            return res.status(500).send({ error: '데이터베이스 오류가 발생했습니다' });
-        }
         res.send({ id: result});
     })
 }
@@ -25,18 +22,22 @@ exports.login = (req, res) => {
 
 //login 시도
 exports.post_login = (req, res) => {
-    User.select( req.body.id, req.body.password, function (result) {
+    User.select(req.body.id, req.body.password, function (result) {
         if (result == null) {
-            return res.send({result: result, flag: false});
-        } else{
+            return res.send({ result: result, flag: false });
+        } else {
             if (req.body.password != result.password) {
-                return res.send({result: result, flag: false});
-            }else {
-                return res.send({result: result, flag: true});
+                return res.send({ result: result, flag: false });
+            } else {
+                req.session.user = {
+                    id: result.id,
+                    amount: result.amount
+                };
+                return res.send({ result: result, flag: true });
             }
         }
     });
-}
+};
 
 //회원정보 수정 화면
 exports.edit = (req, res) => {
@@ -85,5 +86,15 @@ exports.addMoney = (req, res) => {
         if (err) throw err;
         req.session.user.amount = newAmount;
         res.redirect('/user/add-money');
+    });
+};
+// 로그아웃
+exports.logout = (req, res) => {
+    req.session.destroy((err) => {
+        if (err) {
+            console.error('Failed to destroy session during logout.', err);
+            return res.status(500).send('Failed to logout.');
+        }
+        res.redirect('/');
     });
 };
