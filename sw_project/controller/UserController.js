@@ -1,4 +1,5 @@
 const User = require("../model/User");
+const db = require("../db/db.js");
 
 //메인화면
 exports.main = (req, res) => {
@@ -40,11 +41,28 @@ exports.post_login = (req, res) => {
 };
 
 //회원정보 수정 화면
+exports.in_edit = (req, res) => {
+    const userId = req.session.user; // 세션에서 사용자 ID 가져오기
+    if (!userId) {
+        return res.status(401).send("Unauthorized");
+    }
+    User.get_user(userId, function (result) {
+        res.render("edit", { data: result[0] });
+    });
+};
+/*
 exports.edit = (req, res) => {
     User.get_user( req.body.id, function (result) {      
         res.render("edit", {data: result[0]});
     });
-}
+}*/
+
+exports.edit = (req, res) => {
+    const userId = req.method === 'GET' ? req.query.id : req.body.id;
+    User.get_user(userId, function (result) {
+        res.render("edit", { data: result });
+    });
+};
 
 //정보 수정
 exports.patch_user = (req, res) => {
@@ -65,14 +83,14 @@ exports.delete_user = (req, res) => {
 // 로그인 후에 addmoney 페이지 생성
 exports.getAddMoneyPage = (req, res) => {
     if (!req.session.user) {
-        return res.redirect('/user/login');
+        return res.redirect('/login');
     }
     res.render('addMoney', { user: req.session.user });
 };
 
 exports.addMoney = (req, res) => {
     if (!req.session.user) {
-        return res.redirect('/user/login');
+        return res.redirect('/login');
     }
     const { amount } = req.body;
     const parsedAmount = parseFloat(amount);
@@ -85,7 +103,7 @@ exports.addMoney = (req, res) => {
     db.query('UPDATE user SET amount = ? WHERE id = ?', [newAmount, req.session.user.id], (err) => {
         if (err) throw err;
         req.session.user.amount = newAmount;
-        res.redirect('/user/add-money');
+        res.redirect('/add-money');
     });
 };
 // 로그아웃
