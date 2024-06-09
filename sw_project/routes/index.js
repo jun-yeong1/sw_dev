@@ -26,6 +26,8 @@ router.post('/add-to-cart', cartController.addToCart);
 router.get('/user/add-money', auth, user.getAddMoneyPage);
 router.post('/user/add-money', auth, user.addMoney);
 
+router.get("/logout", user.logout);
+
 // /main 페이지 경로 추가
 //router.get("/main", user.main);
 

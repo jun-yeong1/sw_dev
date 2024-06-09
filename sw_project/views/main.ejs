@@ -591,8 +591,16 @@
             <a href="#book">book</a>
         </nav>
         <!--로그인, 회원가입, 예약 페이징 연결-->
-        <a href="./login" class="btn">sign in</a>
-        <a href="./join" class="btn">sign up</a>
+
+        <% if (user) { %>
+            <div class="user-info">
+                <span>Welcome, <%= user.id %></span>
+                <a href="/logout" class="btn">Logout</a>
+            </div>
+        <% } else { %>
+            <a href="/login" class="btn">sign in</a>
+            <a href="/join" class="btn">sign up</a>
+        <% } %>
         <a href="./map" class="btn">book a table</a>
     </header>
 
