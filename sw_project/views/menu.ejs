@@ -10,6 +10,9 @@
             margin: 0;
             padding: 0;
             background-color: #ffffff;
+            display: flex;
+            flex-direction: column; /* 세로 방향으로 요소 배치 */
+            min-height: 100vh; /* 화면 전체 높이를 최소 높이로 설정 */
         }
         header {
             background-color: #292d30;
@@ -17,22 +20,30 @@
             padding: 20px;
             text-align: center;
             margin-bottom: 20px; 
+            width: 100%; /* 헤더를 가로폭 100%로 설정 */
         }
         h1 {
             margin: 0; 
         }
         .container {
-            width: 80%;
+            width: 60%; /* 왼쪽 컨테이너의 너비를 조정 */
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;*/ /* 화면이 작아질 경우 메뉴가 다음 줄에 나타나도록 설정 */
+            /*width: 80%;
             margin: auto;
             padding: 20px;
             display: flex;
-            justify-content: space-around; /* 메뉴 가로정렬 */
-            flex-wrap: wrap; /* 메뉴 3개 초과부터는 다음줄에 적힘 */
+            justify-content: space-between;
+            flex-wrap: wrap;*/
         }
         .menu-item {
             border-bottom: 1px solid #ccc;
             padding: 10px;
-            width: 30%; /* 각 요소의 너비 설정 */
+            /*width: 30%;  각 요소의 너비 설정 */
+            width: calc(33.33% - 20px); /* 각 요소의 너비 설정 (33.33%에서 간격 제외) */
+            box-sizing: border-box;
             text-align: center;
         }
         .menu-item img {
@@ -43,7 +54,43 @@
         }
         .category {
             text-align: center;
-            margin: 20px 0; 
+            margin: 20px 0;
+            width: 60%; /* 왼쪽 카테고리의 너비를 조정 */
+            position: sticky;
+            top: 0;
+            background-color: #fff; /* 배경색을 지정하여 내용이 겹치지 않도록 함 */
+            z-index: 999; /* 다른 요소 위에 표시되도록 z-index 설정 */
+            padding: 10px 0; /* 위아래 여백 추가 */
+        }
+        .card {
+            width: 40%; /* 오른쪽 카드의 너비를 조정 */
+            padding: 20px;
+            box-sizing: border-box;
+            margin-left: auto; /* 오른쪽 정렬 */
+        }
+        .card-header {
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .table th, .table td {
+            border: 1px solid #ccc;
+            padding: 8px;
+            text-align: center;
+        }
+        .btn {
+            padding: 4px 8px;
+            cursor: pointer;
+        }
+        .btn-danger {
+            background-color: red;
+            color: white;
+        }
+        .btn-sm {
+            font-size: 0.8em;
         }
     </style>
 </head>
@@ -60,50 +107,121 @@
         <!-- 학교 키오스크 보고 수정할 예정 -->
         <!-- 여기서부터 -->
         <div class="menu-item">
-            <img src="coffee1.jpg" alt="아메리카노">
+            <img src="/images/coffee1.jpg" alt="아메리카노">
             <h3>아메리카노</h3>
             <p>에스프레소와 물을 섞어 만든 커피</p>
             <p>가격: 1,800원</p>
-            <button onclick="addTocart('아메리카노', '1800', 'coffee1.jpg')">장바구니에 담기</button>
+            <button onclick="addToCart('아메리카노', '1800', '/images/coffee1.jpg')">장바구니에 담기</button>
         </div>
         <!-- 여기까지가 메뉴 하나 / 복붙 후 수정하면 메뉴 추가-->
         <div class="menu-item">
-            <img src="coffee2.jpg" alt="카푸치노">
+            <img src="/images/coffee2.jpg" alt="카푸치노">
             <h3>카푸치노</h3>
             <p>에스프레소와 스팀밀크, 거품을 올린 커피</p>
             <p>가격: 3,000원</p>
-            <button onclick="addTocart('카푸치노', '3000', 'coffee2.jpg')">장바구니에 담기</button>
+            <button onclick="addToCart('카푸치노', '3000', '/images/coffee2.jpg')">장바구니에 담기</button>
         </div>
         <div class="menu-item">
-            <img src="coffee3.jpg" alt="카페라떼">
+            <img src="/images/coffee3.jpg" alt="카페라떼">
             <h3>카페라떼</h3>
             <p>에스프레소와 스팀밀크를 섞은 커피</p>
             <p>가격: 3,300원</p>
-            <button onclick="addTocart('카페라떼', '3300', 'coffee/3.jpg')">장바구니에 담기</button>
+            <button onclick="addToCart('카페라떼', '3300', '/images/coffee3.jpg')">장바구니에 담기</button>
         </div>
         <div class="menu-item">
-            <img src="coffee4.jpg" alt="바닐라라떼">
+            <img src="/images/coffee4.jpg" alt="바닐라라떼">
             <h3>바닐라라떼</h3>
             <p>에스프레소와 스팀밀크를 섞은 바닐라향이 나는 커피</p>
             <p>가격: 3,300원</p>
-            <button onclick="addTocart('바닐라라떼', '3300', 'coffee4.jpg')">장바구니에 담기</button>
+            <button onclick="addToCart('바닐라라떼', '3300', '/images/coffee4.jpg')">장바구니에 담기</button>
         </div>
     </div>
-    <!--추가한 자바스크립트-->
+    <div class="card">
+        <div class="card-header"><b>장바구니</b></div>
+        <div class="card-body">
+            <table class="table" id="cart-table">
+                <thead>
+                    <tr>
+                        <th>메뉴명</th>
+                        <th>메뉴 개수</th>
+                        <th>메뉴 가격</th>
+                        <th>총 가격</th>
+                        <th>삭제</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr id="cart-empty">
+                        <td colspan="5" align="center">제품이 없습니다.</td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="3" align="right"><b>총 개수</b></td>
+                        <td id="cart-total">0</td>
+                        <td>&nbsp;</td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
     <script>
+        function updateCartTable() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const cartTableBody = document.querySelector('#cart-table tbody');
+            const cartTotalElement = document.getElementById('cart-total');
+            
+            cartTableBody.innerHTML = '';
+            let total = 0;
+    
+            if (cart.length > 0) {
+                cart.forEach((item, index) => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${item.name}</td>
+                        <td>${item.quantity}</td>
+                        <td>${item.price}</td>
+                        <td>${item.quantity * item.price}</td>
+                        <td><button type="button" class="btn btn-danger btn-sm" onclick="removeItem(${index})">Remove</button></td>
+                    `;
+                    cartTableBody.appendChild(row);
+                    total += item.quantity * item.price;
+                });
+            } else {
+                const cartEmptyRow = document.getElementById('cart-empty');
+                if (cartEmptyRow) {
+                    cartEmptyRow.style.display = 'table-row';
+                }
+            }
+    
+            cartTotalElement.textContent = total;
+        }
+    
         function addToCart(name, price, image) {
             const cart = JSON.parse(localStorage.getItem('cart')) || [];
             const itemIndex = cart.findIndex(item => item.name === name);
-            
+    
             if (itemIndex !== -1) {
                 cart[itemIndex].quantity += 1;
             } else {
                 cart.push({ name, price, image, quantity: 1 });
             }
-            
+    
             localStorage.setItem('cart', JSON.stringify(cart));
             alert('장바구니에 추가되었습니다!');
+            updateCartTable(); // Cart 업데이트 후 테이블 갱신
         }
+    
+        function removeItem(index) {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            cart.splice(index, 1);
+    
+            localStorage.setItem('cart', JSON.stringify(cart));
+            updateCartTable(); // Cart 업데이트 후 테이블 갱신
+        }
+    
+        window.onload = updateCartTable; // 페이지 로드 시 카트 테이블 초기화
+        window.addToCart = addToCart;
+        window.removeItem = removeItem;
     </script>
 </body>
 </html>
