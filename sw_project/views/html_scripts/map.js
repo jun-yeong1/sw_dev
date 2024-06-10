@@ -87,7 +87,7 @@ function displayPlaces(places) {
         const li = document.createElement('li');
         const a = document.createElement('a');
         a.href = '/menu';
-        a.textContent = `${place.name} - ${projection.getDistance(current_Distance, LatLngPlace).toFixed(2)}`;
+        a.textContent = `${place.name} - ${projection.getDistance(current_Distance, LatLngPlace).toFixed(2)}m`;
 
         li.appendChild(a);
         placesList.appendChild(li);
