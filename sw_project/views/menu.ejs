@@ -162,6 +162,7 @@
                     </tr>
                 </tfoot>
             </table>
+            <button type="button" onclick="makePayment()">결제</button>
         </div>
     </div>
     <script>
@@ -207,7 +208,6 @@
             }
     
             localStorage.setItem('cart', JSON.stringify(cart));
-            alert('장바구니에 추가되었습니다!');
             updateCartTable(); // Cart 업데이트 후 테이블 갱신
         }
     
@@ -218,10 +218,43 @@
             localStorage.setItem('cart', JSON.stringify(cart));
             updateCartTable(); // Cart 업데이트 후 테이블 갱신
         }
+        async function makePayment() {
+            const cartTotalElement = document.getElementById('cart-total');
+            const totalAmount = parseFloat(cartTotalElement.textContent);
+
+            try {
+                const response = await fetch('/get-user-amount');
+                const userData = await response.json();
+
+                if (userData.amount >= totalAmount) {
+                    // 충분한 금액이 있을 경우 결제 진행
+                    const updateResponse = await fetch('/update-user-amount', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ amount: userData.amount - totalAmount })
+                    });
+                    if (updateResponse.ok) {
+                        alert('결제가 성공적으로 완료되었습니다.');
+                        // 결제가 성공적으로 완료된 후 카트를 비웁니다.
+                        localStorage.removeItem('cart');
+                        updateCartTable();
+                    } else {
+                        alert('결제 처리 중 오류가 발생했습니다.');
+                    }
+                } else {
+                    alert('금액이 부족합니다.');
+                }
+            } catch (error) {
+                console.error('Error fetching user amount:', error);
+            }
+        }
     
         window.onload = updateCartTable; // 페이지 로드 시 카트 테이블 초기화
         window.addToCart = addToCart;
         window.removeItem = removeItem;
+        window.makePayment = makePayment;
     </script>
 </body>
 </html>
