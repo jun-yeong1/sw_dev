@@ -111,6 +111,12 @@
             <h3>아메리카노</h3>
             <p>에스프레소와 물을 섞어 만든 커피</p>
             <p>가격: 1,800원</p>
+            <select id="아메리카노">
+                <option value="1">1</option><option value="2">2</option><option value="3">3</option>
+                <option value="4">4</option><option value="5">5</option><option value="6">6</option>
+                <option value="7">7</option><option value="8">8</option><option value="9">9</option>
+                <option value="10">10</option>
+            </select>
             <button onclick="addToCart('아메리카노', '1800', '/images/coffee1.jpg')">장바구니에 담기</button>
         </div>
         <!-- 여기까지가 메뉴 하나 / 복붙 후 수정하면 메뉴 추가-->
@@ -119,6 +125,13 @@
             <h3>카푸치노</h3>
             <p>에스프레소와 스팀밀크, 거품을 올린 커피</p>
             <p>가격: 3,000원</p>
+            <select id="카푸치노">
+                    <option value="1">1</option><option value="2">2</option><option value="3">3</option>
+                    <option value="4">4</option><option value="5">5</option><option value="6">6</option>
+                    <option value="7">7</option><option value="8">8</option><option value="9">9</option>
+                    <option value="10">10</option>
+            </select>
+
             <button onclick="addToCart('카푸치노', '3000', '/images/coffee2.jpg')">장바구니에 담기</button>
         </div>
         <div class="menu-item">
@@ -126,6 +139,12 @@
             <h3>카페라떼</h3>
             <p>에스프레소와 스팀밀크를 섞은 커피</p>
             <p>가격: 3,300원</p>
+            <select id="카페라떼">
+                <option value="1">1</option><option value="2">2</option><option value="3">3</option>
+                <option value="4">4</option><option value="5">5</option><option value="6">6</option>
+                <option value="7">7</option><option value="8">8</option><option value="9">9</option>
+                <option value="10">10</option>
+            </select>
             <button onclick="addToCart('카페라떼', '3300', '/images/coffee3.jpg')">장바구니에 담기</button>
         </div>
         <div class="menu-item">
@@ -133,6 +152,12 @@
             <h3>바닐라라떼</h3>
             <p>에스프레소와 스팀밀크를 섞은 바닐라향이 나는 커피</p>
             <p>가격: 3,300원</p>
+            <select id="바닐라라떼">
+                <option value="1">1</option><option value="2">2</option><option value="3">3</option>
+                <option value="4">4</option><option value="5">5</option><option value="6">6</option>
+                <option value="7">7</option><option value="8">8</option><option value="9">9</option>
+                <option value="10">10</option>
+            </select>
             <button onclick="addToCart('바닐라라떼', '3300', '/images/coffee4.jpg')">장바구니에 담기</button>
         </div>
     </div>
@@ -162,6 +187,7 @@
                     </tr>
                 </tfoot>
             </table>
+            <button type="button" onclick="makePayment()">결제</button>
         </div>
     </div>
     <script>
@@ -195,19 +221,22 @@
     
             cartTotalElement.textContent = total;
         }
+
+
     
         function addToCart(name, price, image) {
+            const quantityElement = document.getElementById(name);
+            let quantity = Number(quantityElement.value);
             const cart = JSON.parse(localStorage.getItem('cart')) || [];
             const itemIndex = cart.findIndex(item => item.name === name);
     
             if (itemIndex !== -1) {
-                cart[itemIndex].quantity += 1;
+                cart[itemIndex].quantity += quantity;
             } else {
-                cart.push({ name, price, image, quantity: 1 });
+                cart.push({ name, price, image, quantity });
             }
     
             localStorage.setItem('cart', JSON.stringify(cart));
-            alert('장바구니에 추가되었습니다!');
             updateCartTable(); // Cart 업데이트 후 테이블 갱신
         }
     
@@ -218,10 +247,43 @@
             localStorage.setItem('cart', JSON.stringify(cart));
             updateCartTable(); // Cart 업데이트 후 테이블 갱신
         }
+        async function makePayment() {
+            const cartTotalElement = document.getElementById('cart-total');
+            const totalAmount = parseFloat(cartTotalElement.textContent);
+
+            try {
+                const response = await fetch('/get-user-amount');
+                const userData = await response.json();
+
+                if (userData.amount >= totalAmount) {
+                    // 충분한 금액이 있을 경우 결제 진행
+                    const updateResponse = await fetch('/update-user-amount', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ amount: userData.amount - totalAmount })
+                    });
+                    if (updateResponse.ok) {
+                        alert('결제가 성공적으로 완료되었습니다.');
+                        // 결제가 성공적으로 완료된 후 카트를 비웁니다.
+                        localStorage.removeItem('cart');
+                        updateCartTable();
+                    } else {
+                        alert('결제 처리 중 오류가 발생했습니다.');
+                    }
+                } else {
+                    alert('금액이 부족합니다.');
+                }
+            } catch (error) {
+                console.error('Error fetching user amount:', error);
+            }
+        }
     
         window.onload = updateCartTable; // 페이지 로드 시 카트 테이블 초기화
         window.addToCart = addToCart;
         window.removeItem = removeItem;
+        window.makePayment = makePayment;
     </script>
 </body>
 </html>
