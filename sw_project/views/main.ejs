@@ -12,9 +12,9 @@
 
     <!-- Font Awesome CDN Link  -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&family=Numans&display=swap" >
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&family=Numans&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap">
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&family=Numans&display=swap" >
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap">
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&family=Numans&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap">
 
     <!-- Custom CSS File Link  -->
     <link rel="stylesheet" href="../public/stylesheets/style.css">
@@ -580,131 +580,116 @@
     </style>
 -->
     <!-- #endregion -->
-    <body>
-        <!-- HEADER -->
-        <header class="header">
-            <div id="menu-btn" class="fas fa-bars"></div>
-            <a href="#" class="logo">coffee <i class="fas fa-mug-hot"></i></a>
-            <nav class="navbar">
-                <a href="#home">home</a>
-                <a href="#about">about</a>
-                <a href="#menu">menu</a>
-                <a href="#review">review</a>
-                <a href="#book">book</a>
-            </nav>
-            <a href="./login" class="btn">sign in</a>
-            <a href="./join" class="btn">sign up</a>
-            <a href="./map" class="btn">book a table</a>
-        </header>
-    
-        <!-- HOME -->
-        <section class="home" id="home">
-            <div class="row">
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header class="header">
+        <div id="menu-btn" class="fas fa-bars"></div>
+
+        <a href="#" class="logo">coffee <i class="fas fa-mug-hot"></i></a>
+
+        <nav class="navbar">
+            <a href="#home">home</a>
+            <a href="#about">about</a>
+            <a href="#menu">menu</a>
+            <a href="#review">review</a>
+            <a href="#book">book</a>
+        </nav>
+        <!--로그인, 회원가입, 예약 페이징 연결-->
+        <a href="./login" class="btn">sign in</a>
+        <a href="./join" class="btn">sign up</a>
+        <a href="./map" class="btn">book a table</a>
+    </header>
+
+    <!-- HOME -->
+    <section class="home" id="home">
+        <div class="row">
+            <div class="content">
+                <h3>fresh coffee in the morning</h3>
+                <a href="#" class="btn">buy one now</a>
+            </div>
+
+            <div class="image">
+                <img src="image/home-img-1.png" class="main-home-image" alt="">
+            </div>
+        </div>
+
+        <div class="image-slider">
+            <img src="image/home-img-1.png" alt="">
+            <img src="image/home-img-2.png" alt="">
+            <img src="image/home-img-3.png" alt="">
+        </div>
+    </section>
+
+
+    <!-- MENU -->
+    <section class="menu" id="menu">
+        <h1 class="heading">our menu <span>popular menu</span></h1>
+
+        <div class="box-container">
+            <a href="#" class="box">
+                <img src="image/menu-1.png" alt="">
                 <div class="content">
-                    <h3>fresh coffee in the morning</h3>
-                    <a href="#" class="btn">buy one now</a>
+                    <h3>our special coffee</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tenetur, sed.</p>
+                    <span>$8.99</span>
                 </div>
-                <div class="image">
-                    <img src="image/home-img-1.png" class="main-home-image" alt="">
+            </a>
+
+            <a href="#" class="box">
+                <img src="image/menu-2.png" alt="">
+                <div class="content">
+                    <h3>our special coffee</h3>
+                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vel, fugit.</p>
+                    <span>$8.99</span>
                 </div>
-            </div>
-            <div class="image-slider">
-                <img src="image/home-img-1.png" alt="">
-                <img src="image/home-img-2.png" alt="">
-                <img src="image/home-img-3.png" alt="">
-            </div>
-        </section>
-    
-        <!-- MENU -->
-        <section class="menu" id="menu">
-            <h1 class="heading">our menu <span>popular menu</span></h1>
-            <div class="box-container">
-                <a href="#" class="box">
-                    <img src="image/menu-1.png" alt="">
-                    <div class="content">
-                        <h3>our special coffee</h3>
-                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tenetur, sed.</p>
-                        <span>$8.99</span>
-                    </div>
-                </a>
-                <a href="#" class="box">
-                    <img src="image/menu-2.png" alt="">
-                    <div class="content">
-                        <h3>our special coffee</h3>
-                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vel, fugit.</p>
-                        <span>$8.99</span>
-                    </div>
-                </a>
-                <a href="#" class="box">
-                    <img src="image/menu-3.png" alt="">
-                    <div class="content">
-                        <h3>our special coffee</h3>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus, recusandae.</p>
-                        <span>$8.99</span>
-                    </div>
-                </a>
-                <a href="#" class="box">
-                    <img src="image/menu-4.png" alt="">
-                    <div class="content">
-                        <h3>our special coffee</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quas.</p>
-                        <span>$8.99</span>
-                    </div>
-                </a>
-                <a href="#" class="box">
-                    <img src="image/menu-5.png" alt="">
-                    <div class="content">
-                        <h3>our special coffee</h3>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia, vitae.</p>
-                        <span>$8.99</span>
-                    </div>
-                </a>
-                <a href="#" class="box">
-                    <img src="image/menu-6.png" alt="">
-                    <div class="content">
-                        <h3>our special coffee</h3>
-                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Unde, expedita!</p>
-                        <span>$8.99</span>
-                    </div>
-                </a>
-            </div>
-        </section>
-    
-        <!-- ADDITIONAL SECTION FROM FIRST FILE -->
-        <section class="additional-section">
-            <div class="background_main">
-                <div class="main_color"></div>
-                <div class="main_image">
-                    <div class="name"></div>
-                    <div class="name"></div>
-                    <div class="name"></div>
-                    <div class="name"></div>
+            </a>
+
+            <a href="#" class="box">
+                <img src="image/menu-3.png" alt="">
+                <div class="content">
+                    <h3>our special coffee</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus, recusandae.</p>
+                    <span>$8.99</span>
                 </div>
-                <div class="v7_42">
-                    <span class="main_line">강의 가기 전에, 과제할 때, 시험 기간에 혼자서, 친구들과, 선후배와 키오스크를 기다리지 않고 지금 바로 주문해보세요</span>
-                    <span class="order">학교 생협 카페 온라인 주문하기</span>
-                    <span class="donga">동아대학교</span>
-                    <div class="logo_2"></div>
-                    <div class="school_logo"></div>
+            </a>
+
+            <a href="#" class="box">
+                <img src="image/menu-4.png" alt="">
+                <div class="content">
+                    <h3>our special coffee</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quas.</p>
+                    <span>$8.99</span>
                 </div>
-                <div class="menubar_ground">
-                    <span class="menu_fort">MENU</span>
-                    <span class="cash_fort">CASH</span>
-                    <span class="map_fort">MAP</span>
-                    <span class="home_fort">HOME</span>
-                    <div class="gps_image"></div>
-                    <span class="map_location">[추후 장소위치]</span>
+            </a>
+
+            <a href="#" class="box">
+                <img src="image/menu-5.png" alt="">
+                <div class="content">
+                    <h3>our special coffee</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia, vitae.</p>
+                    <span>$8.99</span>
                 </div>
-                <div class="right_menu">
-                    <div class="cart_icon"></div>
-                    <div class="v7_30">
-                        <div class="signup_backround"></div>
-                        <span class="Signup_fort">SIGN UP</span>
-                        <div class="signup_icon"></div>
-                    </div>
-                    <span class="Signin_fort">SIGN IN</span>
+            </a>
+
+            <a href="#" class="box">
+                <img src="image/menu-6.png" alt="">
+                <div class="content">
+                    <h3>our special coffee</h3>
+                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Unde, expedita!</p>
+                    <span>$8.99</span>
                 </div>
-            </div>
-        </section>
-    </body>
-    </html>
+            </a>
+        </div>
+    </section>
+
+    <!-- SWIPER -->
+    <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
+
+    <!-- Custom JS File Link  -->
+    <script src="sw_project\test\public\script.js"></script>
+
+</body>
+
+</html>
