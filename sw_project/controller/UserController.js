@@ -39,6 +39,15 @@ exports.post_login = (req, res) => {
         }
     });
 };
+// 관리자 페이지
+exports.admin = (req, res) => {
+    db.query('SELECT * FROM user', (err, results) => {
+        if (err) {
+            return res.status(500).send('Database query failed.');
+        }
+        res.render('admin', { users: results, user: req.session.user });
+    });
+}
 
 //회원정보 수정 화면
 exports.in_edit = (req, res) => {
