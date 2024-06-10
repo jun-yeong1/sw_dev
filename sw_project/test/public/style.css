@@ -69,8 +69,7 @@ section {
     border: var(--border-hover);
 }
 
-/* HEADER */
-
+/* Header 스타일 결합 */
 .header {
     position: fixed;
     top: 0;
@@ -94,10 +93,16 @@ section {
     padding-left: .5rem;
 }
 
+.header .navbar {
+    display: flex;
+    align-items: center;
+}
+
 .header .navbar a {
-    margin: 0 1rem;
+    margin: 0 3rem 0 2rem;
     font-size: 1.7rem;
     color: var(--main-color);
+    position: relative;
 }
 
 .header .btn {
@@ -526,25 +531,65 @@ section {
         transform: rotate(180deg);
     }
 
-    .header .navbar {
-        position: absolute;
-        top: 99%;
-        left: 0;
-        right: 0;
-        background: #fff;
-        clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
-    }
 
-    .header .navbar.active {
-        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
-    }
+.header .menu_item {
+    position: relative;
+    display: inline-block;
+}
 
-    .header .navbar a {
-        display: block;
-        font-size: 2.2rem;
-        margin: 0;
-        padding: 1.5rem 2rem;
-    }
+.header .submenu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 999;
+}
+
+.header .submenu ul {
+    list-style: none;
+    padding: 10px 0;
+    margin: 0;
+}
+
+.header .submenu ul li {
+    padding: 5px 20px;
+}
+
+.header .submenu ul li a {
+    text-decoration: none;
+    font-size: 1.7rem;
+    color: #333;
+}
+
+.header .menu_item:hover .submenu {
+    display: block;
+}
+
+/* 추가적인 스타일 */
+.header .navbar.active {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+}
+
+.header .navbar a {
+    display: block;
+    font-size: 2.2rem;
+    margin: 0;
+    padding: 1.5rem 2rem;
+}
+
+.header .user-info {
+    display: flex;
+    align-items: center;
+    color: #fff;
+}
+
+.header .user-info a {
+    margin-left: 1rem;
+    color: #fff;
+    text-decoration: none;
+}
 
     .home {
         text-align: center;
