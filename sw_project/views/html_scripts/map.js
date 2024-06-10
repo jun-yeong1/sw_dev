@@ -85,7 +85,11 @@ function displayPlaces(places) {
     places.forEach(place => {
         const LatLngPlace = new naver.maps.LatLng(place.lat, place.lng);
         const li = document.createElement('li');
-        li.textContent = `${place.name} - ${projection.getDistance(current_Distance, LatLngPlace).toFixed(2)}m`;
+        const a = document.createElement('a');
+        a.href = '/menu';
+        a.textContent = `${place.name} - ${projection.getDistance(current_Distance, LatLngPlace).toFixed(2)}`;
+
+        li.appendChild(a);
         placesList.appendChild(li);
 
         new naver.maps.Marker({
@@ -94,4 +98,5 @@ function displayPlaces(places) {
             title: place.name
         });
     });
+
 }
