@@ -16,7 +16,7 @@
     <!-- Custom CSS File Link  -->
     <link rel="stylesheet" href="../public/stylesheets/style.css">
 
-    <!-- #region -->
+    <!-- #region style css-->
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500;600&display=swap');
 
@@ -598,12 +598,15 @@
                 <a href="/add-money" class="btn">Charging</a>
                 <a href="/edit" class="btn">Edit</a>
                 <a href="/logout" class="btn">Logout</a>
+                <a href="./map" class="btn">book a table</a>
+                <% if (user.id === 'admin') { %>
+                    <a href="/admin" class="btn">Admin Page</a>
+                <% } %>
             </div>
         <% } else { %>
             <a href="/login" class="btn">Sign in</a>
             <a href="/join" class="btn">Sign up</a>
         <% } %>
-        <a href="./map" class="btn">book a table</a>
     </header>
 
     <!-- HOME -->

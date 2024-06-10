@@ -1,7 +1,7 @@
-var createError = require('http-errors');
 const express = require('express');
-const port = 8080;
 const session = require('express-session');
+var createError = require('http-errors');
+const port = 8080;
 const bodyParser = require("body-parser");
 const path = require('path');
 //var cookieParser = require('cookie-parser');
@@ -13,7 +13,7 @@ var usersRouter = require('./routes/users');
 var app = express();
 
 // view engine setup
-//app.set('views', path.join(__dirname, 'views'));
+app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
 app.use('/html_scripts', express.static(path.join(__dirname, 'views/html_scripts')));
@@ -22,8 +22,15 @@ app.use(express.json());
 app.use( express.static( "uploads" ));
 app.use(express.urlencoded({ extended: false }));
 //app.use(cookieParser());
-//app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'public')));
 app.use( bodyParser.json() );
+// 세션
+app.use(session({
+  secret: 'your_secret_key',
+  resave: false,
+  saveUninitialized: true,
+  cookie: { secure: false }
+}));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
@@ -32,13 +39,6 @@ app.use('/users', usersRouter);
 app.use(function(req, res, next) {
   next(createError(404));
 });
-// 세션 
-app.use(session({
-  secret: 'your_secret_key',
-  resave: false,
-  saveUninitialized: true,
-  cookie: { secure: false }
-}));
 
 app.listen(port, () => {
   console.log( "Server Port: ", port);

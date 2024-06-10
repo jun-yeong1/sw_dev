@@ -39,3 +39,12 @@ var swiper = new Swiper(".review-slider", {
         }
     },
 });
+
+document.querySelectorAll('.menu_item').forEach(item => {
+    item.addEventListener('mouseover', () => {
+        item.querySelector('.submenu').style.display = 'block';
+    });
+    item.addEventListener('mouseleave', () => {
+        item.querySelector('.submenu').style.display = 'none';
+    });
+});
