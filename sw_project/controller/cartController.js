@@ -1,3 +1,5 @@
+const db = require("../db/db.js");
+
 const menuItems = [
     { id: 1, name: '아메리카노', price: 1800, description: '에스프레소와 물을 섞어 만든 커피', image: 'coffee1.jpg' },
     { id: 2, name: '카푸치노', price: 3000, description: '에스프레소와 스팀밀크, 거품을 올린 커피', image: 'coffee2.jpg' },
@@ -29,3 +31,29 @@ exports.addToCart = (req, res) => {
     }
     res.redirect('/cart');
 };
+
+exports.getAmount = (req, res) => {
+    if (req.session.user) {
+        res.json({ amount: req.session.user.amount });
+    } else {
+        res.status(401).send('Unauthorized');
+    }
+}
+
+exports.updateAmount = (req, res) => {
+    if (req.session.user) {
+        const newAmount = req.body.amount;
+        const userId = req.session.user.id;
+
+        db.query('UPDATE user SET amount = ? WHERE id = ?', [newAmount, userId], (err, results) => {
+            if (err) {
+                return res.status(500).send('Database update failed.');
+            }
+            req.session.user.amount = newAmount; // 세션에 저장된 사용자 정보도 업데이트
+            res.send('User amount updated successfully.');
+        });
+    } else {
+        res.status(401).send('Unauthorized');
+    }
+}
+

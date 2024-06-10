@@ -26,11 +26,17 @@ router.post('/add-to-cart', cartController.addToCart);
 // 입금 페이지
 router.get('/add-money', auth, user.getAddMoneyPage);
 router.post('/add-money', auth, user.addMoney);
+// 결제 페이지
+router.get('/get-user-amount', cartController.getAmount);
+router.post('/update-user-amount', cartController.updateAmount);
 
 router.get("/logout", user.logout);
 
 //map
 router.get('/map', Map.getMap);
 router.get('/api-key', Map.getApi);
+
+// 관리자 페이지
+router.get('/admin', user.admin);
 
 module.exports = router; 
