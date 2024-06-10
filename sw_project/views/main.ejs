@@ -12,17 +12,11 @@
 
     <!-- Font Awesome CDN Link  -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&family=Numans&display=swap" >
-    <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap">
-    <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&family=Numans&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap">
 
     <!-- Custom CSS File Link  -->
     <link rel="stylesheet" href="../public/stylesheets/style.css">
-    <link rel="stylesheet" href="../public/stylesheets/test_main.css">
 
-     <!-- css -->
     <!-- #region -->
-<!--
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500;600&display=swap');
 
@@ -578,9 +572,9 @@
             }
         }
     </style>
--->
     <!-- #endregion -->
 </head>
+
 <body>
 
     <!-- HEADER -->
@@ -597,8 +591,18 @@
             <a href="#book">book</a>
         </nav>
         <!--로그인, 회원가입, 예약 페이징 연결-->
-        <a href="./login" class="btn">sign in</a>
-        <a href="./join" class="btn">sign up</a>
+
+        <% if (user) { %>
+            <div class="user-info">
+                <span>Welcome, <%= user.id %></span>
+                <a href="/add-money" class="btn">Charging</a>
+                <a href="/edit" class="btn">Edit</a>
+                <a href="/logout" class="btn">Logout</a>
+            </div>
+        <% } else { %>
+            <a href="/login" class="btn">Sign in</a>
+            <a href="/join" class="btn">Sign up</a>
+        <% } %>
         <a href="./map" class="btn">book a table</a>
     </header>
 
@@ -611,17 +615,49 @@
             </div>
 
             <div class="image">
-                <img src="image/home-img-1.png" class="main-home-image" alt="">
+                <img src="images/home-img-1.png" class="main-home-image" alt="">
             </div>
         </div>
 
         <div class="image-slider">
-            <img src="image/home-img-1.png" alt="">
-            <img src="image/home-img-2.png" alt="">
-            <img src="image/home-img-3.png" alt="">
+            <img src="images/home-img-1.png" alt="">
+            <img src="images/home-img-2.png" alt="">
+            <img src="images/home-img-3.png" alt="">
         </div>
     </section>
 
+    <!-- ABOUT -->
+    <section class="about" id="about">
+        <h1 class="heading">about us <span>why choose us</span></h1>
+
+        <div class="row">
+            <div class="image">
+                <img src="images/about-img.png" alt="">
+            </div>
+
+            <div class="content">
+                <h3 class="title">what's make our coffee special!</h3>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel rerum laboriosam reprehenderit ipsa id
+                    repellat odio illum, voluptas, necessitatibus assumenda adipisci. Hic, maiores iste? Excepturi illo
+                    dolore mollitia qui quia.</p>
+                <a href="#" class="btn">read more</a>
+                <div class="icons-container">
+                    <div class="icons">
+                        <img src="images/about-icon-1.png" alt="">
+                        <h3>quality coffee</h3>
+                    </div>
+                    <div class="icons">
+                        <img src="images/about-icon-2.png" alt="">
+                        <h3>our branches</h3>
+                    </div>
+                    <div class="icons">
+                        <img src="images/about-icon-3.png" alt="">
+                        <h3>free delivery</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- MENU -->
     <section class="menu" id="menu">
@@ -629,7 +665,7 @@
 
         <div class="box-container">
             <a href="#" class="box">
-                <img src="image/menu-1.png" alt="">
+                <img src="images/menu-1.png" alt="">
                 <div class="content">
                     <h3>our special coffee</h3>
                     <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tenetur, sed.</p>
@@ -638,7 +674,7 @@
             </a>
 
             <a href="#" class="box">
-                <img src="image/menu-2.png" alt="">
+                <img src="images/menu-2.png" alt="">
                 <div class="content">
                     <h3>our special coffee</h3>
                     <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vel, fugit.</p>
@@ -647,7 +683,7 @@
             </a>
 
             <a href="#" class="box">
-                <img src="image/menu-3.png" alt="">
+                <img src="images/menu-3.png" alt="">
                 <div class="content">
                     <h3>our special coffee</h3>
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus, recusandae.</p>
@@ -656,7 +692,7 @@
             </a>
 
             <a href="#" class="box">
-                <img src="image/menu-4.png" alt="">
+                <img src="images/menu-4.png" alt="">
                 <div class="content">
                     <h3>our special coffee</h3>
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quas.</p>
@@ -665,7 +701,7 @@
             </a>
 
             <a href="#" class="box">
-                <img src="image/menu-5.png" alt="">
+                <img src="images/menu-5.png" alt="">
                 <div class="content">
                     <h3>our special coffee</h3>
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia, vitae.</p>
@@ -674,7 +710,7 @@
             </a>
 
             <a href="#" class="box">
-                <img src="image/menu-6.png" alt="">
+                <img src="images/menu-6.png" alt="">
                 <div class="content">
                     <h3>our special coffee</h3>
                     <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Unde, expedita!</p>
@@ -684,6 +720,189 @@
         </div>
     </section>
 
+    <!-- REVIEW -->
+    <section class="review" id="review">
+        <h1 class="heading">reviews <span>what people says</span></h1>
+
+        <div class="swiper review-slider">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide box">
+                    <i class="fas fa-quote-left"></i>
+                    <i class="fas fa-quote-right"></i>
+                    <img src="images/pic-1.png" alt="">
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quo, earum quis dolorem quaerat tenetur
+                        illum.</p>
+                    <h3>john deo</h3>
+                    <span>satisfied client</span>
+                </div>
+
+                <div class="swiper-slide box">
+                    <i class="fas fa-quote-left"></i>
+                    <i class="fas fa-quote-right"></i>
+                    <img src="images/pic-2.png" alt="">
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum optio quasi ut, illo ipsam
+                        assumenda.</p>
+                    <h3>john deo</h3>
+                    <span>satisfied client</span>
+                </div>
+
+                <div class="swiper-slide box">
+                    <i class="fas fa-quote-left"></i>
+                    <i class="fas fa-quote-right"></i>
+                    <img src="images/pic-3.png" alt="">
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius asperiores aliquam hic quis!
+                        Eligendi, aliquam.</p>
+                    <h3>john deo</h3>
+                    <span>satisfied client</span>
+                </div>
+
+                <div class="swiper-slide box">
+                    <i class="fas fa-quote-left"></i>
+                    <i class="fas fa-quote-right"></i>
+                    <img src="images/pic-4.png" alt="">
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quo, earum quis dolorem quaerat tenetur
+                        illum.</p>
+                    <h3>john deo</h3>
+                    <span>satisfied client</span>
+                </div>
+
+                <div class="swiper-slide box">
+                    <i class="fas fa-quote-left"></i>
+                    <i class="fas fa-quote-right"></i>
+                    <img src="images/pic-2.png" alt="">
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum optio quasi ut, illo ipsam
+                        assumenda.</p>
+                    <h3>john deo</h3>
+                    <span>satisfied client</span>
+                </div>
+
+                <div class="swiper-slide box">
+                    <i class="fas fa-quote-left"></i>
+                    <i class="fas fa-quote-right"></i>
+                    <img src="images/pic-3.png" alt="">
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius asperiores aliquam hic quis!
+                        Eligendi, aliquam.</p>
+                    <h3>john deo</h3>
+                    <span>satisfied client</span>
+                </div>
+
+                <div class="swiper-slide box">
+                    <i class="fas fa-quote-left"></i>
+                    <i class="fas fa-quote-right"></i>
+                    <img src="images/pic-4.png" alt="">
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eligendi modi perspiciatis distinctio
+                        velit aliquid a.</p>
+                    <h3>john deo</h3>
+                    <span>satisfied client</span>
+                </div>
+            </div>
+            <div class="swiper-pagination"></div>
+        </div>
+    </section>
+
+    <!-- BOOK -->
+    <section class="book" id="book">
+        <h1 class="heading">booking <span>reserve a table</span></h1>
+
+        <form action="">
+            <input type="text" placeholder="Name" class="box">
+            <input type="email" placeholder="Email" class="box">
+            <input type="number" placeholder="Number" class="box">
+            <textarea name="" placeholder="Message" class="box" id="" cols="30" rows="10"></textarea>
+            <input type="submit" value="send message" class="btn">
+        </form>
+    </section>
+
+    <!-- FOOTER -->
+    <section class="footer">
+        <div class="box-container">
+            <div class="box">
+                <h3>our branches</h3>
+                <a href="#"><i class="fas fa-arrow-right"></i> india</a>
+                <a href="#"><i class="fas fa-arrow-right"></i> USA</a>
+                <a href="#"><i class="fas fa-arrow-right"></i> france</a>
+                <a href="#"><i class="fas fa-arrow-right"></i> africa</a>
+                <a href="#"><i class="fas fa-arrow-right"></i> japan</a>
+            </div>
+
+            <div class="box">
+                <h3>quick links</h3>
+                <a href="#home"><i class="fas fa-arrow-right"></i> home</a>
+                <a href="#about"><i class="fas fa-arrow-right"></i> about</a>
+                <a href="#menu"><i class="fas fa-arrow-right"></i> menu</a>
+                <a href="#review"><i class="fas fa-arrow-right"></i> review</a>
+                <a href="#book"><i class="fas fa-arrow-right"></i> book</a>
+            </div>
+
+            <div class="box">
+                <h3>contact info</h3>
+                <a href="#"><i class="fas fa-phone"></i> +123-456-7890</a>
+                <a href="#"><i class="fas fa-phone"></i> +111-222-3333</a>
+                <a href="#"><i class="fas fa-envelope"></i> coffee@gmail.com</a>
+                <a href="#"><i class="fas fa-envelope"></i> Perú, Lima</a>
+            </div>
+
+            <div class="box">
+                <h3>contact info</h3>
+                <a href="#"><i class="fab fa-facebook-f"></i> facebook</a>
+                <a href="#"><i class="fab fa-twitter"></i> twitter</a>
+                <a href="#"><i class="fab fa-instagram"></i> instagram</a>
+                <a href="#"><i class="fab fa-linkedin"></i> linkedin</a>
+                <a href="#"><i class="fab fa-twitter"></i> twitter</a>
+            </div>
+        </div>
+
+        <div class="credit">created by <span>mr. web designer</span> | all rights reserved</div>
+    </section>
+    
     <!-- SWIPER -->
     <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
 
