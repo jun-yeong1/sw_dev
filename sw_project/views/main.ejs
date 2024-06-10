@@ -595,11 +595,13 @@
         <% if (user) { %>
             <div class="user-info">
                 <span>Welcome, <%= user.id %></span>
+                <a href="/add-money" class="btn">Charging</a>
+                <a href="/edit" class="btn">Edit</a>
                 <a href="/logout" class="btn">Logout</a>
             </div>
         <% } else { %>
-            <a href="/login" class="btn">sign in</a>
-            <a href="/join" class="btn">sign up</a>
+            <a href="/login" class="btn">Sign in</a>
+            <a href="/join" class="btn">Sign up</a>
         <% } %>
         <a href="./map" class="btn">book a table</a>
     </header>

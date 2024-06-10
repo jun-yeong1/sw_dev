@@ -24,7 +24,7 @@ app.use(express.urlencoded({ extended: false }));
 //app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use( bodyParser.json() );
-
+// 세션
 app.use(session({
   secret: 'your_secret_key',
   resave: false,
@@ -39,8 +39,6 @@ app.use('/users', usersRouter);
 app.use(function(req, res, next) {
   next(createError(404));
 });
-// 세션 
-
 
 app.listen(port, () => {
   console.log( "Server Port: ", port);

@@ -7,8 +7,8 @@ const menuItems = [
 
 let cart = [];
 
-exports.getMenuPage = (req, res) => {
-    res.render('menu', { menuItems });
+exports.menu = (req, res) => {
+    res.render("menu");
 };
 
 exports.getCartPage = (req, res) => {
