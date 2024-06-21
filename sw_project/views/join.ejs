@@ -1,35 +1,101 @@
-<!-- script -->
-<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-<script>
-    function joinUser() {
-        var form = document.getElementById("join");
-        axios({
-            method: 'post',
-            url: 'http://localhost:8080/join',
-            data: {
-                id: form.id.value,
-                name: form.name.value,
-                password: form.password.value,
-                amount: form.amount.value
-            }
-        }).then((response) => {
-            return response.data;
-        }).then((data) => {
-            console.log(data);
-            //회원 가입이 완료되었습니다.
-            let html = "<h6 class='fw-bold text-center mt-5'>회원가입이 완료되었습니다!</h6>"
-            document.getElementById("contents").innerHTML = html;
-        })
-    }
-</script>
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>회원가입</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+        function joinUser() {
+            var form = document.getElementById("join");
+            var id = form.id.value;
+            var name = form.name.value;
+            var password = form.password.value;
 
-<!-- body -->
+            if (id.length == 0 || id == "") {
+                alert("아이디를 입력해주세요.");
+                form.id.focus();
+                return;
+            }
+
+            if (form.idDuplication.value != "idCheck") {
+                alert("아이디 중복체크를 해주세요");
+                return;
+            }
+
+            if (name.length == 0 || name == "") {
+                alert("이름을 입력해주세요.");
+                setTimeout(function () { form.name.focus(); })
+                return;
+            }
+
+            if (password.length == 0 || password == "") {
+                alert("비밀번호를 입력해주세요.");
+                setTimeout(function () { form.password.focus(); })
+                return;
+            }
+
+            axios({
+                method: 'post',
+                url: 'http://localhost:8080/join',
+                data: {
+                    id: form.id.value,
+                    name: form.name.value,
+                    password: form.password.value,
+                    amount: 0
+                }
+            }).then((response) => {
+                return response.data;
+            }).then((data) => {
+                console.log(data);
+                let html = "<h6 class='fw-bold text-center mt-5'>회원가입이 완료되었습니다!</h6>"
+                document.getElementById("contents").innerHTML = html;
+            });
+        }
+
+        function checkId() {
+            var form = document.getElementById("join");
+            var id = form.id.value;
+            if (id.length == 0 || id == "") {
+                alert("아이디를 입력해주세요.");
+                return;
+            }
+
+            axios({
+                method: 'get',
+                url: `http://localhost:8080/checkId/${id}`
+            }).then((response) => {
+                return response.data;
+            }).then((data) => {
+                if (data.exists) {
+                    alert("이미 사용 중인 아이디입니다.");
+                    form.idDuplication.value = "idUnCheck";
+                } else {
+                    if (confirm("사용 가능한 아이디입니다. 사용하시겠습니까?")) {
+                        alert("아이디가 확인되었습니다.");
+                        form.idDuplication.value = "idCheck";
+                        form.id.disabled = true;
+                        document.getElementById("cancelButton").style.display = "inline-block";
+                    } else {
+                        form.idDuplication.value = "idUnCheck";
+                    }
+                }
+            });
+        }
+
+        function cancelCheck() {
+            var form = document.getElementById("join");
+            form.idDuplication.value = "idUnCheck";
+            form.id.disabled = false;
+            document.getElementById("cancelButton").style.display = "none";
+        }
+    </script>
+</head>
 <body>
 <form id="join">
     <div class="row justify-content-center mt-5">
         <div class="col-4"></div>
         <div class="col-4 justify-content-center" id="title">
-            <h6 class="fw-bold fs-2 mb-5 text-center">회원가입</h6> 
+            <h6 class="fw-bold fs-2 mb-5 text-center">회원가입</h6>
         </div>
         <div class="col-4"></div>
     </div>
@@ -37,30 +103,33 @@
         <div class="col-4"></div>
         <div class="col-4 justify-content-center" id="contents">
             <h6 class="fw-bold">ID</h6>
-            <input class="input-box mb-2" type="text" name="id" placeholder="아이디를 입력하세요" required><br>
+            <input class="input-box mb-2" type="text" name="id" placeholder="아이디를 입력하세요" required>
+            <button type="button" onclick="checkId()">중복 확인</button>
+            <button type="button" id="cancelButton" onclick="cancelCheck()" style="display: none;">취소</button>
+            <input type="hidden" name="idDuplication" value="idUnCheck"/>
+            <br>
             <h6 class="fw-bold">Name</h6>
             <input class="input-box mb-2" type="text" name="name" placeholder="이름을 입력하세요" required><br>
             <h6 class="fw-bold">Password</h6>
             <input class="input-box mb-2" type="password" name="password" placeholder="비밀번호를 입력하세요" required><br>
-            <h6 class="fw-bold">금액</h6>
-            <input class="input-box mb-2" type="number" name="amount" placeholder="금액을 입력하세요"><br>
         </div>
         <div class="col-4"></div>
     </div>
     <div class="row justify-content-center mt-3">
         <div class="col-4"></div>
         <div class="col-4" id="button-group">
-            <button class="join-button" type="button" onclick="joinUser();">회원가입</button>        
+            <button class="join-button" type="button" onclick="joinUser();">회원가입</button>
         </div>
         <div class="col-4"></div>
     </div>
     <div class="row justify-content-center mt-3">
         <div class="col-4"></div>
-        <div class="col-4" id="button-group">
-            <button class="join-button" type="button" onclick="location.href='login';">로그인 하러가기</button>   
+        <div class="col-4 d-flex justify-content-between" id="button-group">
+            <button class="join-button" type="button" onclick="location.href='login';">로그인 하러가기</button>
+            <button class="join-button" type="button" onclick="history.back();">뒤로가기</button>
         </div>
         <div class="col-4"></div>
     </div>
-   
 </form>
 </body>
+</html>
