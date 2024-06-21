@@ -132,4 +132,4 @@ dist
 
 # db ignore
 
-db/db.js
+sw_project/db/db.js
