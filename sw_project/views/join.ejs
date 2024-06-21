@@ -46,9 +46,14 @@
             }).then((response) => {
                 return response.data;
             }).then((data) => {
-                console.log(data);
-                let html = "<h6 class='fw-bold text-center mt-5'>회원가입이 완료되었습니다!</h6>"
-                document.getElementById("contents").innerHTML = html;
+                let choice = confirm("회원가입이 완료되었습니다! 로그인 하시겠습니까?");
+                if (choice) {
+                    // Redirect to the login page
+                    window.location.href = "/login";
+                } else {
+                    // Redirect to the home page
+                    window.location.href = "/";
+                }
             });
         }
 
@@ -119,13 +124,6 @@
         <div class="col-4"></div>
         <div class="col-4" id="button-group">
             <button class="join-button" type="button" onclick="joinUser();">회원가입</button>
-        </div>
-        <div class="col-4"></div>
-    </div>
-    <div class="row justify-content-center mt-3">
-        <div class="col-4"></div>
-        <div class="col-4 d-flex justify-content-between" id="button-group">
-            <button class="join-button" type="button" onclick="location.href='login';">로그인 하러가기</button>
             <button class="join-button" type="button" onclick="history.back();">뒤로가기</button>
         </div>
         <div class="col-4"></div>
