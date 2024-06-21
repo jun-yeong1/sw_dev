@@ -13,6 +13,9 @@ router.post("/join", user.post_user);
 router.get("/login", user.login);
 router.post("/login", user.post_login);
 
+//router.get("/check_id", user.idcheck);
+router.get('/checkId/:id', user.check);
+
 // edit 출력 확실시
 router.get("/edit", user.edit);
 router.post("/edit", user.edit);
