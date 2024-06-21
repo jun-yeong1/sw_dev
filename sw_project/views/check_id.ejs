@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>아이디 중복체크</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+        window.onload = function() {
+            var urlParams = new URLSearchParams(window.location.search);
+            var id = urlParams.get('id');
+            document.getElementById('id').value = id;
+        }
+
+        function checkId() {
+            var id = form.id.value;
+            if(id.length == 0 || id == ""){
+                alert("아이디를 입력해주세요.");
+                return;
+            }
+
+            axios({
+                method: 'get',
+                url: `http://localhost:8080/checkId/${id}`
+            }).then((response) => {
+                return response.data;
+            }).then((data) => {
+                if(data.exists){
+                    alert("이미 사용 중인 아이디입니다.");
+                    opener.setIdDuplication("");
+                } else {
+                    alert("사용 가능한 아이디입니다.");
+                    opener.setIdDuplication("idCheck");
+                }
+                window.close();
+            });
+        }
+    </script>
+</head>
+<body>
+<input type="text" id="id" placeholder="아이디">
+<button type="button" onclick="checkId()">중복체크</button>
+</body>
+</html>

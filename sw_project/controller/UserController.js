@@ -16,6 +16,17 @@ exports.post_user = (req, res) => {
     })
 }
 
+/*//아이디 중복체크 페이지
+exports.idcheck = (req, res) => {
+    res.render("check_id");
+}*/
+
+exports.check = (req, res) => {
+    User.checkId(req.params.id, (exists)=>{
+        res.send({exists});
+    })
+}
+
 //login 화면
 exports.login = (req, res) => {
     res.render("login");
