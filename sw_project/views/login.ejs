@@ -34,8 +34,7 @@
             }).then((data) => {
                 if ( data.flag == false) {
                     //메세지 띄우기
-                    let alert_html = "<h6 class='fw-bold text-center mt-5'>다시 로그인해주세요.</h6>";
-                    document.getElementById("alert").innerHTML = alert_html;
+                    alert("다시 로그인해주세요.");
                 } else {
                     var form_info = document.getElementById("form_info");
                     form_info.id.value = form.id.value;
@@ -45,81 +44,41 @@
             })
         }
     </script>
+</head>
 <!-- body -->
 <body>
     <div class="background">
         <div class="background_image"></div>
         <div class="menubar">         <!--상단 메뉴바 -->
-            <span class="fonts">MENU</span>
-            <span class="fonts">CASH</span>
-            <span class="fonts">MAP</span>
-            <span class="fonts">HOME</span>
+            <a href="/menu"><span class="fonts_1">MENU</span></a>
+            <a href="/map"><span class="fonts_3">MAP</span></a>
+            <a href="/"><span class="fonts_4">HOME</span></a>
             <div class="line_1"></div> <!-- 구분선 -->
-            <div class="icon icon_1"></div> <!--공대 6호관 옆 아이콘-->
-            <span class="fonts fonts_5">공대 6호관 카페</span>
+            <div class="icon_1"></div> <!--공대 6호관 옆 아이콘-->
+            <span class="fonts_5">카페</span>
 
-            <div class="icon icon_2"></div>  <!--카트 아이콘-->
+            <div class="icon_2"></div>  <!--카트 아이콘-->
             <div class="signup_bg"></div>  <!--SIGN UP 배경-->
-            <span class="fonts fonts_6">SIGN UP</span>
-            <div class="icon icon_3"></div>  <!--SIGN UP 옆 사람 아이콘-->
-            <span class="fonts fonts_7">SIGN IN</span>
+            <a href="/login"><span class="fonts_6">SIGN UP</span></a>
+            <div class="icon_3"></div>  <!--SIGN UP 옆 사람 아이콘-->
+            <a href="/join"><span class="fonts_7">SIGN IN</span></a>
         </div>
+
+        <div class="main_login"></div> <!-- 로그인 하얀 창-->
         <form id="login">
-        <!--
-        <div class="row justify-content-center mt-5">
-            <div class="col-4"></div>
-            <div class="col-4 justify-content-center" id="title">
-                <h6 class="fw-bold fs-2 mb-5 text-center">로그인</h6> 
-            </div>
-            <div class="col-4"></div>
-        -->
-            <div class="main_login"></div> <!-- 로그인 하얀 창-->
             <div class="id_pw">
-                <div class="id_bg">
-                    <input class="input-box mb-2" type="text" name="id" placeholder="아이디를 입력하세요" required><br>
-                </div> <!--아이디 입력창-->
-                <span class="id_font">아이디</span>
-                <div class="pw_bg">
-                    <input class="input-box mb-2" type="password" name="password" placeholder="비밀번호를 입력하세요" required><br>
-                </div>  <!--비밀번호 입력창-->
-                <span class="pw_font">비밀번호</span>
-                <div class="login_bt">
-                    <button class="join-button" type="button" onclick="loginUser();">로그인</button>
-                </div> <!--로그인 창/ 버튼기능 추가 후 연결 해주시면 됩니다-->
-                <span class="login_font">로그인</span> 
-            </div>
-            <!--
-            <div class="row justify-content-center">
-                <div class="col-4"></div>
-                <div class="col-4 justify-content-center" id="contents">
-                    <h6 class="fw-bold">ID</h6>
-                    <input class="input-box mb-2" type="text" name="id" placeholder="아이디를 입력하세요" required><br>
-                    <h6 class="fw-bold">Password</h6>
-                    <input class="input-box mb-2" type="password" name="password" placeholder="비밀번호를 입력하세요" required><br>
-                </div>
-                <div class="col-4"></div>
-            </div>
-            <div class="row justify-content-center mt-3">
-                <div class="col-4"></div>
-                <div class="col-4" id="button-group">
-                    <button class="join-button" type="button" onclick="loginUser();">로그인</button>
-                </div>
-                <div class="col-4"></div>
-            </div>
-            -->
-            <div class="row justify-content-center">
-                <div class="col-4"></div>
-                <div class="col-4" id="alert">
-                </div>
-                <div class="col-4"></div>
+                <input class="id_bg" type="text" name="id" placeholder="  아이디" required><br>
+                <input class="pw_bg" type="password" name="password" placeholder="  비밀번호" required><br>
+                <button class="login_bt" type="button" onclick="loginUser();"></button>
+                <span class="login_font">로그인</span>
             </div>
         </form>
         <div class="v16_57">
             <div class="line_2"></div>  <!--구분선-->
             <div class="line_3"></div>  <!--구분선-->
-            <span class="join_font_2">회원가입</span>
-            <span class="ID_find_font">아이디 찾기</span>
-            <span class="PW_find_font ">비밀번호 찾기</span>
+            <a href="/join"><span class="join_font_2">회원가입</span></a>
+            <span class="ID_find_font">아이디 찾기</span> <!--기능 없음-->
+            <span class="PW_find_font ">비밀번호 찾기</span> <!--기능 없음-->
         </div>
         <div class="logo">
             <span class="logo_font">학교 생협 카페 온라인 주문하기</span>
@@ -128,7 +87,50 @@
         </div>
         <div class="line_4"></div>
     </div>
+    <!-- <div class="background">
+        <div class="background_image"></div>
+        <div class="menubar">
+            <nav class="navbar">
+                <a href="/menu">MENU</a>
+                <a href="/add-money">CASH</a>
+                <a href="/map">MAP</a>
+                <a href="/">HOME</a>
+            </nav>
+            <div class="line_1"></div>
+            <div class="icon icon_1"></div>
+            <section class="fonts fonts_5">공대 6호관 카페</section>
 
+            <div class="icon icon_2"></div>
+            <div class="signup_bg"></div>
+            <section class="fonts fonts_6">SIGN UP</section>
+            <div class="icon icon_3"></div>
+            <section class="fonts fonts_7">SIGN IN</section>
+        </header>
+        <form id="login">
+            <div class="main_login">
+                <div class="logo">
+                    <div class="v16_60"></div>
+                    <span class="logo_font">학교 생협 카페 온라인 주문하기</span>
+                    <div class="v16_61"></div>
+                </div>
+                <div class="line_4"></div>
+                <div class="id_pw">
+                    <input class="id_bg" type="text" name="id" placeholder="  아이디" required><br>
+                    <input class="pw_bg" type="password" name="password" placeholder="  비밀번호" required><br>
+                    <button class="login_bt" type="button" onclick="loginUser();">
+                        <span class="login_font">로그인</span>
+                    </button>
+                </div>
+                <div class="sub_menu_bar">
+                    <div class="sub_menu_line"></div>
+                    <span class="sub_menu">회원가입</span>
+                    <span class="sub_menu">아이디 찾기</span>
+                    <span class="sub_menu ">비밀번호 찾기</span>
+                    <div class="sub_menu_line"></div>
+                </div>
+            </div>
+        </form>
+    </div> -->
     <form id="form_info" action="/" method="GET">
         <input type="hidden" name="id">
     </form>

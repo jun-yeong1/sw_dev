@@ -3,7 +3,7 @@ const cnn = require("../db/db.js");
 
 //회원가입 정보 입력
 exports.insert = ( data, cb ) => {
-    var sql = `INSERT INTO user VALUES ('${data.id}', '${data.name}', '${data.password}', '${data.amount}');`;
+    var sql = `INSERT INTO user VALUES ('${data.id}', '${data.password}', '${data.name}' , 0);`;
 
     cnn.query(sql, (err, rows) => {
         if ( err ) throw err;
@@ -33,7 +33,7 @@ exports.get_user = (id, cb) => {
 
 //회원 정보 수정
 exports.update = ( data,  cb ) => {
-    var sql = `UPDATE user SET name='${data.name}', password='${data.password}', amount='${data.amount}' WHERE id='${data.id}';`;
+    var sql = `UPDATE user SET name='${data.name}', password='${data.password}' WHERE id='${data.id}';`;
 
     cnn.query(sql, (err, rows) => {
         if ( err ) throw err;
