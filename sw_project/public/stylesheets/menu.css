@@ -1,0 +1,107 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+header {
+    background-color: #292d30;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+    margin-bottom: 20px;
+    width: 100%;
+}
+h1 {
+    margin: 0;
+}
+.wrapper {
+    display: flex;
+}
+.container {
+    display: flex;
+    flex-wrap: wrap; /* 요소들이 줄 바꿈되도록 설정 */
+    flex: 1; /* 남은 공간을 모두 차지 */
+    gap: 10px;
+}
+.menu-item {
+    flex: 1 1 calc(30% - 20px);
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: center;
+    box-sizing: border-box;
+}
+.menu-item img {
+    max-width: 100%; /* 이미지가 부모 요소 안에서 최대 너비로 설정 */
+    height: auto;
+}
+.category {
+    text-align: center;
+    margin: 20px 0;
+    width: 100%;
+    top: 0;
+    background-color: #fff;
+    z-index: 999;
+    padding: 10px 0;
+}
+.card {
+    width: 400px; /* 오른쪽 고정 너비 설정 */
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: center;
+}
+.card-header {
+    font-weight: bold;
+    font-size: 1.2em;
+}
+.table {
+    width: 100%;
+    border-collapse: collapse;
+}
+.table th, .table td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: center;
+}
+.btn {
+    padding: 4px 8px;
+    cursor: pointer;
+}
+.btn-danger {
+    background-color: red;
+    color: white;
+}
+.btn-sm {
+    font-size: 0.8em;
+}
+button {
+    margin: 20px;
+    outline: none;
+    width: 150px;
+    height: 40px;
+    padding: 10px 25px;
+    border: 2px solid #000;
+    font-family: 'Lato', sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    font-weight: bold;
+    background: transparent;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    display: inline-block;
+    transition: all 0.3s ease;
+}
+button:hover {
+    box-shadow:
+    -7px -7px 20px 0px #fff9,
+    -4px -4px 5px 0px #fff9,
+    7px 7px 20px 0px #0002,
+    4px 4px 5px 0px #0001;
+}
+.menu-item button {
+    width: 170px;
+}
