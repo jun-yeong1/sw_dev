@@ -101,6 +101,26 @@
 </div>
 <div id='div1' class="container">
     <div class="menu-item">
+        <img src="/images/coffee1.jpg" alt="에스프레소">
+        <h3>에스프레소</h3>
+        <p>에스프레소</p>
+        <span id="에스프레소" hidden="hidden">에스프레소</span>
+        <p>가격: <span id="에스가격">1500</span>원</p>
+        <div>
+            <input type="radio" id="iced" name="temperature" value="iced" onclick="document.getElementById('에스가격').innerText = '1500';" disabled>
+            <label for="iced">Iced</label>
+            <input type="radio" id="hot" name="temperature" value="hot" onclick="document.getElementById('에스가격').innerText = '1500';" checked>
+            <label for="hot">Hot</label>
+        </div>
+        <select id="에스프레소수량">
+            <option value="1">1</option><option value="2">2</option><option value="3">3</option>
+            <option value="4">4</option><option value="5">5</option><option value="6">6</option>
+            <option value="7">7</option><option value="8">8</option><option value="9">9</option>
+            <option value="10">10</option>
+        </select>
+        <button onclick="addToCart('에스프레소', document.getElementById('에스가격').innerText, '/images/coffee1.jpg')">장바구니에 담기</button>
+    </div>
+    <div class="menu-item">
         <img src="/images/coffee1.jpg" alt="아메리카노">
         <h3>아메리카노</h3>
         <p>에스프레소와 물을 섞어 만든 커피</p>
