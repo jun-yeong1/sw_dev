@@ -2,22 +2,7 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <!--폰트1 numans-->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Numans&display=swap" rel="stylesheet">
-    <!--폰트2 nunito-->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Numans&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
-    <!--폰트3 nanum gothic-->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&family=Numans&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
-    <!--css 주소 링크-->
-    <link href="/stylesheets/sign_in.css" rel="stylesheet" />
     <title>회원가입</title>
-    <!-- script -->
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script>
         function joinUser() {
@@ -25,13 +10,6 @@
             var id = form.id.value;
             var name = form.name.value;
             var password = form.password.value;
-            var password1 = form.password1.value;
-            
-            // 비밀번호 일치 여부 확인
-            if (password !== password1) {
-                alert("비밀번호가 일치하지 않습니다.");
-                return;
-            }
 
             if (id.length == 0 || id == "") {
                 alert("아이디를 입력해주세요.");
@@ -55,6 +33,7 @@
                 setTimeout(function () { form.password.focus(); })
                 return;
             }
+
             axios({
                 method: 'post',
                 url: 'http://localhost:8080/join',
@@ -77,6 +56,7 @@
                 }
             });
         }
+
         function checkId() {
             var form = document.getElementById("join");
             var id = form.id.value;
@@ -84,7 +64,33 @@
                 alert("아이디를 입력해주세요.");
                 return;
             }
+            var form = document.getElementById("join");
+            var id = form.id.value;
+            if (id.length == 0 || id == "") {
+                alert("아이디를 입력해주세요.");
+                return;
+            }
 
+            axios({
+                method: 'get',
+                url: `http://localhost:8080/checkId/${id}`
+            }).then((response) => {
+                return response.data;
+            }).then((data) => {
+                if (data.exists) {
+                    alert("이미 사용 중인 아이디입니다.");
+                    form.idDuplication.value = "idUnCheck";
+                } else {
+                    if (confirm("사용 가능한 아이디입니다. 사용하시겠습니까?")) {
+                        alert("아이디가 확인되었습니다.");
+                        form.idDuplication.value = "idCheck";
+                        form.id.disabled = true;
+                        document.getElementById("cancelButton").style.display = "inline-block";
+                    } else {
+                        form.idDuplication.value = "idUnCheck";
+                    }
+                }
+            });
             axios({
                 method: 'get',
                 url: `http://localhost:8080/checkId/${id}`
@@ -115,7 +121,6 @@
         }
     </script>
 </head>
-<!-- body -->
 <body>
     <div class="background">
         <div class="background_image"></div>

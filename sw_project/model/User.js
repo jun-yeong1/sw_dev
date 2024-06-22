@@ -32,7 +32,7 @@ exports.get_user = (id, cb) => {
 
 //회원 정보 수정
 exports.update = ( data,  cb ) => {
-    var sql = `UPDATE user SET name='${data.name}', password='${data.password}' WHERE id='${data.id}';`;
+    var sql = `UPDATE user SET name='${data.name}', password='${data.password}', amount='${data.amount}' WHERE id='${data.id}';`;
 
     cnn.query(sql, (err, rows) => {
         if ( err ) throw err;
