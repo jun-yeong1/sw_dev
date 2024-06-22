@@ -3,17 +3,121 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--폰트1 numans-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Numans&display=swap" rel="stylesheet">
+    <!--폰트2 nunito-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Numans&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
+    <!--폰트3 nanum gothic-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&family=Numans&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
+    <!--css 주소 링크-->
+    <link href="/stylesheets/cash.css" rel="stylesheet" />
     <title>입금 페이지</title>
+    <script>
+        // Select the reset button and the input field
+        const resetButton = document.getElementById('resetButton');
+        const amountInput = document.getElementById('amount');
+
+        // Add a click event listener to the reset button
+        resetButton.addEventListener('click', function() {
+            // Set the value of the input field to zero
+            amountInput.value = 0;
+        });
+        const add1000Button = document.getElementById('add1000');
+        const add10000Button = document.getElementById('add10000');
+        const add50000Button = document.getElementById('add50000');
+
+        // Add event listeners to the add amount buttons
+        add1000Button.addEventListener('click', function() {
+            event.preventDefault();
+            amountInput.value = parseInt(amountInput.value || 0) + 1000;
+        });
+
+        add10000Button.addEventListener('click', function() {
+            event.preventDefault();
+            amountInput.value = parseInt(amountInput.value || 0) + 10000;
+        });
+
+        add50000Button.addEventListener('click', function() {
+            event.preventDefault();
+            amountInput.value = parseInt(amountInput.value || 0) + 50000;
+        });
+
+        const moneyForm = document.getElementById('moneyForm');
+        moneyForm.addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent the default form submission
+
+            const formData = new FormData(moneyForm);
+
+            fetch(moneyForm.action, {
+                method: 'POST',
+                body: formData,
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert("충전이 정상적으로 완료되었습니다!");
+                    window.location.href = '/'; // Redirect to the main page
+                } else {
+                    alert(data.message || '충전에 실패했습니다. 다시 시도해 주세요.');
+                }
+            })
+            .catch(error => {
+                console.error('There was a problem with the fetch operation:', error);
+                alert("충전에 실패했습니다. 다시 시도해 주세요.");
+            });
+        });
+    </script>
 </head>
 <body>
-    <h1>입금</h1>
-    <p>현재 잔액: <%= user.amount %>원</p>
-    <form action="/add-money" method="POST">
-        <label for="amount">입금 금액:</label>
-        <input type="number" id="amount" name="amount" min="0" required>
-        <br>
-        <button type="submit">입금</button>
-    </form>
-    <a href="/" class="btn">메인화면</a>
+    <div class="background">
+        <div class="background_image"></div>
+        <div class="menubar">         <!--상단 메뉴바 -->
+            <a href="/menu"><span class="fonts_1">MENU</span></a>
+            <a href="/add_money"><span class="fonts_2">CASH</span></a>
+            <a href="/map"><span class="fonts_3">MAP</span></a>
+            <a href="/"><span class="fonts_4">HOME</span></a>
+            <div class="line_1"></div> <!-- 구분선 -->
+            <div class="icon_1"></div> <!--공대 6호관 옆 아이콘-->
+            <span class="fonts_5">카페</span>
+            <div class="icon_2"></div>  <!--카트 아이콘-->
+            <div class="signup_bg"></div>  <!--SIGN UP 배경-->
+            <a href="/login"><span class="fonts_6">SIGN UP</span></a>
+            <div class="icon_3"></div>  <!--SIGN UP 옆 사람 아이콘-->
+            <a href="/join"><span class="fonts_7">SIGN IN</span></a>
+        </div>
+        <form id="moneyForm" action="/add-money" method="POST">
+            <div class="cash_main"></div>
+                <span class="fonts_8">충전 금액 (현재 잔액: <%= user.amount %>원)</span>
+                <div class="cash_menu">    <!--충전 세부 메뉴-->
+                <!--<div class="cash_total"></div>-->
+                <input class="cash_total" type="number" id="amount" name="amount" min="0" required>
+                <div class="cancel_bg"></div> <!--금액 취소 배경-->
+                <button><span class="cancel_font">x</span></button> <!--금액 취소 X-->
+                <span class="fonts_9">원</span>
+
+                <button id="add1000"><div class="bg_1000"></div></button>
+                <span class="fonts_10">+</span>
+                <span class="fonts_amount_1">1000</span>
+
+                <button id="add10000"><div class="bg_10000"></div></button>
+                <span class="fonts_11">+</span>
+                <span class="fonts_amount_2">10000</span>
+                
+                <button id="add50000"><div class="bg_50000"></div></button>
+                <span class="fonts_12">+</span>
+                <span class="fonts_amount_3">50000</span>
+
+                <button class="add_bg" type="submit"></button>
+                <span class="fonts_13">충전하기</span>
+                <button class="home_bg">홈으로</button>
+            </div>
+        </form>
+    </div>
 </body>
 </html>

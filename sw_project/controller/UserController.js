@@ -125,9 +125,13 @@ exports.addMoney = (req, res) => {
     
     const newAmount = parseFloat(req.session.user.amount) + parseFloat(amount);
     db.query('UPDATE user SET amount = ? WHERE id = ?', [newAmount, req.session.user.id], (err) => {
-        if (err) throw err;
+        if (err) {
+            console.error('Database error:', err);
+            return res.status(500).json({ success: false, message: '금액 충전에 실패했습니다.' }); 
+        }
         req.session.user.amount = newAmount;
-        res.redirect('/add-money');
+        res.json({ success: true, message: '충전에 성공했습니다.' });
+        //res.redirect('/add-money');
     });
 };
 // 로그아웃
