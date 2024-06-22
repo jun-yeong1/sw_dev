@@ -1,0 +1,522 @@
+* {
+  box-sizing: border-box;
+}
+body {
+  font-size: 14px;
+}
+/*배경 전체 사이즈*/
+.background {
+  width: 100%;
+  height: 1080px;
+  background: rgba(255,255,255,1);
+  opacity: 1;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  overflow: hidden;
+}
+/*배경 이미지 */
+.background_image {
+  width: 100%;
+  height: 100%;
+  background: url("../images/add_money/login_bg.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  opacity: 1;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  overflow: hidden;
+}
+
+/*상단 메뉴바*/
+.menubar {
+  width: 100%;
+  height: 126px;
+  background: rgba(255,255,255,1);
+  opacity: 1;
+  position: absolute;
+  top: 0px;
+  overflow: hidden;
+}
+/*메뉴 글씨*/
+.fonts_1 {  /*MENU*/
+  width: 166px;
+  color: rgba(0,0,0,1);
+  position: absolute;
+  top: 50px;
+  left: 691px;
+  font-family: "Numans", sans-serif;
+  font-style: normal;
+  font-size: 25px;
+  opacity: 1;
+  text-align: center;
+}
+.fonts_2 {  /*CASH*/
+  width: 166px;
+  color: rgba(0,0,0,1);
+  position: absolute;
+  top: 50px;
+  left: 818px;
+  font-family: "Numans", sans-serif;
+  font-style: normal;
+  font-size: 25px;
+  opacity: 1;
+  text-align: center;
+}
+.fonts_3 {  /*MAP*/
+  width: 175px;
+  color: rgba(0,0,0,1);
+  position: absolute;
+  top: 50px;
+  left: 553px;
+  font-family: "Numans", sans-serif;
+  font-style: normal;
+  font-size: 25px;
+  opacity: 1;
+  text-align: center;
+}
+.fonts_4 { /*HOME*/
+  width: 175px;
+  color: rgba(0,0,0,1);
+  position: absolute;
+  top: 50px;
+  left: 425px;
+  font-family: "Numans", sans-serif;
+  font-style: normal;
+  font-size: 25px;
+  opacity: 1;
+  text-align: center;
+}
+
+/*메뉴바 사이에 있는 라인*/
+.line_1{
+  width: 2px;
+  height: 35px;
+  background: rgb(0, 0, 0);
+  opacity: 1;
+  position: absolute;
+  top: 50px;
+  left: 434px;
+  overflow: hidden;
+}
+
+/*공대 6호관 옆 아이콘*/
+.icon_1 {
+  width: 26px;
+  height: 34px;
+  background: url("../images/add_money/login_Vector.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: contain;
+  opacity: 1;
+  position: absolute;
+  top: 48px;
+  left: 138px;
+}
+.fonts_5 { /*공대 6호관 카페*/
+  width: 348px;
+  color: rgba(0,0,0,1);
+  position: absolute;
+  top: 48px;
+  left: 128px;
+  font-family: "Numans", sans-serif;
+  font-style: normal;
+  font-size: 25px;
+  opacity: 1;
+  text-align: center;
+}
+
+/*장바구니 아이콘*/
+.icon_2 {
+  width: 35px;
+  height: 32px;
+  background: url("../images/add_money/login_cart.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: contain;
+  opacity: 1;
+  position: absolute;
+  top: 50px;
+  left: 1707px;
+}
+
+/*SIGN UP 배경*/
+.signup_bg {
+  width: 170px;
+  height: 36px;
+  background: rgba(0,0,0,1);
+  opacity: 1;
+  position: absolute;
+  top: 47px;
+  left: 1514px;
+  border-top-left-radius: 70px;
+  border-top-right-radius: 70px;
+  border-bottom-left-radius: 70px;
+  border-bottom-right-radius: 70px;
+  overflow: hidden;
+}
+.fonts_6 { /*SIGN UP*/
+  width: 123px;
+  color: rgba(255,255,255,1);
+  position: absolute;
+  top: 52px;
+  left: 1554px;
+  font-family: "Nanum Gothic", sans-serif;
+  font-weight: Bold;
+  font-size: 21px;
+  opacity: 1;
+  text-align: center;
+}
+/*SIGN UP 옆 사람 아이콘*/
+.icon_3 {
+  width: 30px;
+  height: 30px;
+  background: url("../images/add_money/login_people.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: contain;
+  opacity: 1;
+  position: absolute;
+  top: 50px;
+  left: 1523px;
+}
+
+.fonts_7 { /*SIGN IN*/
+  width: 153px;
+  color: rgba(0,0,0,1);
+  position: absolute;
+  top: 50px;
+  left: 1347px;
+  font-family: "Nanum Gothic", sans-serif;
+  font-weight: Bold;
+  font-size: 25px;
+  opacity: 1;
+  text-align: center;
+}
+
+
+/*금액 충전 하얀 창*/
+.cash_main {
+  width: 785px;
+  height: 574px;
+  background: rgb(255, 255, 255);
+  opacity: 1;
+  position: absolute;
+  top: 280px;
+  left: 566px;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  overflow: hidden;
+}
+.fonts_8 { /*충전 금액*/
+  width: 590px;
+  color: rgba(96,96,96,1);
+  position: absolute;
+  top: 425px;
+  left: 663px;
+  font-family: "Nanum Gothic", sans-serif;
+  font-weight: Bold;
+  font-size: 32px;
+  opacity: 1;
+  text-align: left;
+}
+
+.cash_menu { /*충전 세부 메뉴*/
+  width: 590px;
+  height: 224px;
+  background: rgba(255,255,255,1);
+  opacity: 1;
+  position: absolute;
+  top: 525px;
+  left: 663px;
+  overflow: hidden;
+}
+.cash_total { /*충전 금액 토탈*/
+  width: 590px;
+  height: 50px;
+  background: rgba(255,255,255,1);
+  opacity: 1;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  font-family: "Nanum Gothic", sans-serif;
+  font-weight: Bold;
+  font-size: 24px;
+  border: 2px solid rgba(79,79,79,1);
+  overflow: hidden;
+}
+
+.cancel_bg {  /*금액 취소 배경*/
+  width: 30px;
+  height: 30px;
+  background: rgba(242,242,242,1);
+  opacity: 1;
+  position: absolute;
+  top: 10px;
+  left: 489px;
+  border-radius: 50%;
+}
+.cancel_font {  /*금액 취소 X*/
+  width: 30px;
+  color: rgba(255,255,255,1);
+  position: absolute;
+  top: 5px;
+  left: 497px;
+  font-family: "Nanum Gothic", sans-serif;
+  font-weight: Regular;
+  font-size: 30px;
+  opacity: 1;
+  text-align: left;
+}
+
+.fonts_9 {
+  width: 24px;
+  color: rgba(46,46,46,1);
+  position: absolute;
+  top: 10px;
+  left: 539px;
+  font-family: "Nanum Gothic", sans-serif;
+  font-weight: Bold;
+  font-size: 24px;
+  opacity: 1;
+  text-align: left;
+}
+
+.bg_1000 {
+  width: 160px;
+  height: 53px;
+  background: rgba(255,255,255,1);
+  opacity: 1;
+  position: absolute;
+  top: 91px;
+  left: 0px;
+  border: 2px solid rgba(79,79,79,1);
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  overflow: hidden;
+}
+.fonts_10 {
+  width: 27px;
+  color: rgba(68,66,159,1);
+  position: absolute;
+  top: 100px;
+  left: 25px;
+  font-family: "Nanum Gothic", sans-serif;
+  font-weight: Bold;
+  font-size: 32px;
+  opacity: 1;
+  text-align: left;
+}
+.fonts_amount_1 {
+  width: 92px;
+  color: rgba(46,46,46,1);
+  position: absolute;
+  top: 104px;
+  left: 63px;
+  font-family: "Nanum Gothic", sans-serif;
+  font-weight: Bold;
+  font-size: 24px;
+  opacity: 1;
+  text-align: left;
+}
+
+.bg_10000 {
+  width: 160px;
+  height: 53px;
+  background: rgba(255,255,255,1);
+  opacity: 1;
+  position: absolute;
+  top: 91px;
+  left: 215px;
+  border: 2px solid rgba(79,79,79,1);
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  overflow: hidden;
+}
+.fonts_11 {
+  width: 27px;
+  color: rgba(68,66,159,1);
+  position: absolute;
+  top: 100px;
+  left: 234px;
+  font-family: "Nanum Gothic", sans-serif;
+  font-weight: Bold;
+  font-size: 32px;
+  opacity: 1;
+  text-align: left;
+}
+.fonts_amount_2 {
+  width: 92px;
+  color: rgba(46,46,46,1);
+  position: absolute;
+  top: 104px;
+  left: 272px;
+  font-family: "Nanum Gothic", sans-serif;
+  font-weight: Bold;
+  font-size: 24px;
+  opacity: 1;
+  text-align: left;
+}
+
+.bg_50000 {
+  width: 160px;
+  height: 53px;
+  background: rgba(255,255,255,1);
+  opacity: 1;
+  position: absolute;
+  top: 91px;
+  left: 430px;
+  border: 2px solid rgba(79,79,79,1);
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  overflow: hidden;
+}
+.fonts_12 {
+  width: 27px;
+  color: rgba(68,66,159,1);
+  position: absolute;
+  top: 100px;
+  left: 450px;
+  font-family: "Nanum Gothic", sans-serif;
+  font-weight: Bold;
+  font-size: 32px;
+  opacity: 1;
+  text-align: left;
+}
+.fonts_amount_3 {
+  width: 92px;
+  color: rgba(46,46,46,1);
+  position: absolute;
+  top: 104px;
+  left: 489px;
+  font-family: "Nanum Gothic", sans-serif;
+  font-weight: Bold;
+  font-size: 24px;
+  opacity: 1;
+  text-align: left;
+}
+
+.add_bg {
+  width: 590px;
+  height: 50px;
+  background: rgba(46,46,46,1);
+  opacity: 1;
+  position: absolute;
+  top: 174px;
+  left: 0px;
+  overflow: hidden;
+}
+.add_bg:hover {
+    transform: scale(1.1);
+    color: #fff;
+    background-color: #27E09D;
+    cursor: pointer;
+    box-shadow: 0px 26px 56px 0px rgba(0, 0, 0, 0.10), 0px 102px 102px 0px rgba(0, 0, 0, 0.09), 0px 230px 138px 0px rgba(0, 0, 0, 0.05), 0px 410px 164px 0px rgba(0, 0, 0, 0.01), 0px 640px 179px 0px rgba(0, 0, 0, 0.00);
+}
+.home_bg {
+    width: 590px;
+    height: 50px;
+    background: rgba(46,46,46,1);
+    opacity: 1;
+    position: absolute;
+    top: 234px;
+    left: 0px;
+    color: rgba(255,255,255,1);
+    font-family: "Nanum Gothic", sans-serif;
+    font-weight: Bold;
+    font-size: 23px;
+    overflow: hidden;
+}
+.home_bg:hover {
+    transform: scale(1.1);
+    color: #fff;
+    background-color: #27E09D;
+    cursor: pointer;
+    box-shadow: 0px 26px 56px 0px rgba(0, 0, 0, 0.10), 0px 102px 102px 0px rgba(0, 0, 0, 0.09), 0px 230px 138px 0px rgba(0, 0, 0, 0.05), 0px 410px 164px 0px rgba(0, 0, 0, 0.01), 0px 640px 179px 0px rgba(0, 0, 0, 0.00);
+}
+.fonts_13 {
+  width: 103px;
+  color: rgba(255,255,255,1);
+  position: absolute;
+  top: 187px;
+  left: 244px;
+  font-family: "Nanum Gothic", sans-serif;
+  font-weight: Bold;
+  font-size: 23px;
+  opacity: 1;
+  text-align: left;
+}
+
+.line_2 {
+  width: 651px;
+  height: 1px;
+  background: rgb(0, 0, 0);
+  opacity: 1;
+  position: absolute;
+  top: 395px;
+  left:641px;
+  overflow: hidden;
+}
+
+.logo_bg {
+  width: 407px;
+  height: 81px;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  opacity: 1;
+  position: absolute;
+  top: 298px;
+  left: 750px;
+  overflow: hidden;
+}
+
+.logo_font {
+  width: 315px;
+  color: rgba(96,96,96,1);
+  position: absolute;
+  top: 32px;
+  left: 70px;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
+  font-family: "Nanum Gothic", sans-serif;
+  font-weight: Bold;
+  font-size: 23px;
+  opacity: 1;
+  text-align: left;
+}
+.logo_right {
+  width: 26px;
+  height: 24px;
+  background: url("../images/add_money/login_right.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: contain;
+  opacity: 1;
+  position: absolute;
+  top: 32px;
+  left: 383px;
+
+}
+.logo_left {
+  width: 24px;
+  height: 23px;
+  background: url("../images/add_money/login_left.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: contain;
+  opacity: 1;
+  position: absolute;
+  top: 31px;
+  left: 24px;
+
+}
