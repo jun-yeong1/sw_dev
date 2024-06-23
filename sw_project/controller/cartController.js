@@ -1,4 +1,5 @@
 const db = require("../db/db.js");
+const { saveOrder } = require("../views/db_menu");
 
 const menuItems = [
     { id: 1, name: '아메리카노', price: 1800, description: '에스프레소와 물을 섞어 만든 커피', image: 'coffee1.jpg' },
@@ -10,7 +11,10 @@ const menuItems = [
 let cart = [];
 
 exports.menu = (req, res) => {
-    res.render("menu");
+    const cafe = {
+        name: req.query.name
+    }
+    res.render("menu", { cafe });
 };
 
 exports.getCartPage = (req, res) => {
@@ -20,7 +24,7 @@ exports.getCartPage = (req, res) => {
 exports.addToCart = (req, res) => {
     const { id, quantity } = req.body;
     const menuItem = menuItems.find(item => item.id === parseInt(id));
-    
+
     if (menuItem) {
         const cartItem = cart.find(item => item.id === parseInt(id));
         if (cartItem) {
@@ -57,3 +61,24 @@ exports.updateAmount = (req, res) => {
     }
 }
 
+exports.placeOrder = async (req, res) => {
+    if (req.session.user) {
+        const cartItems = req.body.cartItems;
+        const cafe = req.body.cafe;
+        const userId = req.session.user.id;
+
+        try {
+            const result = await saveOrder(cartItems, cafe, userId);
+            if (result) {
+                res.send('Order placed successfully.');
+            } else {
+                res.status(500).send('Order placement failed.');
+            }
+        } catch (error) {
+            console.error('Order placement error:', error);
+            res.status(500).send('Order placement failed.');
+        }
+    } else {
+        res.status(401).send('Unauthorized');
+    }
+}

@@ -1,17 +1,28 @@
-const cnn = require("../db/db");
+const db = require("../db/db.js");
 
-async function saveOrder(cartItems) {
+exports.saveOrder = async (cartItems, cafe, userId) => {
     try {
+        const orderResult = await new Promise((resolve, reject) => {
+            const sql = `INSERT INTO orders (user_id, campus, completed) VALUES (?, ?, 0)`;
+            db.query(sql, [userId, cafe], (err, result) => {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve(result);
+                }
+            });
+        });
+
+        const orderId = orderResult.insertId;
+
         for (let item of cartItems) {
             const { name, price, quantity } = item;
-            const sql = `INSERT INTO menu (name, price, quantity, created_at) VALUES (?, ?, ?, NOW())`;
             await new Promise((resolve, reject) => {
-                cnn.query(sql, [name, price, quantity], (err, result) => {
+                const sql = `INSERT INTO order_items (order_id, name, price, quantity) VALUES (?, ?, ?, ?)`;
+                db.query(sql, [orderId, name, price, quantity], (err, result) => {
                     if (err) {
-                        console.error('주문 항목 삽입 중 오류 발생:', err);
                         reject(err);
                     } else {
-                        console.log(`메뉴 '${name}'이(가) 성공적으로 삽입되었습니다.`);
                         resolve(result);
                     }
                 });
@@ -23,7 +34,3 @@ async function saveOrder(cartItems) {
         return false;
     }
 }
-
-module.exports = {
-    saveOrder
-};

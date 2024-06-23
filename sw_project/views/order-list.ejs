@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>주문 내역</title>
+</head>
+<body>
+<h1>주문 내역</h1>
+<table border="1">
+    <tr>
+        <th>주문 번호</th>
+        <th>주문 지점</th>
+        <th>주문 항목</th>
+        <th>진행 상황</th>
+    </tr>
+    <% orders.forEach(order => { %>
+        <tr>
+            <td><%= order.id %></td>
+            <td><%= order.campus %></td>
+            <td>
+                <ul>
+                    <% order.items.forEach(item => { %>
+                        <li><%= item.name %> - <%= item.quantity %>개, <%= item.price %>원</li>
+                    <% }) %>
+                </ul>
+            </td>
+            <td><%= order.completed ? '완료 방문해서 수령해주세요' : '주문 진행중' %></td>
+        </tr>
+    <% }) %>
+</table>
+
+<script>
+    function completeOrder(orderId) {
+        fetch('/completeOrder', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ orderId: orderId })
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert('주문이 완료되었습니다.');
+                    window.location.reload();
+                } else {
+                    alert('주문 완료 처리에 실패했습니다.');
+                }
+            })
+            .catch(error => console.error('Error:', error));
+    }
+</script>
+</body>
+</html>
