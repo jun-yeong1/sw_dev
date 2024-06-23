@@ -36,7 +36,7 @@ h1 {
 }
 .menu-item img {
     max-width: 100%; /* 이미지가 부모 요소 안에서 최대 너비로 설정 */
-    height: auto;
+    height: 200px;
 }
 .category {
     text-align: center;
