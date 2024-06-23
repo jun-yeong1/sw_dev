@@ -1,0 +1,765 @@
+* {
+  box-sizing: border-box;
+}
+body {
+  font-size: 14px;
+}
+/*배경 전체 사이즈*/
+.background {
+  width: 100%;
+  height: 1080px;
+  background: rgba(255,255,255,1);
+  opacity: 1;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  overflow: hidden;
+}
+/*배경 이미지 */
+.background_image {
+  width: 100%;
+  height: 100%;
+  background: url("../images/order/login_bg.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  opacity: 1;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  overflow: hidden;
+}
+
+/*상단 메뉴바*/
+.menubar {
+  width: 100%;
+  height: 126px;
+  background: rgba(255,255,255,1);
+  opacity: 1;
+  position: absolute;
+  top: 0px;
+  overflow: hidden;
+}
+/*메뉴 글씨*/
+.fonts_1 {  /*MENU*/
+  width: 166px;
+  color: rgba(0,0,0,1);
+  position: absolute;
+  top: 50px;
+  left: 626px;
+  font-family: "Numans", sans-serif;
+  font-style: normal;
+  font-size: 25px;
+  opacity: 1;
+  text-align: center;
+}
+.fonts_2 {  /*CASH*/
+  width: 166px;
+  color: rgba(0,0,0,1);
+  position: absolute;
+  top: 50px;
+  left: 767px;
+  font-family: "Numans", sans-serif;
+  font-style: normal;
+  font-size: 25px;
+  opacity: 1;
+  text-align: center;
+}
+.fonts_3 {  /*MAP*/
+  width: 175px;
+  color: rgba(0,0,0,1);
+  position: absolute;
+  top: 50px;
+  left: 488px;
+  font-family: "Numans", sans-serif;
+  font-style: normal;
+  font-size: 25px;
+  opacity: 1;
+  text-align: center;
+}
+.fonts_4 { /*HOME*/
+  width: 175px;
+  color: rgba(0,0,0,1);
+  position: absolute;
+  top: 50px;
+  left: 360px;
+  font-family: "Numans", sans-serif;
+  font-style: normal;
+  font-size: 25px;
+  opacity: 1;
+  text-align: center;
+}
+
+/*메뉴바 사이에 있는 라인*/
+.line_1{
+  width: 2px;
+  height: 35px;
+  background: rgb(0, 0, 0);
+  opacity: 1;
+  position: absolute;
+  top: 50px;
+  left: 369px;
+  overflow: hidden;
+}
+
+/*공대 6호관 옆 아이콘*/
+.icon_1 {
+  width: 26px;
+  height: 34px;
+  background: url("../images/order/login_Vector.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: contain;
+  opacity: 1;
+  position: absolute;
+  top: 48px;
+  left: 104px;
+}
+.fonts_5 { /*공대 6호관 카페*/
+  width: 348px;
+  color: rgba(0,0,0,1);
+  position: absolute;
+  top: 48px;
+  left: 53px;
+  font-family: "Numans", sans-serif;
+  font-style: normal;
+  font-size: 25px;
+  opacity: 1;
+  text-align: center;
+}
+
+/*장바구니 아이콘*/
+.icon_2 {
+  width: 35px;
+  height: 32px;
+  background: url("../images/order/login_cart.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: contain;
+  opacity: 1;
+  position: absolute;
+  top: 50px;
+  left: 1447px;
+}
+
+/*SIGN UP 배경*/
+.signup_bg {
+  width: 170px;
+  height: 36px;
+  background: rgba(0,0,0,1);
+  opacity: 1;
+  position: absolute;
+  top: 47px;
+  left: 1254px;
+  border-top-left-radius: 70px;
+  border-top-right-radius: 70px;
+  border-bottom-left-radius: 70px;
+  border-bottom-right-radius: 70px;
+  overflow: hidden;
+}
+.fonts_6 { /*SIGN UP*/
+  width: 123px;
+  color: rgba(255,255,255,1);
+  position: absolute;
+  top: 52px;
+  left: 1294px;
+  font-family: "Nanum Gothic", sans-serif;
+  font-weight: Bold;
+  font-size: 21px;
+  opacity: 1;
+  text-align: center;
+}
+/*SIGN UP 옆 사람 아이콘*/
+.icon_3 {
+  width: 30px;
+  height: 30px;
+  background: url("../images/order/login_people.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: contain;
+  opacity: 1;
+  position: absolute;
+  top: 50px;
+  left: 1263px;
+}
+
+.fonts_7 { /*SIGN IN*/
+  width: 153px;
+  color: rgba(0,0,0,1);
+  position: absolute;
+  top: 50px;
+  left: 1087px;
+  font-family: "Nanum Gothic", sans-serif;
+  font-weight: Bold;
+  font-size: 25px;
+  opacity: 1;
+  text-align: center;
+}
+
+/*주문관리(내역) 전체 bg*/
+.order_all_bg {
+  width: 975px;
+  height: 769px;
+  background: rgba(255,255,255,1);
+  opacity: 1;
+  position: absolute;
+  top: 231px;
+  left: 267px;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  overflow: hidden;
+}
+
+/*주문내역 1*/
+.order_index_1 {
+  width: 975px;
+  height: 181px;
+  background: rgba(255,255,255,1);
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  opacity: 1;
+  position: absolute;
+  top: 319px;
+  left: 472px;
+  overflow: hidden;
+}
+.line_2 {
+  width: 975px;
+  height: 2px;
+  background: rgb(46, 46, 46);
+  opacity: 1;
+  position: absolute;
+  top: 180px;
+  overflow: hidden;
+}
+
+.font_1_1 { /*주문 번호*/
+  width: 174px;
+  color: rgba(204,5,5,1);
+  position: absolute;
+  top: 0px;
+  left: 131px;
+  font-family: NanumGothic;
+  font-weight: Bold;
+  font-size: 20px;
+  opacity: 1;
+  text-align: left;
+}
+.font_1_2 {
+  width: 156px;
+  color: rgba(0,0,0,1);
+  position: absolute;
+  top: 49px;
+  left: 131px;
+  font-family: NanumGothic;
+  font-weight: Regular;
+  font-size: 20px;
+  opacity: 1;
+  text-align: left;
+}
+
+.check_box_1 {
+  width: 33px;
+  height: 33px;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  opacity: 1;
+  position: absolute;
+  top: 55px;
+  left: 50px;
+  border: 1px solid rgba(46,46,46,1);
+  overflow: hidden;
+}
+.font_1_3 { /*메뉴명*/
+  width: 152px;
+  color: rgba(0,0,0,1);
+  position: absolute;
+  top: 52px;
+  left: 301px;
+  font-family: NanumGothic;
+  font-weight: Regular;
+  font-size: 20px;
+  opacity: 1;
+  text-align: left;
+}
+.font_1_4 {
+  width: 70px;
+  color: rgba(0,0,0,1);
+  position: absolute;
+  top: 112px;
+  left: 453px;
+  font-family: NanumGothic;
+  font-weight: Regular;
+  font-size: 20px;
+  opacity: 1;
+  text-align: left;
+}
+.font_1_5 {
+  width: 152px;
+  color: rgba(0,0,0,1);
+  position: absolute;
+  top: 112px;
+  left: 299px;
+  font-family: NanumGothic;
+  font-weight: Regular;
+  font-size: 20px;
+  opacity: 1;
+  text-align: left;
+}
+.font_1_6 {
+  width: 70px;
+  color: rgba(0,0,0,1);
+  position: absolute;
+  top: 52px;
+  left: 453px;
+  font-family: NanumGothic;
+  font-weight: Regular;
+  font-size: 20px;
+  opacity: 1;
+  text-align: left;
+}
+
+.btn_bg_1 { /*주문 완료 btn bg*/
+  width: 132px;
+  height: 35px;
+  background: rgba(38,90,190,1);
+  opacity: 1;
+  position: absolute;
+  top: 24px;
+  left: 769px;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  overflow: hidden;
+}
+.font_1_7 { /*주문 완료*/
+  width: 86px;
+  color: rgba(255,255,255,1);
+  position: absolute;
+  top: 30px;
+  left: 796px;
+  font-family: NanumGothic;
+  font-weight: Bold;
+  font-size: 18px;
+  opacity: 1;
+  text-align: left;
+}
+
+.btn_bg_2 {  /*주문 취소 btn bg*/
+  width: 132px;
+  height: 35px;
+  background: rgba(190,38,38,1);
+  opacity: 1;
+  position: absolute;
+  top: 111px;
+  left: 769px;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  overflow: hidden;
+}
+.font_1_8 { /*주문 취소*/
+  width: 86px;
+  color: rgba(255,255,255,1);
+  position: absolute;
+  top: 117px;
+  left: 796px;
+  font-family: NanumGothic;
+  font-weight: Bold;
+  font-size: 18px;
+  opacity: 1;
+  text-align: left;
+}
+
+
+.order_index_2 {
+  width: 975px;
+  height: 199px;
+  background: rgba(255,255,255,1);
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  opacity: 1;
+  position: absolute;
+  top: 523px;
+  left: 472px;
+  overflow: hidden;
+}
+.line_3 {
+  width: 975px;
+  height: 1px;
+  background: #2e2e2e;
+  opacity: 1;
+  position: absolute;
+  top: 180px;
+  overflow: hidden;
+}
+.font_2_1 {  /*주문 지점*/
+  width: 156px;
+  color: rgba(0,0,0,1);
+  position: absolute;
+  top: 51px;
+  left: 131px;
+  font-family: NanumGothic;
+  font-weight: Regular;
+  font-size: 20px;
+  opacity: 1;
+  text-align: left;
+}
+.check_box_2 {
+  width: 33px;
+  height: 33px;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  opacity: 1;
+  position: absolute;
+  top: 57px;
+  left: 50px;
+  border: 1px solid rgba(46,46,46,1);
+  overflow: hidden;
+}
+
+.font_2_2 { /*메뉴명 1*/
+  width: 152px;
+  color: rgba(0,0,0,1);
+  position: absolute;
+  top: 54px;
+  left: 301px;
+  font-family: NanumGothic;
+  font-weight: Regular;
+  font-size: 20px;
+  opacity: 1;
+  text-align: left;
+}
+.font_2_3 { /*수량*/
+  width: 70px;
+  color: rgba(0,0,0,1);
+  position: absolute;
+  top: 114px;
+  left: 453px;
+  font-family: NanumGothic;
+  font-weight: Regular;
+  font-size: 20px;
+  opacity: 1;
+  text-align: left;
+}
+.font_2_4 { /*메뉴명 2*/
+  width: 152px;
+  color: rgba(0,0,0,1);
+  position: absolute;
+  top: 114px;
+  left: 299px;
+  font-family: NanumGothic;
+  font-weight: Regular;
+  font-size: 20px;
+  opacity: 1;
+  text-align: left;
+}
+.font_2_5{  /*수량*/
+  width: 70px;
+  color: rgba(0,0,0,1);
+  position: absolute;
+  top: 54px;
+  left: 453px;
+  font-family: NanumGothic;
+  font-weight: Regular;
+  font-size: 20px;
+  opacity: 1;
+  text-align: left;
+}
+
+
+.btn_bg_3 {
+  width: 132px;
+  height: 35px;
+  background: rgba(38,90,190,1);
+  opacity: 1;
+  position: absolute;
+  top: 34px;
+  left: 771px;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  overflow: hidden;
+} 
+.font_2_6 {  /*주문 완료*/
+  width: 86px;
+  color: rgba(255,255,255,1);
+  position: absolute;
+  top: 40px;
+  left: 799px;
+  font-family: NanumGothic;
+  font-weight: Bold;
+  font-size: 18px;
+  opacity: 1;
+  text-align: left;
+}
+
+.btn_bg_4 { 
+  width: 132px;
+  height: 35px;
+  background: rgba(190,38,38,1);
+  opacity: 1;
+  position: absolute;
+  top: 121px;
+  left: 771px;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  overflow: hidden;
+}
+.font_2_7 { /*주문 취소*/
+  width: 86px;
+  color: rgba(255,255,255,1);
+  position: absolute;
+  top: 127px;
+  left: 799px;
+  font-family: NanumGothic;
+  font-weight: Bold;
+  font-size: 18px;
+  opacity: 1;
+  text-align: left;
+}
+.v133_85 {
+  width: 174px;
+  color: rgba(204,5,5,1);
+  position: absolute;
+  top: 0px;
+  left: 131px;
+  font-family: NanumGothic;
+  font-weight: Bold;
+  font-size: 18px;
+  opacity: 1;
+  text-align: left;
+}
+
+
+.order_index_3 { /*주문내역 bg*/
+  width: 975px;
+  height: 192px;
+  background: rgb(255, 255, 255);
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  opacity: 1;
+  position: absolute;
+  top: 748px;
+  left: 472px;
+  overflow: hidden;
+}
+.line_4 {
+  width: 975px;
+  height: 1px;
+  background: #2e2e2e;
+  opacity: 1;
+  position: absolute;
+  top: 180px;
+  overflow: hidden;
+}
+.font_3_1 { /*주문 지점*/
+  width: 156px;
+  color: rgba(0,0,0,1);
+  position: absolute;
+  top: 44px;
+  left: 131px;
+  font-family: NanumGothic;
+  font-weight: Regular;
+  font-size: 20px;
+  opacity: 1;
+  text-align: left;
+}
+
+.check_box_3 {
+  width: 33px;
+  height: 33px;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  opacity: 1;
+  position: absolute;
+  top: 50px;
+  left: 50px;
+  border: 1px solid rgba(46,46,46,1);
+  overflow: hidden;
+}
+
+.font_3_2 { /*메뉴명 1*/
+  width: 152px;
+  color: rgba(0,0,0,1);
+  position: absolute;
+  top: 47px;
+  left: 301px;
+  font-family: NanumGothic;
+  font-weight: Regular;
+  font-size: 20px;
+  opacity: 1;
+  text-align: left;
+}
+.font_3_3 { /*수량*/
+  width: 70px;
+  color: rgba(0,0,0,1);
+  position: absolute;
+  top: 107px;
+  left: 453px;
+  font-family: NanumGothic;
+  font-weight: Regular;
+  font-size: 20px;
+  opacity: 1;
+  text-align: left;
+}
+.font_3_4 { /*메뉴명 2*/
+  width: 152px;
+  color: rgba(0,0,0,1);
+  position: absolute;
+  top: 107px;
+  left: 299px;
+  font-family: NanumGothic;
+  font-weight: Regular;
+  font-size: 20px;
+  opacity: 1;
+  text-align: left;
+}
+.font_3_5 { /*수량*/
+  width: 70px;
+  color: rgba(0,0,0,1);
+  position: absolute;
+  top: 47px;
+  left: 453px;
+  font-family: NanumGothic;
+  font-weight: Regular;
+  font-size: 20px;
+  opacity: 1;
+  text-align: left;
+}
+
+.btn_bg_5 {
+  width: 132px;
+  height: 35px;
+  background: rgba(38,90,190,1);
+  opacity: 1;
+  position: absolute;
+  top: 25px;
+  left: 769px;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  overflow: hidden;
+}
+.font_3_6 { /* 주문 완료 */
+  width: 86px;
+  color: rgba(255,255,255,1);
+  position: absolute;
+  top: 31px;
+  left: 797px;
+  font-family: NanumGothic;
+  font-weight: Bold;
+  font-size: 18px;
+  opacity: 1;
+  text-align: left;
+}
+.btn_bg_6 {
+  width: 132px;
+  height: 35px;
+  background: rgba(190,38,38,1);
+  opacity: 1;
+  position: absolute;
+  top: 112px;
+  left: 769px;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  overflow: hidden;
+}
+.font_3_7 { /*주문취소*/
+  width: 86px;
+  color: rgba(255,255,255,1);
+  position: absolute;
+  top: 118px;
+  left: 797px;
+  font-family: NanumGothic;
+  font-weight: Bold;
+  font-size: 18px;
+  opacity: 1;
+  text-align: left;
+}
+
+.font_3_8 { /*주문번호*/
+  width: 174px;
+  color: rgba(204,5,5,1);
+  position: absolute;
+  top: 0px;
+  left: 131px;
+  font-family: NanumGothic;
+  font-weight: Bold;
+  font-size: 20px;
+  opacity: 1;
+  text-align: left;
+}
+
+.line_5 {
+  width: 975px;
+  height: 2px;
+  background: rgb(0, 0, 0);
+  opacity: 1;
+  position: absolute;
+  top: 304px;
+  left: 472px;
+  overflow: hidden;
+}
+.font_4_1 { /*학교 생협 카페 온라인 주문*/
+  width: 349px;
+  color: rgba(0,0,0,1);
+  position: absolute;
+  top: 273px;
+  left: 566px;
+  font-family: NanumGothic;
+  font-weight: Bold;
+  font-size: 23px;
+  opacity: 1;
+  text-align: left;
+}
+
+table {
+  position: absolute;
+  top: 400px;
+  left: 300px;
+}
+table {
+  border: 1px #a39485 solid;
+  font-size: 15px;
+  box-shadow: 0 2px 5px rgba(0,0,0,.25);
+  width: 60%;
+  border-collapse: collapse;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+th {
+  text-align: left;
+}
+  
+tr {
+  font-weight: bold;
+  background: #73685d;
+}
+  
+ td, th {
+  padding: 1em .5em;
+  vertical-align: middle;
+}
+  
+ td {
+  border-bottom: 1px solid rgba(0,0,0,.1);
+  background: #fff;
+}
