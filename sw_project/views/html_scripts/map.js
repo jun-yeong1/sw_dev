@@ -10,6 +10,16 @@ async function getApiKey() {
     return data.apiKey;
 }
 
+window.onload = function () {
+    cafe = [
+        { name: '공대 5호관', lat: 35.11722, lng: 128.96810},
+        { name: '도서관', lat: 35.115470, lng: 128.9676 },
+        { name: '공대 4호관', lat: 35.116339, lng: 128.967228 },
+        { name: '학생회관', lat: 35.115526, lng: 128.966004 },
+    ];
+    loadNaverMaps(() => initializeMap(seunghakCampus));
+}
+
 async function loadNaverMaps(callback) {
     const API_KEY = await getApiKey();
     const script = document.createElement('script');
@@ -20,6 +30,7 @@ async function loadNaverMaps(callback) {
 }
 
 document.getElementById('승학').addEventListener('click', () => {
+    document.getElementById('현재위치').innerText="승학 캠퍼스"
     cafe = [
         { name: '공대 5호관', lat: 35.11722, lng: 128.96810},
         { name: '도서관', lat: 35.115470, lng: 128.9676 },
@@ -30,6 +41,7 @@ document.getElementById('승학').addEventListener('click', () => {
 });
 
 document.getElementById('부민').addEventListener('click', () => {
+    document.getElementById('현재위치').innerText="부민 캠퍼스"
     cafe = [];
     loadNaverMaps(() => initializeMap(buminCampus));
 });
@@ -87,6 +99,8 @@ function displayPlaces(places) {
         const li = document.createElement('li');
         const a = document.createElement('a');
         a.href = '/menu';
+        a.style.textDecoration = 'none'; // 밑줄 제거
+        a.style.color = 'inherit'; // 링크 클릭 시 색상 변경 방지
         a.textContent = `${place.name} - ${projection.getDistance(current_Distance, LatLngPlace).toFixed(2)}m`;
 
         li.appendChild(a);
