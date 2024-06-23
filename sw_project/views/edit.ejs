@@ -1,83 +1,102 @@
-<!-- script -->
-<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-<script>
-    //회원 정보 수정
-    function updateUser() {
-        var form = document.getElementById("join");
-        axios({
-           method: 'patch',
-           url: 'http://localhost:8080/edit',
-           data: {
-                id: form.id.value,
-                name: form.name.value,
-                password: form.password.value,
-                amount: form.amount.value
-           } 
-        }).then((response) => { 
-            return response.data;
-        }).then((data) => {
-            console.log("회원정보 수정완료");
-            alert("수정완료");
-        });
-    }
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--폰트1 numans-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Numans&display=swap" rel="stylesheet">
+    <!--폰트2 nunito-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Numans&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
+    <!--폰트3 nanum gothic-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&family=Numans&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
+    <!--css 주소 링크-->
+    <link href="/stylesheets/edit.css" rel="stylesheet" />
+    <title>회원정보 수정</title>
+    <!-- script -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+        //회원 정보 수정
+        function updateUser() {
+            var form = document.getElementById("join");
+            axios({
+            method: 'patch',
+            url: 'http://localhost:8080/edit',
+            data: {
+                    id: form.id.value,
+                    name: form.name.value,
+                    password: form.password.value,
+                    amount: form.amount.value
+            } 
+            }).then((response) => { 
+                return response.data;
+            }).then((data) => {
+                console.log("회원정보 수정완료");
+                alert("수정완료");
+            });
+        }
 
-    // 회원 탈퇴
-    function deleteUser() {
-        var form = document.getElementById("join");
-        axios({
-           method: 'delete',
-           url: 'http://localhost:8080/delete',
-           data: { id: form.id.value } 
-        }).then((response) => { return response.data; })
-        .then((data) => { 
-            alert("회원 탈퇴 완료");
+        // 회원 탈퇴
+        function deleteUser() {
+            var form = document.getElementById("join");
+            axios({
+            method: 'delete',
+            url: 'http://localhost:8080/delete',
+            data: { id: form.id.value } 
+            }).then((response) => { return response.data; })
+            .then((data) => { 
+                alert("회원 탈퇴 완료");
 
-            var form_info = document.getElementById("form_info");
-            form_info.submit();
-            
-         });
-    }
-</script>
-
+                var form_info = document.getElementById("form_info");
+                form_info.submit();
+                
+            });
+        }
+    </script>
+</head>
 <!-- body -->
 <body>
-<form id="join">
-    <div class="row justify-content-center mt-5">
-        <div class="col-4"></div>
-        <div class="col-4 justify-content-center" id="title">
-            <h6 class="fw-bold fs-2 mb-5 text-center">회원정보 수정</h6> 
+    <div class="background">
+        <div class="background_image"></div>
+        <div class="menubar">         <!--상단 메뉴바 -->
+            <a href="/menu"><span class="fonts_1">MENU</span></a>
+            <a href="/add_money"><span class="fonts_2">CASH</span></a>
+            <a href="/map"><span class="fonts_3">MAP</span></a>
+            <a href="/"><span class="fonts_4">HOME</span></a>
+            <div class="line_1"></div> <!-- 구분선 -->
+            <div class="icon_1"></div> <!--공대 6호관 옆 아이콘-->
+            <span class="fonts_5">카페</span>
+            <div class="icon_2"></div>  <!--카트 아이콘-->
+            <div class="signup_bg"></div>  <!--SIGN UP 배경-->
+            <a href="/join"><span class="fonts_6">SIGN UP</span></a>
+            <div class="icon_3"></div>  <!--SIGN UP 옆 사람 아이콘-->
+            <a href="/login"><span class="fonts_7">SIGN IN</span></a>
         </div>
-        <div class="col-4"></div>
+        <form id="join">
+            <div class="main"></div>
+            <div class="main_zip"> <!--가운데 메인 하얀창 내용--> <!--(기능)_fonts 애들이 안 나와요..-->
+                <input class="id_input" type="text" name="id" value='<%=data.id%>' placeholder="  아이디 입력 (동아대학교 학생 번호 / 교직원 번호)" required><br>
+
+                <input class="pwr_input" type="text" name="name" value="<%=data.name%>" placeholder="  이름을 입력하세요" required><br>
+            
+                <input class="pw_input" type="password" name="password" value="<%=data.password%>" placeholder="  비밀번호 입력(문자, 숫자, 특수문자 포함 9자 이상)" required><br>
+                
+                <input class="name_input" type="number" name="amount" value="<%=data.amount%>" placeholder="  금액을 입력하세요" required><br>
+
+                <button class="join_bg" type="button" onclick="updateUser();"></button>
+                <span class="fonts_8">회원정보 수정하기</span>
+                <button class="delete_bg" type="button" onclick="deleteUser();"></button>
+                <span class="fonts_8_1">회원탈퇴하기</span>
+            </div>
+        </form>
+        <span class="fonts_9">회원 정보 수정</span>
+        <div class="line_2"></div>
+        <form id="form_info" action="/login" method="GET">
+        </form>
     </div>
-    <div class="row justify-content-center">
-        <div class="col-4"></div>
-        <div class="col-4 justify-content-center" id="contents">
-            <h6 class="fw-bold">ID</h6>
-            <input class='input-box mb-2' type='text' name='id' value='<%=data.id%>' readonly><br>
-            <h6 class="fw-bold">Name</h6>
-            <input class="input-box mb-2" type="text" name="name" value="<%=data.name%>" required><br>
-            <h6 class="fw-bold">Password</h6>
-            <input class="input-box mb-2" type="text" name="password" value="<%=data.password%>"><br>
-            <h6 class="fw-bold">amount</h6>
-            <input class="input-box mb-2" type="number" name="amount" value="<%=data.amount%>"><br>
-        </div>
-        <div class="col-4"></div>
-    </div>
-    <div class="row justify-content-center mt-3">
-        <div class="col-4"></div>
-        <div class="col-4" id="button-group">
-            <button class="join-button" type="button" onclick="updateUser();">회원정보수정</button>
-        </div>
-        <div class="col-4"></div>
-    </div>
-    <div class="row justify-content-center mt-3">
-        <div class="col-4"></div>
-        <div class="col-4" id="button-group">
-            <button class="join-button" type="button" onclick="deleteUser();">회원 탈퇴</button>
-        </div>
-        <div class="col-4"></div>
-    </div>
-</form>
-<form id="form_info" action="/login" method="GET">
-</form>
 </body>
