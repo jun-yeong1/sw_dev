@@ -70,6 +70,12 @@ section {
     border: var(--border-hover);
 }
 
+.underline {
+    text-decoration-line: underline;
+    text-underline-position : under;
+    text-decoration-style: solid;
+  }
+
 /* Header 스타일 결합 */
 .header {
     position: fixed;
@@ -81,8 +87,7 @@ section {
     justify-content: space-between;
     z-index: 1000;
     background: #fff;
-    box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .1);
-    padding: 2rem 9%;
+
 }
 
 .header .logo {
@@ -92,6 +97,11 @@ section {
 
 .header .logo i {
     padding-left: .5rem;
+}
+
+.vertical {
+    border-left: 2px solid rgba(79,79,79,1);
+    height: 30px;
 }
 
 .header .navbar {
@@ -122,7 +132,7 @@ section {
 .home {
     min-height: 100vh;
     padding-top: 12rem;
-    background: url(../image/home-bg.jpg) no-repeat;
+    background: url(/images/home-bg.jpg) no-repeat;
     background-position: center;
     background-size: cover;
 }
@@ -131,15 +141,15 @@ section {
     display: flex;
     align-items: center;
     flex-wrap: wrap;
-    gap: 1.5rem;
+
 }
 
 .home .row .content {
-    flex: 1 1 42rem;
+    flex: 1 1 35rem;
 }
 
 .home .row .image {
-    flex: 1 1 42rem;
+    flex: 1 1 35rem;
     padding-top: 10rem;
     text-align: center;
 }
@@ -147,6 +157,7 @@ section {
 .home .row .image img {
     height: 35rem;
     animation: float 4s linear infinite;
+    margin-top: 7rem;
 }
 
 @keyframes float {
@@ -257,10 +268,26 @@ section {
     color: var(--main-color);
 }
 
+.tooltip { /* 줄바꿈 관련 */
+    position: absolute;
+    background-color: #333;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 5px;
+    white-space: pre-line; /* 줄바꿈을 허용 */
+    z-index: 1000;
+    display: none; /* 기본적으로 숨김 */
+}
+
+.tooltip-img:hover + .tooltip {
+    display: block;
+}
+
+
 /* MENU */
 
 .menu {
-    background: url(../image/menu-bg.jpg) no-repeat;
+    background: url(/images/menu-bg.jpg) no-repeat;
     background-position: center;
     background-size: cover;
 }
@@ -400,7 +427,7 @@ section {
 /* BOOK */
 
 .book {
-    background: url(../image/book-bg.jpg);
+    background: url(/images/book-bg.jpg);
     background-position: center;
     background-size: cover;
 }

@@ -3,8 +3,7 @@ const cnn = require("../db/db.js");
 
 //회원가입 정보 입력
 exports.insert = ( data, cb ) => {
-    var sql = `INSERT INTO user VALUES ('${data.id}', '${data.name}', '${data.password}', '${data.amount}');`;
-
+    var sql = `INSERT INTO user (id, name, password, amount) VALUES ('${data.id}', '${data.name}', '${data.password}', 0);`;
     cnn.query(sql, (err, rows) => {
         if ( err ) throw err;
         cb( data.id );
@@ -50,3 +49,13 @@ exports.delete = ( id,  cb ) => {
         cb( rows );
     });
 }
+
+//아이디 중복체크
+
+exports.checkId = (id, cb) => {
+    var sql = `SELECT id FROM user WHERE id = ?`;
+    cnn.query(sql, [id], (err, rows) => {
+        if (err) throw err;
+        cb(rows.length > 0);
+    });
+};

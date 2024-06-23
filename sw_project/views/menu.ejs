@@ -3,162 +3,732 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--폰트1 numans-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Numans&display=swap" rel="stylesheet">
+    <!--폰트2 nunito-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Numans&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
+    <!--폰트3 nanum gothic-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&family=Numans&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
+    <!--css 주소 링크-->
+    <link href="/stylesheets/menu.css" rel="stylesheet"/>
     <title>카페 메뉴</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #ffffff;
-            display: flex;
-            flex-direction: column; /* 세로 방향으로 요소 배치 */
-            min-height: 100vh; /* 화면 전체 높이를 최소 높이로 설정 */
-        }
-        header {
-            background-color: #292d30;
-            color: #fff;
-            padding: 20px;
-            text-align: center;
-            margin-bottom: 20px; 
-            width: 100%; /* 헤더를 가로폭 100%로 설정 */
-        }
-        h1 {
-            margin: 0; 
-        }
-        .container {
-            width: 60%; /* 왼쪽 컨테이너의 너비를 조정 */
-            padding: 20px;
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap; /* 화면이 작아질 경우 메뉴가 다음 줄에 나타나도록 설정 */
-            /*width: 80%;
-            margin: auto;
-            padding: 20px;
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;*/
-        }
-        .menu-item {
-            border-bottom: 1px solid #ccc;
-            padding: 10px;
-            /*width: 30%;  각 요소의 너비 설정 */
-            width: calc(33.33% - 20px); /* 각 요소의 너비 설정 (33.33%에서 간격 제외) */
-            box-sizing: border-box;
-            text-align: center;
-        }
-        .menu-item img {
-            display: block; /* 이미지를 세로 정렬 */
-            margin: 0 auto; /* 가운데 정렬 */
-            max-width: 100px;
-            height: auto;
-        }
-        .category {
-            text-align: center;
-            margin: 20px 0;
-            width: 60%; /* 왼쪽 카테고리의 너비를 조정 */
-            position: sticky;
-            top: 0;
-            background-color: #fff; /* 배경색을 지정하여 내용이 겹치지 않도록 함 */
-            z-index: 999; /* 다른 요소 위에 표시되도록 z-index 설정 */
-            padding: 10px 0; /* 위아래 여백 추가 */
-        }
-        .card {
-            width: 40%; /* 오른쪽 카드의 너비를 조정 */
-            padding: 20px;
-            box-sizing: border-box;
-            margin-left: auto; /* 오른쪽 정렬 */
-        }
-        .card-header {
-            font-weight: bold;
-            font-size: 1.2em;
-        }
-        .table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        .table th, .table td {
-            border: 1px solid #ccc;
-            padding: 8px;
-            text-align: center;
-        }
-        .btn {
-            padding: 4px 8px;
-            cursor: pointer;
-        }
-        .btn-danger {
-            background-color: red;
-            color: white;
-        }
-        .btn-sm {
-            font-size: 0.8em;
-        }
-    </style>
+    <!--style 옮겨둠-->
 </head>
 <body>
-    <header>
-        <h1>MENU</h1>
-    </header>
-    <div class="category">
-        <!-- 학교 키오스크 보고 수정할 예정 -->
-        <h2>카테고리</h2>
-        <p>커피 | 라떼 | 과일</p>
-    </div>
-    <div class="container">
-        <!-- 학교 키오스크 보고 수정할 예정 -->
-        <!-- 여기서부터 -->
+<header>
+    <h1>MENU</h1>
+</header>
+<div class="category">
+    <h2>카테고리</h2>
+    <p>
+        <button name="커피" onclick="showDiv('div1')">커피</button> |
+        <button name="라떼" onclick="showDiv('div2')">음료</button> |
+        <button name="차/과일" onclick="showDiv('div3')">차/과일</button> |
+        <button name="스무디/에이드" onclick="showDiv('div4')">스무디/에이드</button>
+    </p>
+</div>
+<div class="wrapper">
+    <div id='div1' class="container">
+        <div class="menu-item">
+            <img src="/images/coffee1.jpg" alt="에스프레소">
+            <h3>에스프레소</h3>
+            <p>에스프레소</p>
+            <span id="에스프레소" hidden="hidden">에스프레소</span>
+            <p>가격: <span id="에스가격">1500</span>원</p>
+            <div>
+                <input type="radio" id="iced" name="temperature" value="iced" onclick="document.getElementById('에스가격').innerText = '1500';" disabled>
+                <label for="iced">Iced</label>
+                <input type="radio" id="hot" name="temperature" value="hot" onclick="document.getElementById('에스가격').innerText = '1500';" checked>
+                <label for="hot">Hot</label>
+            </div>
+            <select id="에스프레소수량">
+                <option value="1">1</option><option value="2">2</option><option value="3">3</option>
+                <option value="4">4</option><option value="5">5</option><option value="6">6</option>
+                <option value="7">7</option><option value="8">8</option><option value="9">9</option>
+                <option value="10">10</option>
+            </select>
+            <button onclick="addToCart('에스프레소', document.getElementById('에스가격').innerText, '/images/coffee1.jpg')">장바구니에 담기</button>
+        </div>
         <div class="menu-item">
             <img src="/images/coffee1.jpg" alt="아메리카노">
             <h3>아메리카노</h3>
             <p>에스프레소와 물을 섞어 만든 커피</p>
-            <p>가격: 1,800원</p>
-            <select id="아메리카노">
+            <span id="아메리카노" hidden="hidden">아메리카노(아이스)</span>
+            <p>가격: <span id="아메리카노가격">1800</span>원</p>
+            <div>
+                <input type="radio" id="iced" name="아메리카노온도" value="iced" onclick="updateCoffeeType('아메리카노', '아이스', '1800')" checked>
+                <label for="iced">Iced</label>
+                <input type="radio" id="hot" name="아메리카노온도" value="hot" onclick="updateCoffeeType('아메리카노', '핫', '1800')">
+                <label for="hot">Hot</label>
+            </div>
+            <select id="아메리카노수량">
                 <option value="1">1</option><option value="2">2</option><option value="3">3</option>
                 <option value="4">4</option><option value="5">5</option><option value="6">6</option>
                 <option value="7">7</option><option value="8">8</option><option value="9">9</option>
                 <option value="10">10</option>
             </select>
-            <button onclick="addToCart('아메리카노', '1800', '/images/coffee1.jpg')">장바구니에 담기</button>
+            <button onclick="addToCart('아메리카노', document.getElementById('아메리카노가격').innerText, '/images/coffee1.jpg')">장바구니에 담기</button>
         </div>
-        <!-- 여기까지가 메뉴 하나 / 복붙 후 수정하면 메뉴 추가-->
+        <div class="menu-item">
+            <img src="/images/coffee2.jpg" alt="카페라떼">
+            <h3>카페라떼</h3>
+            <p>에스프레소와 스팀밀크를 섞은 커피</p>
+            <span id="카페라떼" hidden="hidden">카페라떼(아이스)</span>
+            <p>가격: <span id="카페라떼가격">3000</span>원</p>
+            <div>
+                <input type="radio" id="iced" name="카페라떼온도" value="iced" onclick="updateCoffeeType('카페라떼', '아이스', '3000')" checked>
+                <label for="iced">Iced</label>
+                <input type="radio" id="hot" name="카페라떼온도" value="hot" onclick="updateCoffeeType('카페라떼', '핫', '2800')">
+                <label for="hot">Hot</label>
+            </div>
+            <select id="카페라떼수량">
+                <option value="1">1</option><option value="2">2</option><option value="3">3</option>
+                <option value="4">4</option><option value="5">5</option><option value="6">6</option>
+                <option value="7">7</option><option value="8">8</option><option value="9">9</option>
+                <option value="10">10</option>
+            </select>
+            <button onclick="addToCart('카페라떼', document.getElementById('카페라떼가격').innerText, '/images/coffee2.jpg')">장바구니에 담기</button>
+        </div>
         <div class="menu-item">
             <img src="/images/coffee2.jpg" alt="카푸치노">
             <h3>카푸치노</h3>
-            <p>에스프레소와 스팀밀크, 거품을 올린 커피</p>
-            <p>가격: 3,000원</p>
-            <select id="카푸치노">
-                    <option value="1">1</option><option value="2">2</option><option value="3">3</option>
-                    <option value="4">4</option><option value="5">5</option><option value="6">6</option>
-                    <option value="7">7</option><option value="8">8</option><option value="9">9</option>
-                    <option value="10">10</option>
-            </select>
-
-            <button onclick="addToCart('카푸치노', '3000', '/images/coffee2.jpg')">장바구니에 담기</button>
-        </div>
-        <div class="menu-item">
-            <img src="/images/coffee3.jpg" alt="카페라떼">
-            <h3>카페라떼</h3>
             <p>에스프레소와 스팀밀크를 섞은 커피</p>
-            <p>가격: 3,300원</p>
-            <select id="카페라떼">
+            <span id="카푸치노" hidden="hidden">카푸치노(아이스)</span>
+            <p>가격: <span id="카푸치노가격">3000</span>원</p>
+            <div>
+                <input type="radio" id="iced" name="카푸치노온도" value="iced" onclick="updateCoffeeType('카푸치노', '아이스', '3000')" checked>
+                <label for="iced">Iced</label>
+                <input type="radio" id="hot" name="카푸치노온도" value="hot" onclick="updateCoffeeType('카푸치노', '핫', '2800')">
+                <label for="hot">Hot</label>
+            </div>
+            <select id="카푸치노수량">
                 <option value="1">1</option><option value="2">2</option><option value="3">3</option>
                 <option value="4">4</option><option value="5">5</option><option value="6">6</option>
                 <option value="7">7</option><option value="8">8</option><option value="9">9</option>
                 <option value="10">10</option>
             </select>
-            <button onclick="addToCart('카페라떼', '3300', '/images/coffee3.jpg')">장바구니에 담기</button>
+            <button onclick="addToCart('카푸치노', document.getElementById('카푸치노가격').innerText, '/images/coffee2.jpg')">장바구니에 담기</button>
         </div>
         <div class="menu-item">
-            <img src="/images/coffee4.jpg" alt="바닐라라떼">
+            <img src="/images/coffee2.jpg" alt="바닐라라떼">
             <h3>바닐라라떼</h3>
             <p>에스프레소와 스팀밀크를 섞은 바닐라향이 나는 커피</p>
-            <p>가격: 3,300원</p>
-            <select id="바닐라라떼">
+            <span id="바닐라라떼" hidden="hidden">바닐라라떼(아이스)</span>
+            <p>가격: <span id="바닐라라떼가격">3300</span>원</p>
+            <div>
+                <input type="radio" id="iced" name="바닐라라떼온도" value="iced" onclick="updateCoffeeType('바닐라라떼', '아이스', '3300')" checked>
+                <label for="iced">Iced</label>
+                <input type="radio" id="hot" name="바닐라라떼온도" value="hot" onclick="updateCoffeeType('바닐라라떼', '핫', '3000')">
+                <label for="hot">Hot</label>
+            </div>
+            <select id="바닐라라떼수량">
                 <option value="1">1</option><option value="2">2</option><option value="3">3</option>
                 <option value="4">4</option><option value="5">5</option><option value="6">6</option>
                 <option value="7">7</option><option value="8">8</option><option value="9">9</option>
                 <option value="10">10</option>
             </select>
-            <button onclick="addToCart('바닐라라떼', '3300', '/images/coffee4.jpg')">장바구니에 담기</button>
+            <button onclick="addToCart('바닐라라떼', document.getElementById('바닐라라떼가격').innerText, '/images/coffee2.jpg')">장바구니에 담기</button>
+        </div>
+        <div class="menu-item">
+            <img src="/images/coffee2.jpg" alt="헤이즐넛라떼">
+            <h3>헤이즐넛라떼</h3>
+            <p>에스프레소와 스팀밀크를 섞은 헤이즐넛향이 나는 커피</p>
+            <span id="헤이즐넛라떼" hidden="hidden">헤이즐넛라떼(아이스)</span>
+            <p>가격: <span id="헤이즐넛라떼가격">3300</span>원</p>
+            <div>
+                <input type="radio" id="iced" name="헤이즐넛라떼온도" value="iced" onclick="updateCoffeeType('헤이즐넛라떼', '아이스', '3300')" checked>
+                <label for="iced">Iced</label>
+                <input type="radio" id="hot" name="헤이즐넛라떼온도" value="hot" onclick="updateCoffeeType('헤이즐넛라떼', '핫', '3000')">
+                <label for="hot">Hot</label>
+            </div>
+            <select id="헤이즐넛라떼수량">
+                <option value="1">1</option><option value="2">2</option><option value="3">3</option>
+                <option value="4">4</option><option value="5">5</option><option value="6">6</option>
+                <option value="7">7</option><option value="8">8</option><option value="9">9</option>
+                <option value="10">10</option>
+            </select>
+            <button onclick="addToCart('헤이즐넛라떼', document.getElementById('헤이즐넛라떼가격').innerText, '/images/coffee2.jpg')">장바구니에 담기</button>
+        </div>
+        <div class="menu-item">
+            <img src="/images/coffee2.jpg" alt="카페모카">
+            <h3>카페모카</h3>
+            <p>에스프레소와 스팀밀크를 섞은 모카향이 나는 커피</p>
+            <span id="카페모카" hidden="hidden">카페모카(아이스)</span>
+            <p>가격: <span id="카페모카가격">3300</span>원</p>
+            <div>
+                <input type="radio" id="iced" name="카페모카온도" value="iced" onclick="updateCoffeeType('카페모카', '아이스', '3300')" checked>
+                <label for="iced">Iced</label>
+                <input type="radio" id="hot" name="카페모카온도" value="hot" onclick="updateCoffeeType('카페모카', '핫', '3000')">
+                <label for="hot">Hot</label>
+            </div>
+            <select id="카페모카수량">
+                <option value="1">1</option><option value="2">2</option><option value="3">3</option>
+                <option value="4">4</option><option value="5">5</option><option value="6">6</option>
+                <option value="7">7</option><option value="8">8</option><option value="9">9</option>
+                <option value="10">10</option>
+            </select>
+            <button onclick="addToCart('카페모카', document.getElementById('카페모카가격').innerText, '/images/coffee2.jpg')">장바구니에 담기</button>
+        </div>
+        <div class="menu-item">
+            <img src="/images/coffee2.jpg" alt="화이트모카">
+            <h3>화이트모카</h3>
+            <p>에스프레소와 스팀밀크를 섞은 화이트초콜릿 향이 나는 커피</p>
+            <span id="화이트모카" hidden="hidden">화이트모카(아이스)</span>
+            <p>가격: <span id="화이트모카가격">3300</span>원</p>
+            <div>
+                <input type="radio" id="iced" name="화이트모카온도" value="iced" onclick="updateCoffeeType('화이트모카', '아이스', '3300')" checked>
+                <label for="iced">Iced</label>
+                <input type="radio" id="hot" name="화이트모카온도" value="hot" onclick="updateCoffeeType('화이트모카', '핫', '3000')">
+                <label for="hot">Hot</label>
+            </div>
+            <select id="화이트모카수량">
+                <option value="1">1</option><option value="2">2</option><option value="3">3</option>
+                <option value="4">4</option><option value="5">5</option><option value="6">6</option>
+                <option value="7">7</option><option value="8">8</option><option value="9">9</option>
+                <option value="10">10</option>
+            </select>
+            <button onclick="addToCart('화이트모카', document.getElementById('화이트모카가격').innerText, '/images/coffee2.jpg')">장바구니에 담기</button>
+        </div>
+        <div class="menu-item">
+            <img src="/images/coffee2.jpg" alt="카라멜마끼야또">
+            <h3>카라멜마끼야또</h3>
+            <p>에스프레소와 스팀밀크를 섞은 카라멜향이 나는 커피</p>
+            <span id="카라멜마끼야또" hidden="hidden">카라멜마끼야또(아이스)</span>
+            <p>가격: <span id="카라멜마끼야또가격">3300</span>원</p>
+            <div>
+                <input type="radio" id="iced" name="카라멜마끼야또온도" value="iced" onclick="updateCoffeeType('카라멜마끼야또', '아이스', '3300')" checked>
+                <label for="iced">Iced</label>
+                <input type="radio" id="hot" name="카라멜마끼야또온도" value="hot" onclick="updateCoffeeType('카라멜마끼야또', '핫', '3000')">
+                <label for="hot">Hot</label>
+            </div>
+            <select id="카라멜마끼야또수량">
+                <option value="1">1</option><option value="2">2</option><option value="3">3</option>
+                <option value="4">4</option><option value="5">5</option><option value="6">6</option>
+                <option value="7">7</option><option value="8">8</option><option value="9">9</option>
+                <option value="10">10</option>
+            </select>
+            <button onclick="addToCart('카라멜마끼야또', document.getElementById('카라멜마끼야또가격').innerText, '/images/coffee2.jpg')">장바구니에 담기</button>
+        </div>
+        <div class="menu-item">
+            <img src="/images/coffee2.jpg" alt="연유라떼">
+            <h3>연유라떼</h3>
+            <p>에스프레소와 스팀밀크를 섞은 달콤한 커피</p>
+            <span id="연유라떼" hidden="hidden">연유라떼(아이스)</span>
+            <p>가격: <span id="연유라떼가격">3300</span>원</p>
+            <div>
+                <input type="radio" id="iced" name="연유라떼온도" value="iced" onclick="updateCoffeeType('연유라떼', '아이스', '3300')" checked>
+                <label for="iced">Iced</label>
+                <input type="radio" id="hot" name="연유라떼온도" value="hot" onclick="updateCoffeeType('연유라떼', '핫', '3000')">
+                <label for="hot">Hot</label>
+            </div>
+            <select id="연유라떼수량">
+                <option value="1">1</option><option value="2">2</option><option value="3">3</option>
+                <option value="4">4</option><option value="5">5</option><option value="6">6</option>
+                <option value="7">7</option><option value="8">8</option><option value="9">9</option>
+                <option value="10">10</option>
+            </select>
+            <button onclick="addToCart('연유라떼', document.getElementById('연유라떼가격').innerText, '/images/coffee2.jpg')">장바구니에 담기</button>
+        </div>
+    </div>
+    <div id='div2' class="container">
+        <div class="menu-item">
+            <img src="/images/coffee3.jpg" alt="그린티라떼">
+            <h3>그린티라떼</h3>
+            <p>그린티와 스팀밀크를 섞은 음료</p>
+            <span id="그린티라떼" hidden="hidden">그린티라떼(아이스)</span>
+            <p>가격: <span id="그린티라떼가격">3000</span>원</p>
+            <div>
+                <input type="radio" id="iced" name="그린티라떼온도" value="iced" onclick="updateCoffeeType('그린티라떼', '아이스', '3000')" checked>
+                <label for="iced">Iced</label>
+                <input type="radio" id="hot" name="그린티라떼온도" value="hot" onclick="updateCoffeeType('그린티라떼', '핫', '2700')">
+                <label for="hot">Hot</label>
+            </div>
+            <select id="그린티라떼수량">
+                <option value="1">1</option><option value="2">2</option><option value="3">3</option>
+                <option value="4">4</option><option value="5">5</option><option value="6">6</option>
+                <option value="7">7</option><option value="8">8</option><option value="9">9</option>
+                <option value="10">10</option>
+            </select>
+            <button onclick="addToCart('그린티라떼', document.getElementById('그린티라떼가격').innerText, '/images/coffee3.jpg')">장바구니에 담기</button>
+        </div>
+        <div class="menu-item">
+            <img src="/images/coffee3.jpg" alt="초코라떼">
+            <h3>초코라떼</h3>
+            <p>초콜릿과 스팀밀크를 섞은 음료</p>
+            <span id="초코라떼" hidden="hidden">초코라떼(아이스)</span>
+            <p>가격: <span id="초코라떼가격">3000</span>원</p>
+            <div>
+                <input type="radio" id="iced" name="초코라떼온도" value="iced" onclick="updateCoffeeType('초코라떼', '아이스', '3000')" checked>
+                <label for="iced">Iced</label>
+                <input type="radio" id="hot" name="초코라떼온도" value="hot" onclick="updateCoffeeType('초코라떼', '핫', '2700')">
+                <label for="hot">Hot</label>
+            </div>
+            <select id="초코라떼수량">
+                <option value="1">1</option><option value="2">2</option><option value="3">3</option>
+                <option value="4">4</option><option value="5">5</option><option value="6">6</option>
+                <option value="7">7</option><option value="8">8</option><option value="9">9</option>
+                <option value="10">10</option>
+            </select>
+            <button onclick="addToCart('초코라떼', document.getElementById('초코라떼가격').innerText, '/images/coffee3.jpg')">장바구니에 담기</button>
+        </div>
+        <div class="menu-item">
+            <img src="/images/coffee3.jpg" alt="고구마라떼">
+            <h3>고구마라떼</h3>
+            <p>고구마와 스팀밀크를 섞은 음료</p>
+            <span id="고구마라떼" hidden="hidden">고구마라떼(아이스)</span>
+            <p>가격: <span id="고구마라떼가격">3000</span>원</p>
+            <div>
+                <input type="radio" id="iced" name="고구마라떼온도" value="iced" onclick="updateCoffeeType('고구마라떼', '아이스', '3000')" checked>
+                <label for="iced">Iced</label>
+                <input type="radio" id="hot" name="고구마라떼온도" value="hot" onclick="updateCoffeeType('고구마라떼', '핫', '2700')">
+                <label for="hot">Hot</label>
+            </div>
+            <select id="고구마라떼수량">
+                <option value="1">1</option><option value="2">2</option><option value="3">3</option>
+                <option value="4">4</option><option value="5">5</option><option value="6">6</option>
+                <option value="7">7</option><option value="8">8</option><option value="9">9</option>
+                <option value="10">10</option>
+            </select>
+            <button onclick="addToCart('고구마라떼', document.getElementById('고구마라떼가격').innerText, '/images/coffee3.jpg')">장바구니에 담기</button>
+        </div>
+        <div class="menu-item">
+            <img src="/images/coffee3.jpg" alt="오곡라떼">
+            <h3>오곡라떼</h3>
+            <p>오곡과 스팀밀크를 섞은 음료</p>
+            <span id="오곡라떼" hidden="hidden">오곡라떼(아이스)</span>
+            <p>가격: <span id="오곡라떼가격">3000</span>원</p>
+            <div>
+                <input type="radio" id="iced" name="오곡라떼온도" value="iced" onclick="updateCoffeeType('오곡라떼', '아이스', '3000')" checked>
+                <label for="iced">Iced</label>
+                <input type="radio" id="hot" name="오곡라떼온도" value="hot" onclick="updateCoffeeType('오곡라떼', '핫', '2700')">
+                <label for="hot">Hot</label>
+            </div>
+            <select id="오곡라떼수량">
+                <option value="1">1</option><option value="2">2</option><option value="3">3</option>
+                <option value="4">4</option><option value="5">5</option><option value="6">6</option>
+                <option value="7">7</option><option value="8">8</option><option value="9">9</option>
+                <option value="10">10</option>
+            </select>
+            <button onclick="addToCart('오곡라떼', document.getElementById('오곡라떼가격').innerText, '/images/coffee3.jpg')">장바구니에 담기</button>
+        </div>
+        <div class="menu-item">
+            <img src="/images/coffee3.jpg" alt="밀크티(홍차)">
+            <h3>밀크티(홍차)</h3>
+            <p>홍차와 스팀밀크를 섞은 음료</p>
+            <span id="밀크티(홍차)" hidden="hidden">밀크티(홍차)(아이스)</span>
+            <p>가격: <span id="밀크티(홍차)가격">3000</span>원</p>
+            <div>
+                <input type="radio" id="iced" name="밀크티(홍차)온도" value="iced" onclick="updateCoffeeType('밀크티(홍차)', '아이스', '3000')" checked>
+                <label for="iced">Iced</label>
+                <input type="radio" id="hot" name="밀크티(홍차)온도" value="hot" onclick="updateCoffeeType('밀크티(홍차)', '핫', '2700')">
+                <label for="hot">Hot</label>
+            </div>
+            <select id="밀크티(홍차)수량">
+                <option value="1">1</option><option value="2">2</option><option value="3">3</option>
+                <option value="4">4</option><option value="5">5</option><option value="6">6</option>
+                <option value="7">7</option><option value="8">8</option><option value="9">9</option>
+                <option value="10">10</option>
+            </select>
+            <button onclick="addToCart('밀크티(홍차)', document.getElementById('밀크티(홍차)가격').innerText, '/images/coffee3.jpg')">장바구니에 담기</button>
+        </div>
+    </div>
+
+    <div id='div3' class="container">
+        <div class="menu-item">
+            <img src="/images/coffee3.jpg" alt="허브티">
+            <h3>허브티</h3>
+            <p>다양한 허브를 사용한 차</p>
+            <span id="허브티" hidden="hidden">허브티(아이스)</span>
+            <p>가격: <span id="허브티가격">2300</span>원</p>
+            <div>
+                <input type="radio" id="iced" name="허브티온도" value="iced" onclick="updateCoffeeType('허브티', '아이스', '2300')" checked>
+                <label for="iced">Iced</label>
+                <input type="radio" id="hot" name="허브티온도" value="hot" onclick="updateCoffeeType('허브티', '핫', '2300')" disabled>
+                <label for="hot">Hot</label>
+            </div>
+            <select id="허브티수량">
+                <option value="1">1</option><option value="2">2</option><option value="3">3</option>
+                <option value="4">4</option><option value="5">5</option><option value="6">6</option>
+                <option value="7">7</option><option value="8">8</option><option value="9">9</option>
+                <option value="10">10</option>
+            </select>
+            <button onclick="addToCart('허브티', document.getElementById('허브티가격').innerText, '/images/coffee3.jpg')">장바구니에 담기</button>
+        </div>
+        <div class="menu-item">
+            <img src="/images/coffee3.jpg" alt="홍차">
+            <h3>홍차</h3>
+            <p>홍차 잎을 우려낸 차</p>
+            <span id="홍차" hidden="hidden">홍차(아이스)</span>
+            <p>가격: <span id="홍차가격">2000</span>원</p>
+            <div>
+                <input type="radio" id="iced" name="홍차온도" value="iced" onclick="updateCoffeeType('홍차', '아이스', '2000')" checked>
+                <label for="iced">Iced</label>
+                <input type="radio" id="hot" name="홍차온도" value="hot" onclick="updateCoffeeType('홍차', '핫', '2300')" disabled>
+                <label for="hot">Hot</label>
+            </div>
+            <select id="홍차수량">
+                <option value="1">1</option><option value="2">2</option><option value="3">3</option>
+                <option value="4">4</option><option value="5">5</option><option value="6">6</option>
+                <option value="7">7</option><option value="8">8</option><option value="9">9</option>
+                <option value="10">10</option>
+            </select>
+            <button onclick="addToCart('홍차', document.getElementById('홍차가격').innerText, '/images/coffee3.jpg')">장바구니에 담기</button>
+        </div>
+        <div class="menu-item">
+            <img src="/images/coffee3.jpg" alt="그린티">
+            <h3>그린티</h3>
+            <p>녹차 잎을 우려낸 차</p>
+            <span id="그린티" hidden="hidden">그린티(아이스)</span>
+            <p>가격: <span id="그린티가격">2300</span>원</p>
+            <div>
+                <input type="radio" id="iced" name="그린티온도" value="iced" onclick="updateCoffeeType('그린티', '아이스', '2300')" checked>
+                <label for="iced">Iced</label>
+                <input type="radio" id="hot" name="그린티온도" value="hot" onclick="updateCoffeeType('그린티', '핫', '2300')" disabled>
+                <label for="hot">Hot</label>
+            </div>
+            <select id="그린티수량">
+                <option value="1">1</option><option value="2">2</option><option value="3">3</option>
+                <option value="4">4</option><option value="5">5</option><option value="6">6</option>
+                <option value="7">7</option><option value="8">8</option><option value="9">9</option>
+                <option value="10">10</option>
+            </select>
+            <button onclick="addToCart('그린티', document.getElementById('그린티가격').innerText, '/images/coffee3.jpg')">장바구니에 담기</button>
+        </div>
+        <div class="menu-item">
+            <img src="/images/coffee3.jpg" alt="아이스티">
+            <h3>아이스티</h3>
+            <p>달콤한 맛의 아이스티</p>
+            <span id="아이스티" hidden="hidden">아이스티(아이스)</span>
+            <p>가격: <span id="아이스티가격">2800</span>원</p>
+            <div>
+                <input type="radio" id="iced" name="아이스티온도" value="iced" onclick="updateCoffeeType('아이스티', '아이스', '2800')" checked>
+                <label for="iced">Iced</label>
+                <input type="radio" id="hot" name="아이스티온도" value="hot" onclick="updateCoffeeType('아이스티', '핫', '2800')" disabled>
+                <label for="hot">Hot</label>
+            </div>
+            <select id="아이스티수량">
+                <option value="1">1</option><option value="2">2</option><option value="3">3</option>
+                <option value="4">4</option><option value="5">5</option><option value="6">6</option>
+                <option value="7">7</option><option value="8">8</option><option value="9">9</option>
+                <option value="10">10</option>
+            </select>
+            <button onclick="addToCart('아이스티', document.getElementById('아이스티가격').innerText, '/images/coffee3.jpg')">장바구니에 담기</button>
+        </div>
+        <div class="menu-item">
+            <img src="/images/coffee3.jpg" alt="유자차">
+            <h3>유자차</h3>
+            <p>유자 맛이 나는 차</p>
+            <span id="유자차" hidden="hidden">유자차(아이스)</span>
+            <p>가격: <span id="유자차가격">3300</span>원</p>
+            <div>
+                <input type="radio" id="iced" name="유자차온도" value="iced" onclick="updateCoffeeType('유자차', '아이스', '3300')" checked>
+                <label for="iced">Iced</label>
+                <input type="radio" id="hot" name="유자차온도" value="hot" onclick="updateCoffeeType('유자차', '핫', '2800')">
+                <label for="hot">Hot</label>
+            </div>
+            <select id="유자차수량">
+                <option value="1">1</option><option value="2">2</option><option value="3">3</option>
+                <option value="4">4</option><option value="5">5</option><option value="6">6</option>
+                <option value="7">7</option><option value="8">8</option><option value="9">9</option>
+                <option value="10">10</option>
+            </select>
+            <button onclick="addToCart('유자차', document.getElementById('유자차가격').innerText, '/images/coffee3.jpg')">장바구니에 담기</button>
+        </div>
+
+
+        <div class="menu-item">
+            <img src="/images/coffee3.jpg" alt="바나나주스">
+            <h3>바나나주스</h3>
+            <p>에스프레소와 스팀밀크를 섞은 바닐라향이 나는 커피</p>
+            <span id="바나나주스" hidden="hidden">바나나주스(아이스)</span>
+            <p>가격: <span id="바나나주스가격">1800</span>원</p>
+            <div>
+                <input type="radio" id="iced" name="바나나주스온도" value="iced" onclick="updateCoffeeType('바나나주스', '아이스', '3400')" checked>
+                <label for="iced">Iced</label>
+                <input type="radio" id="hot" name="바나나주스온도" value="hot" onclick="updateCoffeeType('바나나주스', '핫', '1800')" disabled>
+                <label for="hot">Hot</label>
+            </div>
+            <select id="바나나주스수량">
+                <option value="1">1</option><option value="2">2</option><option value="3">3</option>
+                <option value="4">4</option><option value="5">5</option><option value="6">6</option>
+                <option value="7">7</option><option value="8">8</option><option value="9">9</option>
+                <option value="10">10</option>
+            </select>
+            <button onclick="addToCart('바나나주스', document.getElementById('바나나주스가격').innerText, '/images/coffee1.jpg')">장바구니에 담기</button>
+        </div>
+
+        <div class="menu-item">
+            <img src="/images/coffee3.jpg" alt="바나나딸기주스">
+            <h3>바나나딸기주스</h3>
+            <p>에스프레소와 스팀밀크를 섞은 바닐라향이 나는 커피</p>
+            <span id="바나나딸기주스" hidden="hidden">바나나딸기주스(아이스)</span>
+            <p>가격: <span id="바나나딸기주스가격">1800</span>원</p>
+            <div>
+                <input type="radio" id="iced" name="바나나딸기주스온도" value="iced" onclick="updateCoffeeType('바나나딸기주스', '아이스', '3700')" checked>
+                <label for="iced">Iced</label>
+                <input type="radio" id="hot" name="바나나딸기주스온도" value="hot" onclick="updateCoffeeType('바나나딸기주스', '핫', '1800')" disabled>
+                <label for="hot">Hot</label>
+            </div>
+            <select id="바나나딸기주스수량">
+                <option value="1">1</option><option value="2">2</option><option value="3">3</option>
+                <option value="4">4</option><option value="5">5</option><option value="6">6</option>
+                <option value="7">7</option><option value="8">8</option><option value="9">9</option>
+                <option value="10">10</option>
+            </select>
+            <button onclick="addToCart('바나나딸기주스', document.getElementById('바나나딸기주스가격').innerText, '/images/coffee1.jpg')">장바구니에 담기</button>
+        </div>
+        <div class="menu-item">
+            <img src="/images/coffee3.jpg" alt="블루베리주스">
+            <h3>블루베리주스</h3>
+            <p>에스프레소와 스팀밀크를 섞은 바닐라향이 나는 커피</p>
+            <span id="블루베리주스" hidden="hidden">블루베리주스(아이스)</span>
+            <p>가격: <span id="블루베리주스가격">1800</span>원</p>
+            <div>
+                <input type="radio" id="iced" name="블루베리주스온도" value="iced" onclick="updateCoffeeType('블루베리주스', '아이스', '3500')" checked>
+                <label for="iced">Iced</label>
+                <input type="radio" id="hot" name="블루베리주스온도" value="hot" onclick="updateCoffeeType('블루베리주스', '핫', '1800')" disabled>
+                <label for="hot">Hot</label>
+            </div>
+            <select id="블루베리주스수량">
+                <option value="1">1</option><option value="2">2</option><option value="3">3</option>
+                <option value="4">4</option><option value="5">5</option><option value="6">6</option>
+                <option value="7">7</option><option value="8">8</option><option value="9">9</option>
+                <option value="10">10</option>
+            </select>
+            <button onclick="addToCart('블루베리주스', document.getElementById('블루베리주스가격').innerText, '/images/coffee1.jpg')">장바구니에 담기</button>
+        </div>
+
+        <div class="menu-item">
+            <img src="/images/coffee3.jpg" alt="키위주스">
+            <h3>키위주스</h3>
+            <p>에스프레소와 스팀밀크를 섞은 바닐라향이 나는 커피</p>
+            <span id="키위주스" hidden="hidden">키위주스(아이스)</span>
+            <p>가격: <span id="키위주스가격">1800</span>원</p>
+            <div>
+                <input type="radio" id="iced" name="키위주스온도" value="iced" onclick="updateCoffeeType('키위주스', '아이스', '3500')" checked>
+                <label for="iced">Iced</label>
+                <input type="radio" id="hot" name="키위주스온도" value="hot" onclick="updateCoffeeType('키위주스', '핫', '1800')" disabled>
+                <label for="hot">Hot</label>
+            </div>
+            <select id="키위주스수량">
+                <option value="1">1</option><option value="2">2</option><option value="3">3</option>
+                <option value="4">4</option><option value="5">5</option><option value="6">6</option>
+                <option value="7">7</option><option value="8">8</option><option value="9">9</option>
+                <option value="10">10</option>
+            </select>
+            <button onclick="addToCart('키위주스', document.getElementById('키위주스가격').innerText, '/images/coffee1.jpg')">장바구니에 담기</button>
+        </div>
+
+        <div class="menu-item">
+            <img src="/images/coffee3.jpg" alt="토마토주스">
+            <h3>토마토주스</h3>
+            <p>에스프레소와 스팀밀크를 섞은 바닐라향이 나는 커피</p>
+            <span id="토마토주스" hidden="hidden">토마토주스(아이스)</span>
+            <p>가격: <span id="토마토주스가격">1800</span>원</p>
+            <div>
+                <input type="radio" id="iced" name="토마토주스온도" value="iced" onclick="updateCoffeeType('토마토주스', '아이스', '3400')" checked>
+                <label for="iced">Iced</label>
+                <input type="radio" id="hot" name="토마토주스온도" value="hot" onclick="updateCoffeeType('토마토주스', '핫', '1800')" disabled>
+                <label for="hot">Hot</label>
+            </div>
+            <select id="토마토주스수량">
+                <option value="1">1</option><option value="2">2</option><option value="3">3</option>
+                <option value="4">4</option><option value="5">5</option><option value="6">6</option>
+                <option value="7">7</option><option value="8">8</option><option value="9">9</option>
+                <option value="10">10</option>
+            </select>
+            <button onclick="addToCart('토마토주스', document.getElementById('토마토주스가격').innerText, '/images/coffee1.jpg')">장바구니에 담기</button>
+        </div>
+
+        <div class="menu-item">
+            <img src="/images/coffee3.jpg" alt="딸기주스">
+            <h3>딸기주스</h3>
+            <p>에스프레소와 스팀밀크를 섞은 바닐라향이 나는 커피</p>
+            <span id="딸기주스" hidden="hidden">딸기주스(아이스)</span>
+            <p>가격: <span id="딸기주스가격">1800</span>원</p>
+            <div>
+                <input type="radio" id="iced" name="딸기주스온도" value="iced" onclick="updateCoffeeType('딸기주스', '아이스', '3400')" checked>
+                <label for="iced">Iced</label>
+                <input type="radio" id="hot" name="딸기주스온도" value="hot" onclick="updateCoffeeType('딸기주스', '핫', '1800')" disabled>
+                <label for="hot">Hot</label>
+            </div>
+            <select id="딸기주스수량">
+                <option value="1">1</option><option value="2">2</option><option value="3">3</option>
+                <option value="4">4</option><option value="5">5</option><option value="6">6</option>
+                <option value="7">7</option><option value="8">8</option><option value="9">9</option>
+                <option value="10">10</option>
+            </select>
+            <button onclick="addToCart('딸기주스', document.getElementById('딸기주스가격').innerText, '/images/coffee1.jpg')">장바구니에 담기</button>
+        </div>
+
+        <div class="menu-item">
+            <img src="/images/coffee3.jpg" alt="딸기라떼">
+            <h3>딸기라떼</h3>
+            <p>에스프레소와 스팀밀크를 섞은 바닐라향이 나는 커피</p>
+            <span id="딸기라떼" hidden="hidden">딸기라떼(아이스)</span>
+            <p>가격: <span id="딸기라떼가격">1800</span>원</p>
+            <div>
+                <input type="radio" id="iced" name="딸기라떼온도" value="iced" onclick="updateCoffeeType('딸기라떼', '아이스', '3600')" checked>
+                <label for="iced">Iced</label>
+                <input type="radio" id="hot" name="딸기라떼온도" value="hot" onclick="updateCoffeeType('딸기라떼', '핫', '1800')" disabled>
+                <label for="hot">Hot</label>
+            </div>
+            <select id="딸기라떼수량">
+                <option value="1">1</option><option value="2">2</option><option value="3">3</option>
+                <option value="4">4</option><option value="5">5</option><option value="6">6</option>
+                <option value="7">7</option><option value="8">8</option><option value="9">9</option>
+                <option value="10">10</option>
+            </select>
+            <button onclick="addToCart('딸기라떼', document.getElementById('딸기라떼가격').innerText, '/images/coffee1.jpg')">장바구니에 담기</button>
+        </div>
+    </div>
+
+    <div id='div4' class="container">
+        <div class="menu-item">
+            <img src="/images/coffee3.jpg" alt="요거트스무디">
+            <h3>요거트스무디</h3>
+            <p>요거트와 얼음을 갈아 만든 음료</p>
+            <span id="요거트스무디" hidden="hidden">요거트스무디(아이스)</span>
+            <p>가격: <span id="요거트스무디가격">3300</span>원</p>
+            <div>
+                <input type="radio" id="iced" name="요거트스무디온도" value="iced" onclick="updateCoffeeType('요거트스무디', '아이스', '3300')" checked>
+                <label for="iced">Iced</label>
+                <input type="radio" id="hot" name="요거트스무디온도" value="hot" onclick="updateCoffeeType('요거트스무디', '핫', '3300')" disabled>
+                <label for="hot">Hot</label>
+            </div>
+            <select id="요거트스무디수량">
+                <option value="1">1</option><option value="2">2</option><option value="3">3</option>
+                <option value="4">4</option><option value="5">5</option><option value="6">6</option>
+                <option value="7">7</option><option value="8">8</option><option value="9">9</option>
+                <option value="10">10</option>
+            </select>
+            <button onclick="addToCart('요거트스무디', document.getElementById('요거트스무디가격').innerText, '/images/coffee3.jpg')">장바구니에 담기</button>
+        </div>
+        <div class="menu-item">
+            <img src="/images/coffee3.jpg" alt="민트초코칩스무디">
+            <h3>민트초코칩스무디</h3>
+            <p>민트와 초콜릿 칩을 넣은 스무디</p>
+            <span id="민트초코칩스무디" hidden="hidden">민트초코칩스무디(아이스)</span>
+            <p>가격: <span id="민트초코칩스무디가격">3300</span>원</p>
+            <div>
+                <input type="radio" id="iced" name="민트초코칩스무디온도" value="iced" onclick="updateCoffeeType('민트초코칩스무디', '아이스', '3300')" checked>
+                <label for="iced">Iced</label>
+                <input type="radio" id="hot" name="민트초코칩스무디온도" value="hot" onclick="updateCoffeeType('민트초코칩스무디', '핫', '3300')" disabled>
+                <label for="hot">Hot</label>
+            </div>
+            <select id="민트초코칩스무디수량">
+                <option value="1">1</option><option value="2">2</option><option value="3">3</option>
+                <option value="4">4</option><option value="5">5</option><option value="6">6</option>
+                <option value="7">7</option><option value="8">8</option><option value="9">9</option>
+                <option value="10">10</option>
+            </select>
+            <button onclick="addToCart('민트초코칩스무디', document.getElementById('민트초코칩스무디가격').innerText, '/images/coffee3.jpg')">장바구니에 담기</button>
+        </div>
+        <div class="menu-item">
+            <img src="/images/coffee3.jpg" alt="자바칩초코스무디">
+            <h3>자바칩초코스무디</h3>
+            <p>자바칩을 넣은 초콜릿 스무디</p>
+            <span id="자바칩초코스무디" hidden="hidden">자바칩초코스무디(아이스)</span>
+            <p>가격: <span id="자바칩초코스무디가격">3800</span>원</p>
+            <div>
+                <input type="radio" id="iced" name="자바칩초코스무디온도" value="iced" onclick="updateCoffeeType('자바칩초코스무디', '아이스', '3800')" checked>
+                <label for="iced">Iced</label>
+                <input type="radio" id="hot" name="자바칩초코스무디온도" value="hot" onclick="updateCoffeeType('자바칩초코스무디', '핫', '3800')" disabled>
+                <label for="hot">Hot</label>
+            </div>
+            <select id="자바칩초코스무디수량">
+                <option value="1">1</option><option value="2">2</option><option value="3">3</option>
+                <option value="4">4</option><option value="5">5</option><option value="6">6</option>
+                <option value="7">7</option><option value="8">8</option><option value="9">9</option>
+                <option value="10">10</option>
+            </select>
+            <button onclick="addToCart('자바칩초코스무디', document.getElementById('자바칩초코스무디가격').innerText, '/images/coffee3.jpg')">장바구니에 담기</button>
+        </div>
+        <div class="menu-item">
+            <img src="/images/coffee3.jpg" alt="홍초에이드">
+            <h3>홍초에이드</h3>
+            <p>홍초와 탄산수를 섞은 에이드</p>
+            <span id="홍초에이드" hidden="hidden">홍초에이드(아이스)</span>
+            <p>가격: <span id="홍초에이드가격">2800</span>원</p>
+            <div>
+                <input type="radio" id="iced" name="홍초에이드온도" value="iced" onclick="updateCoffeeType('홍초에이드', '아이스', '2800')" checked>
+                <label for="iced">Iced</label>
+                <input type="radio" id="hot" name="홍초에이드온도" value="hot" onclick="updateCoffeeType('홍초에이드', '핫', '2800')" disabled>
+                <label for="hot">Hot</label>
+            </div>
+            <select id="홍초에이드수량">
+                <option value="1">1</option><option value="2">2</option><option value="3">3</option>
+                <option value="4">4</option><option value="5">5</option><option value="6">6</option>
+                <option value="7">7</option><option value="8">8</option><option value="9">9</option>
+                <option value="10">10</option>
+            </select>
+            <button onclick="addToCart('홍초에이드', document.getElementById('홍초에이드가격').innerText, '/images/coffee3.jpg')">장바구니에 담기</button>
+        </div>
+        <div class="menu-item">
+            <img src="/images/coffee3.jpg" alt="청포도에이드">
+            <h3>청포도에이드</h3>
+            <p>청포도맛의 에이드</p>
+            <span id="청포도에이드" hidden="hidden">청포도에이드(아이스)</span>
+            <p>가격: <span id="청포도에이드가격">3300</span>원</p>
+            <div>
+                <input type="radio" id="iced" name="청포도에이드온도" value="iced" onclick="updateCoffeeType('청포도에이드', '아이스', '3300')" checked>
+                <label for="iced">Iced</label>
+                <input type="radio" id="hot" name="청포도에이드온도" value="hot" onclick="updateCoffeeType('청포도에이드', '핫', '3300')" disabled>
+                <label for="hot">Hot</label>
+            </div>
+            <select id="청포도에이드수량">
+                <option value="1">1</option><option value="2">2</option><option value="3">3</option>
+                <option value="4">4</option><option value="5">5</option><option value="6">6</option>
+                <option value="7">7</option><option value="8">8</option><option value="9">9</option>
+                <option value="10">10</option>
+            </select>
+            <button onclick="addToCart('청포도에이드', document.getElementById('청포도에이드가격').innerText, '/images/coffee3.jpg')">장바구니에 담기</button>
+        </div>
+        <div class="menu-item">
+            <img src="/images/coffee3.jpg" alt="청귤에이드">
+            <h3>청귤에이드</h3>
+            <p>청귤맛의 에이드</p>
+            <span id="청귤에이드" hidden="hidden">청귤에이드(아이스)</span>
+            <p>가격: <span id="청귤에이드가격">3300</span>원</p>
+            <div>
+                <input type="radio" id="iced" name="청귤에이드온도" value="iced" onclick="updateCoffeeType('청귤에이드', '아이스', '3300')" checked>
+                <label for="iced">Iced</label>
+                <input type="radio" id="hot" name="청귤에이드온도" value="hot" onclick="updateCoffeeType('청귤에이드', '핫', '3300')" disabled>
+                <label for="hot">Hot</label>
+            </div>
+            <select id="청귤에이드수량">
+                <option value="1">1</option><option value="2">2</option><option value="3">3</option>
+                <option value="4">4</option><option value="5">5</option><option value="6">6</option>
+                <option value="7">7</option><option value="8">8</option><option value="9">9</option>
+                <option value="10">10</option>
+            </select>
+            <button onclick="addToCart('청귤에이드', document.getElementById('청귤에이드가격').innerText, '/images/coffee3.jpg')">장바구니에 담기</button>
+        </div>
+        <div class="menu-item">
+            <img src="/images/coffee3.jpg" alt="자몽에이드">
+            <h3>자몽에이드</h3>
+            <p>자몽맛의 에이드</p>
+            <span id="자몽에이드" hidden="hidden">자몽에이드(아이스)</span>
+            <p>가격: <span id="자몽에이드가격">3700</span>원</p>
+            <div>
+                <input type="radio" id="iced" name="자몽에이드온도" value="iced" onclick="updateCoffeeType('자몽에이드', '아이스', '3700')" checked>
+                <label for="iced">Iced</label>
+                <input type="radio" id="hot" name="자몽에이드온도" value="hot" onclick="updateCoffeeType('자몽에이드', '핫', '3700')" disabled>
+                <label for="hot">Hot</label>
+            </div>
+            <select id="자몽에이드수량">
+                <option value="1">1</option><option value="2">2</option><option value="3">3</option>
+                <option value="4">4</option><option value="5">5</option><option value="6">6</option>
+                <option value="7">7</option><option value="8">8</option><option value="9">9</option>
+                <option value="10">10</option>
+            </select>
+            <button onclick="addToCart('자몽에이드', document.getElementById('자몽에이드가격').innerText, '/images/coffee3.jpg')">장바구니에 담기</button>
         </div>
     </div>
     <div class="card">
@@ -166,124 +736,144 @@
         <div class="card-body">
             <table class="table" id="cart-table">
                 <thead>
-                    <tr>
-                        <th>메뉴명</th>
-                        <th>메뉴 개수</th>
-                        <th>메뉴 가격</th>
-                        <th>총 가격</th>
-                        <th>삭제</th>
-                    </tr>
+                <tr>
+                    <th>메뉴명</th>
+                    <th>메뉴 개수</th>
+                    <th>메뉴 가격</th>
+                    <th>총 가격</th>
+                    <th>삭제</th>
+                </tr>
                 </thead>
                 <tbody>
-                    <tr id="cart-empty">
-                        <td colspan="5">제품이 없습니다.</td>
-                    </tr>
+                <tr id="cart-empty">
+                    <td colspan="5">제품이 없습니다.</td>
+                </tr>
                 </tbody>
                 <tfoot>
-                    <tr>
-                        <td colspan="3"><b>총 개수</b></td>
-                        <td id="cart-total">0</td>
-                        <td>&nbsp;</td>
-                    </tr>
+                <tr>
+                    <td colspan="3"><b>총 개수</b></td>
+                    <td id="cart-total">0</td>
+                    <td>&nbsp;</td>
+                </tr>
                 </tfoot>
             </table>
             <button type="button" onclick="makePayment()">결제</button>
+            <a href="/"><button type="button">홈으로</button></a>
         </div>
     </div>
-    <script>
-        function updateCartTable() {
-            const cart = JSON.parse(localStorage.getItem('cart')) || [];
-            const cartTableBody = document.querySelector('#cart-table tbody');
-            const cartTotalElement = document.getElementById('cart-total');
-            
-            cartTableBody.innerHTML = '';
-            let total = 0;
-    
-            if (cart.length > 0) {
-                cart.forEach((item, index) => {
-                    const row = document.createElement('tr');
-                    row.innerHTML = `
+</div>
+<script>
+    function updateCoffeeType(coffeeType, temperature, price) {
+        var coffeeId = coffeeType + ' (' + temperature + ')';
+        document.getElementById(coffeeType).innerText = coffeeId;
+        document.getElementById(coffeeType + '가격').innerText = price;
+    }
+
+    function updateCartTable() {
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+        const cartTableBody = document.querySelector('#cart-table tbody');
+        const cartTotalElement = document.getElementById('cart-total');
+
+        cartTableBody.innerHTML = '';
+        let total = 0;
+
+        if (cart.length > 0) {
+            cart.forEach((item, index) => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
                         <td>${item.name}</td>
                         <td>${item.quantity}</td>
                         <td>${item.price}</td>
                         <td>${item.quantity * item.price}</td>
                         <td><button type="button" class="btn btn-danger btn-sm" onclick="removeItem(${index})">Remove</button></td>
                     `;
-                    cartTableBody.appendChild(row);
-                    total += item.quantity * item.price;
+                cartTableBody.appendChild(row);
+                total += item.quantity * item.price;
+            });
+        } else {
+            const cartEmptyRow = document.getElementById('cart-empty');
+            if (cartEmptyRow) {
+                cartEmptyRow.style.display = 'table-row';
+            }
+        }
+
+        cartTotalElement.textContent = total;
+    }
+
+    function showDiv(divId){
+        var divs = document.getElementsByClassName('container');
+        for (var i = 0; i < divs.length; i++) {
+            divs[i].style.display = 'none';
+        }
+        document.getElementById(divId).style.display = 'block';
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        showDiv('div1');
+    });
+
+    function addToCart(coffeeType, price, image) {
+        var coffeeId = document.getElementById(coffeeType).innerText;
+        const quantityElement = document.getElementById(coffeeType + '수량');
+        let quantity = Number(quantityElement.value);
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+        const itemIndex = cart.findIndex(item => item.name === coffeeId);
+
+        if (itemIndex !== -1) {
+            cart[itemIndex].quantity += quantity;
+        } else {
+            cart.push({ name: coffeeId, price: price, image: image, quantity: quantity });
+        }
+
+        localStorage.setItem('cart', JSON.stringify(cart));
+        updateCartTable(); // Cart 업데이트 후 테이블 갱신
+    }
+
+    function removeItem(index) {
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+        cart.splice(index, 1);
+
+        localStorage.setItem('cart', JSON.stringify(cart));
+        updateCartTable(); // Cart 업데이트 후 테이블 갱신
+    }
+    async function makePayment() {
+        const cartTotalElement = document.getElementById('cart-total');
+        const totalAmount = parseFloat(cartTotalElement.textContent);
+
+        try {
+            const response = await fetch('/get-user-amount');
+            const userData = await response.json();
+
+            if (userData.amount >= totalAmount) {
+                // 충분한 금액이 있을 경우 결제 진행
+                const updateResponse = await fetch('/update-user-amount', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ amount: userData.amount - totalAmount })
                 });
-            } else {
-                const cartEmptyRow = document.getElementById('cart-empty');
-                if (cartEmptyRow) {
-                    cartEmptyRow.style.display = 'table-row';
-                }
-            }
-    
-            cartTotalElement.textContent = total;
-        }
-
-
-    
-        function addToCart(name, price, image) {
-            const quantityElement = document.getElementById(name);
-            let quantity = Number(quantityElement.value);
-            const cart = JSON.parse(localStorage.getItem('cart')) || [];
-            const itemIndex = cart.findIndex(item => item.name === name);
-    
-            if (itemIndex !== -1) {
-                cart[itemIndex].quantity += quantity;
-            } else {
-                cart.push({ name, price, image, quantity });
-            }
-    
-            localStorage.setItem('cart', JSON.stringify(cart));
-            updateCartTable(); // Cart 업데이트 후 테이블 갱신
-        }
-    
-        function removeItem(index) {
-            const cart = JSON.parse(localStorage.getItem('cart')) || [];
-            cart.splice(index, 1);
-    
-            localStorage.setItem('cart', JSON.stringify(cart));
-            updateCartTable(); // Cart 업데이트 후 테이블 갱신
-        }
-        async function makePayment() {
-            const cartTotalElement = document.getElementById('cart-total');
-            const totalAmount = parseFloat(cartTotalElement.textContent);
-
-            try {
-                const response = await fetch('/get-user-amount');
-                const userData = await response.json();
-
-                if (userData.amount >= totalAmount) {
-                    // 충분한 금액이 있을 경우 결제 진행
-                    const updateResponse = await fetch('/update-user-amount', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify({ amount: userData.amount - totalAmount })
-                    });
-                    if (updateResponse.ok) {
-                        alert('결제가 성공적으로 완료되었습니다.');
-                        // 결제가 성공적으로 완료된 후 카트를 비웁니다.
-                        localStorage.removeItem('cart');
-                        updateCartTable();
-                    } else {
-                        alert('결제 처리 중 오류가 발생했습니다.');
-                    }
+                if (updateResponse.ok) {
+                    alert('결제가 성공적으로 완료되었습니다.');
+                    // 결제가 성공적으로 완료된 후 카트를 비웁니다.
+                    localStorage.removeItem('cart');
+                    updateCartTable();
+                    //여기서부터 주문 내역 관련 코드 작성
                 } else {
-                    alert('금액이 부족합니다.');
+                    alert('결제 처리 중 오류가 발생했습니다.');
                 }
-            } catch (error) {
-                console.error('Error fetching user amount:', error);
+            } else {
+                alert('금액이 부족합니다.');
             }
+        } catch (error) {
+            console.error('Error fetching user amount:', error);
         }
-    
-        window.onload = updateCartTable; // 페이지 로드 시 카트 테이블 초기화
-        window.addToCart = addToCart;
-        window.removeItem = removeItem;
-        window.makePayment = makePayment;
-    </script>
+    }
+
+    window.onload = updateCartTable; // 페이지 로드 시 카트 테이블 초기화
+    window.addToCart = addToCart;
+    window.removeItem = removeItem;
+    window.makePayment = makePayment;
+</script>
 </body>
 </html>

@@ -48,3 +48,27 @@ document.querySelectorAll('.menu_item').forEach(item => {
         item.querySelector('.submenu').style.display = 'none';
     });
 });
+
+// 줄바꿈 관련
+document.addEventListener("DOMContentLoaded", function() {
+    const images = document.querySelectorAll('.tooltip-img');
+    
+    images.forEach(image => {
+        image.addEventListener('mouseenter', function(event) {
+            const tooltipText = this.getAttribute('data-tooltip');
+            let tooltip = document.createElement('div');
+            tooltip.className = 'tooltip';
+            tooltip.innerText = tooltipText;
+            document.body.appendChild(tooltip);
+
+            const rect = this.getBoundingClientRect();
+            tooltip.style.left = `${rect.left + window.pageXOffset}px`;
+            tooltip.style.top = `${rect.bottom + window.pageYOffset}px`;
+            tooltip.style.display = 'block'; // 툴팁을 보이도록 설정
+        });
+
+        image.addEventListener('mouseleave', function() {
+            document.querySelectorAll('.tooltip').forEach(tooltip => tooltip.remove());
+        });
+    });
+});
