@@ -12,11 +12,11 @@ async function getApiKey() {
 
 window.onload = function () {
     cafe = [
-        { name: '공대 5호관', lat: 35.11722, lng: 128.96810},
+        { name: '공대 5호관', lat: 35.11722, lng: 128.96810 },
         { name: '도서관', lat: 35.115470, lng: 128.9676 },
         { name: '공대 4호관', lat: 35.116339, lng: 128.967228 },
         { name: '학생회관', lat: 35.115526, lng: 128.966004 },
-        { name: '인문대학', lat: 35.11487, lng: 128.965646}
+        { name: '인문대학', lat: 35.11487, lng: 128.965646 }
     ];
     loadNaverMaps(() => initializeMap(seunghakCampus));
 }
@@ -31,20 +31,21 @@ async function loadNaverMaps(callback) {
 }
 
 document.getElementById('승학').addEventListener('click', () => {
-    document.getElementById('현재위치').innerText="승학 캠퍼스"
+    document.getElementById('현재위치').innerText = "승학 캠퍼스";
     cafe = [
-        { name: '공대 5호관', lat: 35.11722, lng: 128.96810},
+        { name: '공대 5호관', lat: 35.11722, lng: 128.96810 },
         { name: '도서관', lat: 35.115470, lng: 128.9676 },
         { name: '공대 4호관', lat: 35.116339, lng: 128.967228 },
         { name: '학생회관', lat: 35.115526, lng: 128.966004 },
-        { name: '인문대학', lat: 35.11487, lng: 128.965646}
+        { name: '인문대학', lat: 35.11487, lng: 128.965646 }
     ];
     loadNaverMaps(() => initializeMap(seunghakCampus));
 });
 
 document.getElementById('부민').addEventListener('click', () => {
-    document.getElementById('현재위치').innerText="부민 캠퍼스"
-    cafe = [{ name: '종합강의동', lat: 35.104612, lng: 129.018886},
+    document.getElementById('현재위치').innerText = "부민 캠퍼스";
+    cafe = [
+        { name: '종합강의동', lat: 35.104612, lng: 129.018886 },
         { name: '국제관', lat: 35.105734, lng: 129.019124 }
     ];
     loadNaverMaps(() => initializeMap(buminCampus));
@@ -66,7 +67,7 @@ function initializeMap(campusLocation) {
                 position: new naver.maps.LatLng(currentLocation.lat, currentLocation.lng),
                 map: map,
                 title: '현재 위치',
-                icon : {
+                icon: {
                     content: "<img src = '../html_scripts/img/pin.png' alt='현재 위치' width='25' height='25'>",
                     size: new naver.maps.Size(25, 25),
                     origin: new naver.maps.Point(0, 0),
@@ -93,19 +94,29 @@ function fetchPlaces(campusLocation) {
     displayPlaces(sortedPlaces);
 }
 
-function displayPlaces(places) {
+async function fetchOrderCounts() {
+    const response = await fetch('/order-counts');
+    const data = await response.json();
+    return data.orderCounts;
+}
+
+async function displayPlaces(places) {
     const placesList = document.getElementById('places-list');
     const projection = map.getProjection();
     const current_Distance = new naver.maps.LatLng(currentLocation.lat, currentLocation.lng);
     placesList.innerHTML = '';
+
+    const orderCounts = await fetchOrderCounts();
+
     places.forEach(place => {
         const LatLngPlace = new naver.maps.LatLng(place.lat, place.lng);
         const li = document.createElement('li');
         const a = document.createElement('a');
-        a.href = '/menu';
+        a.href = `/menu?name=${encodeURIComponent(place.name)}`;
         a.style.textDecoration = 'none'; // 밑줄 제거
         a.style.color = 'inherit'; // 링크 클릭 시 색상 변경 방지
-        a.textContent = `${place.name} - ${projection.getDistance(current_Distance, LatLngPlace).toFixed(2)}m`;
+        const waitingTime = orderCounts[place.name] ? orderCounts[place.name] : 3;
+        a.innerHTML = `${place.name} - ${projection.getDistance(current_Distance, LatLngPlace).toFixed(2)}m <br> (예상 대기 시간: ${waitingTime}분)`;
 
         li.appendChild(a);
         placesList.appendChild(li);
@@ -116,5 +127,4 @@ function displayPlaces(places) {
             title: place.name
         });
     });
-
 }

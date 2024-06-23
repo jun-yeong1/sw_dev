@@ -52,21 +52,49 @@ exports.post_login = (req, res) => {
 };
 // 관리자 페이지
 exports.admin = (req, res) => {
-    db.query('SELECT * FROM user', (err, userResults) => {
-        if (err) {
-            return res.status(500).send('Database query failed.');
+    const campus = req.query.campus || '공대 5호관';
+    const userQuery = "SELECT * FROM user";
+    const orderQuery = `
+        SELECT orders.id AS orderId, orders.user_id, orders.campus, orders.completed, orders.created_at,
+               order_items.name, order_items.price, order_items.quantity
+        FROM orders
+        JOIN order_items ON orders.id = order_items.order_id
+        WHERE orders.campus = ?
+        ORDER BY orders.created_at DESC;
+    `;
+
+    db.query(userQuery, (userErr, userResults) => {
+        if (userErr) {
+            console.error("Database query error:", userErr);
+            return res.status(500).send('Server error');
         }
-        // 메뉴 정보 조회 쿼리
-        db.query('SELECT * FROM menu', (err, menuResults) => {
-            if (err) {
-                return res.status(500).send('메뉴 데이터베이스 쿼리 실패.');
+
+        db.query(orderQuery, [campus], (orderErr, orderResults) => {
+            if (orderErr) {
+                console.error("Database query error:", orderErr);
+                return res.status(500).send('Server error');
             }
 
-            // 결과를 admin.ejs 템플릿으로 렌더링
-            res.render('admin', { users: userResults, menu: menuResults, user: req.session.user });
+            const orders = orderResults.reduce((acc, row) => {
+                const { orderId, user_id, campus, completed, created_at, name, price, quantity } = row;
+                if (!acc[orderId]) {
+                    acc[orderId] = {
+                        orderId,
+                        user_id,
+                        campus,
+                        completed,
+                        created_at,
+                        items: []
+                    };
+                }
+                acc[orderId].items.push({ name, price, quantity });
+                return acc;
+            }, {});
+
+            res.render("admin", { users: userResults, orders: Object.values(orders), campus });
         });
     });
-}
+};
 
 //회원정보 수정 화면
 exports.in_edit = (req, res) => {
@@ -111,6 +139,57 @@ exports.delete_user = (req, res) => {
 exports.main = (req, res) => {
     res.render('main'); 
 } */
+exports.orderList = (req, res) => {
+    if (!req.session.user) {
+        return res.redirect('/login');
+    }
+
+    const userId = req.session.user.id;
+
+    const query = `
+        SELECT orders.id AS orderId, orders.campus, orders.completed, order_items.name, order_items.price, order_items.quantity
+        FROM orders
+        JOIN order_items ON orders.id = order_items.order_id
+        WHERE orders.user_id = ?
+        ORDER BY orders.created_at DESC;
+    `;
+
+    db.query(query, [userId], (err, results) => {
+        if (err) {
+            console.error('Error fetching orders:', err);
+            return res.status(500).send('Database query failed.');
+        }
+
+        const orders = results.reduce((acc, row) => {
+            const { orderId, campus, completed, name, price, quantity } = row;
+            if (!acc[orderId]) {
+                acc[orderId] = {
+                    id: orderId,
+                    campus: campus,
+                    completed: completed,
+                    items: []
+                };
+            }
+            acc[orderId].items.push({ name, price, quantity });
+            return acc;
+        }, {});
+
+        res.render('order-list', { orders: Object.values(orders) });
+    });
+};
+
+exports.completeOrder = (req, res) => {
+    const { orderId } = req.body;
+    const query = "UPDATE orders SET completed = 1 WHERE id = ?";
+    db.query(query, [orderId], (err, result) => {
+        if (err) {
+            console.error("Database query error:", err);
+            return res.status(500).send('Server error');
+        }
+        res.redirect('/admin');
+    });
+};
+
 
 // 로그인 후에 addmoney 페이지 생성
 exports.getAddMoneyPage = (req, res) => {

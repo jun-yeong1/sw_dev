@@ -4,35 +4,113 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>관리자 페이지</title>
+    <link rel="stylesheet" href="/stylesheets/admin.css">
 </head>
 <body>
-    <h1>관리자 페이지</h1>
-    <p>회원정보</p>
-    <table border="1">
+<h1>관리자 페이지</h1>
+
+<h2>회원 정보</h2>
+<table border="1">
+    <thead>
+    <tr>
+        <th>아이디</th>
+        <th>이름</th>
+        <th>비밀번호</th>
+        <th>잔액</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% users.forEach(user => { %>
         <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Password</th>
-            <th>Amount</th>
+            <td><%= user.id %></td>
+            <td><%= user.name %></td>
+            <td><%= user.password %></td>
+            <td><%= user.amount %></td>
         </tr>
-        <% users.forEach(user => { %>
-            <tr>
-                <td><%= user.id %></td>
-                <td><%= user.name %></td>
-                <td><%= user.password %></td>
-                <td><%= user.amount %></td>
-            </tr>
-        <% }) %>
-    </table>
+    <% }) %>
+    </tbody>
+</table>
 
-    <h1>장바구니</h1>
-    <ul>
-        <% menu.forEach(function(item) { %>
-            <li>
-                <strong><%= item.name %></strong> - <%= item.quantity %>개, <%= item.price %>원
-            </li>
-        <% }); %>
-    </ul>
+<h2>주문 내역</h2>
+<table border="1">
+    <thead>
+    <tr>
+        <th>주문 ID</th>
+        <th>사용자 ID</th>
+        <th>지점</th>
+        <th>주문 상태</th>
+        <th>주문 시간</th>
+        <th>주문 항목</th>
+        <th>총 가격</th>
+        <th>완료 처리</th>
+    </tr>
+    </thead>
+    <tbody id="order-list">
+    <% orders.forEach(order => { %>
+        <tr>
+            <td><%= order.orderId %></td>
+            <td><%= order.user_id %></td>
+            <td><%= order.campus %></td>
+            <td><%= order.completed ? '완료됨' : '접수됨' %></td>
+            <td><%= order.created_at %></td>
+            <td>
+                <ul>
+                    <% order.items.forEach(item => { %>
+                        <li><%= item.name %> - <%= item.quantity %>개, <%= item.price %>원</li>
+                    <% }) %>
+                </ul>
+            </td>
+            <td>
+                <%= order.items.reduce((acc, item) => acc + (item.price * item.quantity), 0) %>원
+            </td>
+            <td>
+                <% if (!order.completed) { %>
+                    <form action="/completeOrder" method="POST">
+                        <input type="hidden" name="orderId" value="<%= order.orderId %>">
+                        <button type="submit">완료</button>
+                    </form>
+                <% } else { %>
+                    <span>완료됨</span>
+                <% } %>
+            </td>
+        </tr>
+    <% }) %>
+    </tbody>
+</table>
 
+<script>
+    async function filterOrders(campus) {
+        const response = await fetch(`/admin/orders?campus=${encodeURIComponent(campus)}`);
+        const data = await response.json();
+        const orderList = document.getElementById('order-list');
+        orderList.innerHTML = '';
+
+        data.orders.forEach(order => {
+            const row = document.createElement('tr');
+
+            row.innerHTML = `
+                <td>${order.orderId}</td>
+                <td>${order.user_id}</td>
+                <td>${order.campus}</td>
+                <td>${order.completed ? '완료됨' : '접수됨'}</td>
+                <td>${order.created_at}</td>
+                <td>
+                    <ul>
+                        ${order.items.map(item => `<li>${item.name} - ${item.quantity}개, ${item.price}원</li>`).join('')}
+                    </ul>
+                </td>
+                <td>${order.items.reduce((acc, item) => acc + (item.price * item.quantity), 0)}원</td>
+                <td>
+                    ${order.completed ? '<span>완료됨</span>' : `<form action="/completeOrder" method="POST">
+                        <input type="hidden" name="orderId" value="${order.orderId}">
+                        <button type="submit">완료</button>
+                    </form>`}
+                </td>
+            `;
+
+            orderList.appendChild(row);
+        });
+    }
+</script>
 </body>
 </html>
