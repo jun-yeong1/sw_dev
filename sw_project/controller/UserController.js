@@ -52,11 +52,19 @@ exports.post_login = (req, res) => {
 };
 // 관리자 페이지
 exports.admin = (req, res) => {
-    db.query('SELECT * FROM user', (err, results) => {
+    db.query('SELECT * FROM user', (err, userResults) => {
         if (err) {
             return res.status(500).send('Database query failed.');
         }
-        res.render('admin', { users: results, user: req.session.user });
+        // 메뉴 정보 조회 쿼리
+        db.query('SELECT * FROM menu', (err, menuResults) => {
+            if (err) {
+                return res.status(500).send('메뉴 데이터베이스 쿼리 실패.');
+            }
+
+            // 결과를 admin.ejs 템플릿으로 렌더링
+            res.render('admin', { users: userResults, menu: menuResults, user: req.session.user });
+        });
     });
 }
 

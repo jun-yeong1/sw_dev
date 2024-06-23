@@ -24,5 +24,15 @@
             </tr>
         <% }) %>
     </table>
+
+    <h1>장바구니</h1>
+    <ul>
+        <% menu.forEach(function(item) { %>
+            <li>
+                <strong><%= item.name %></strong> - <%= item.quantity %>개, <%= item.price %>원
+            </li>
+        <% }); %>
+    </ul>
+
 </body>
 </html>
