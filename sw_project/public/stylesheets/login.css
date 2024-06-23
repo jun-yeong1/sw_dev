@@ -1,8 +1,10 @@
 * {
   box-sizing: border-box;
 }
-body {
+body, html {
   font-size: 14px;
+  height: 100%;
+  overflow-x: hidden;
 }
 /*배경 전체 사이즈*/
 .background {
@@ -54,7 +56,7 @@ body {
     color: rgba(0,0,0,1);
     position: absolute;
     top: 50px;
-    left: 691px;
+    left: 626px;
     font-family: "Numans", sans-serif;
     font-style: normal;
     font-size: 25px;
@@ -78,7 +80,7 @@ body {
     color: rgba(0,0,0,1);
     position: absolute;
     top: 50px;
-    left: 553px;
+    left: 488px;
     font-family: "Numans", sans-serif;
     font-style: normal;
     font-size: 25px;
@@ -90,7 +92,7 @@ body {
     color: rgba(0,0,0,1);
     position: absolute;
     top: 50px;
-    left: 425px;
+    left: 360px;
     font-family: "Numans", sans-serif;
     font-style: normal;
     font-size: 25px;
@@ -106,7 +108,7 @@ body {
   opacity: 1;
   position: absolute;
   top: 50px;
-  left: 434px;
+  left: 369px;
   overflow: hidden;
 }
 
@@ -121,14 +123,14 @@ body {
     opacity: 1;
     position: absolute;
     top: 48px;
-    left: 138px;
+    left: 104px;
 }
 .fonts_5 { /*공대 6호관 카페*/
     width: 348px;
     color: rgba(0,0,0,1);
     position: absolute;
     top: 48px;
-    left: 128px;
+    left: 53px;
     font-family: "Numans", sans-serif;
     font-style: normal;
     font-size: 25px;
@@ -148,7 +150,7 @@ body {
   opacity: 1;
   position: absolute;
   top: 50px;
-  left: 1707px;
+  left: 1447px;
 }
 
 /*SIGN UP 배경*/
@@ -159,7 +161,7 @@ body {
   opacity: 1;
   position: absolute;
   top: 47px;
-  left: 1514px;
+  left: 1254px;
   border-top-left-radius: 70px;
   border-top-right-radius: 70px;
   border-bottom-left-radius: 70px;
@@ -171,7 +173,7 @@ body {
     color: rgba(255,255,255,1);
     position: absolute;
     top: 52px;
-    left: 1554px;
+    left: 1294px;
     font-family: "Nanum Gothic", sans-serif;
     font-weight: Bold;
     font-size: 21px;
@@ -189,7 +191,7 @@ body {
     opacity: 1;
     position: absolute;
     top: 50px;
-    left: 1523px;
+    left: 1263px;
 }
 
 .fonts_7 { /*SIGN IN*/
@@ -197,7 +199,7 @@ body {
     color: rgba(0,0,0,1);
     position: absolute;
     top: 50px;
-    left: 1347px;
+    left: 1087px;
     font-family: "Nanum Gothic", sans-serif;
     font-weight: Bold;
     font-size: 25px;
@@ -213,7 +215,7 @@ body {
   opacity: 1;
   position: absolute;
   top: 314px;
-  left: 640px;
+  left: 380px;
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
   border-bottom-left-radius: 20px;
@@ -228,7 +230,7 @@ body {
   opacity: 1;
   position: absolute;
   top: 461px;
-  left: 671px;
+  left: 412px;
   font-family:"Nanum Gothic", sans-serif;
   font-weight: Regular;
   font-size: 22px;
@@ -329,7 +331,7 @@ body {
   opacity: 1;
   position: absolute;
   top: 751px;
-  left: 695px;
+  left: 435px;
   overflow: hidden;
 }
 /*구분선*/
@@ -400,7 +402,7 @@ body {
   opacity: 1;
   position: absolute;
   top: 314px;
-  left: 752px;
+  left: 490px;
   overflow: hidden;
 }
 .logo_font { /*학교 생협 카페 온라인 주문하기*/
@@ -426,7 +428,7 @@ body {
   opacity: 1;
   position: absolute;
   top: 35px;
-  left: 383px;
+  left: 375px;
 
 }
 /*로고 옆 이미지*/
@@ -451,6 +453,6 @@ body {
   opacity: 1;
   position: absolute;
   top: 395px;
-  left:641px;
+  left: 381px;
   overflow: hidden;
 }
