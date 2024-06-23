@@ -88,7 +88,17 @@
             border-radius: var(--border-radius-hover);
             border: var(--border-hover);
         }
-
+        .user-info a {
+            display: inline-block;
+            padding: 8px;
+            border: var(--border);
+            border-radius: var(--border-radius);
+            color: var(--main-color);
+            background: none;
+            cursor: pointer;
+            margin-top: 1rem;
+            font-size: 1.7rem;
+        }    
         /* HEADER */
 
         .header {
@@ -599,6 +609,7 @@
                 <a href="/edit" class="btn">Edit</a>
                 <a href="/logout" class="btn">Logout</a>
                 <a href="./map" class="btn">book a table</a>
+                <a href="./order-list" class="btn">order-check</a>
                 <% if (user.id === 'admin') { %>
                     <a href="/admin" class="btn">Admin Page</a>
                 <% } %>
