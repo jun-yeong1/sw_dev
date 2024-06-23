@@ -836,38 +836,73 @@
         localStorage.setItem('cart', JSON.stringify(cart));
         updateCartTable(); // Cart 업데이트 후 테이블 갱신
     }
-    async function makePayment() {
+    //import { saveOrder } from './db_menu';
+    function makePayment() {
         const cartTotalElement = document.getElementById('cart-total');
         const totalAmount = parseFloat(cartTotalElement.textContent);
-
-        try {
-            const response = await fetch('/get-user-amount');
-            const userData = await response.json();
-
-            if (userData.amount >= totalAmount) {
-                // 충분한 금액이 있을 경우 결제 진행
-                const updateResponse = await fetch('/update-user-amount', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ amount: userData.amount - totalAmount })
-                });
+    
+        fetch('/get-user-amount')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Failed to fetch user amount');
+                }
+                return response.json();
+            })
+            .then(userData => {
+                if (userData.amount >= totalAmount) {
+                    // 충분한 금액이 있을 경우 결제 진행
+                    return fetch('/update-user-amount', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ amount: userData.amount - totalAmount })
+                    });
+                } else {
+                    throw new Error('금액이 부족합니다.');
+                }
+            })
+            .then(updateResponse => {
                 if (updateResponse.ok) {
                     alert('결제가 성공적으로 완료되었습니다.');
+                    // 주문 내역을 가져와서 서버로 전송
+                    const cartItems = [];
+                    const tableRows = document.querySelectorAll('#cart-table tbody tr:not(#cart-empty)');
                     // 결제가 성공적으로 완료된 후 카트를 비웁니다.
                     localStorage.removeItem('cart');
                     updateCartTable();
-                    //여기서부터 주문 내역 관련 코드 작성
+                    tableRows.forEach(function(row) {
+                        const menuItem = {
+                            name: row.cells[0].innerText.trim(),
+                            quantity: parseInt(row.cells[1].innerText.trim(), 10),
+                            price: parseFloat(row.cells[2].innerText.trim().replace(',', ''))
+                        };
+                        cartItems.push(menuItem);
+                    });
+    
+                    // 서버로 주문 내역 전송
+                    return fetch('/placeOrder', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ cartItems: cartItems })
+                    });
                 } else {
-                    alert('결제 처리 중 오류가 발생했습니다.');
+                    throw new Error('결제 처리 중 오류가 발생했습니다.');
                 }
-            } else {
-                alert('금액이 부족합니다.');
-            }
-        } catch (error) {
-            console.error('Error fetching user amount:', error);
-        }
+            })
+            .then(placeOrderResponse => {
+                if (placeOrderResponse.ok) {
+                    console.log('주문이 서버로 전송되었습니다.');
+                    // 추가적인 처리나 화면 갱신을 할 수 있습니다.
+                } else {
+                    throw new Error('주문 전송 중 오류가 발생했습니다.');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error.message);
+            });
     }
 
     window.onload = updateCartTable; // 페이지 로드 시 카트 테이블 초기화
