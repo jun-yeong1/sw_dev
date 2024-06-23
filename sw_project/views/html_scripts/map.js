@@ -16,6 +16,7 @@ window.onload = function () {
         { name: '도서관', lat: 35.115470, lng: 128.9676 },
         { name: '공대 4호관', lat: 35.116339, lng: 128.967228 },
         { name: '학생회관', lat: 35.115526, lng: 128.966004 },
+        { name: '인문대학', lat: 35.11487, lng: 128.965646}
     ];
     loadNaverMaps(() => initializeMap(seunghakCampus));
 }
@@ -36,13 +37,16 @@ document.getElementById('승학').addEventListener('click', () => {
         { name: '도서관', lat: 35.115470, lng: 128.9676 },
         { name: '공대 4호관', lat: 35.116339, lng: 128.967228 },
         { name: '학생회관', lat: 35.115526, lng: 128.966004 },
+        { name: '인문대학', lat: 35.11487, lng: 128.965646}
     ];
     loadNaverMaps(() => initializeMap(seunghakCampus));
 });
 
 document.getElementById('부민').addEventListener('click', () => {
     document.getElementById('현재위치').innerText="부민 캠퍼스"
-    cafe = [];
+    cafe = [{ name: '종합강의동', lat: 35.104612, lng: 129.018886},
+        { name: '국제관', lat: 35.105734, lng: 129.019124 }
+    ];
     loadNaverMaps(() => initializeMap(buminCampus));
 });
 
