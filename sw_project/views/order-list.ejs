@@ -3,33 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--폰트1 numans-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Numans&display=swap" rel="stylesheet">
+    <!--폰트2 nunito-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Numans&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
+    <!--폰트3 nanum gothic-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&family=Numans&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
+    <!--css 주소 링크-->
+    <link href="./stylesheets/order.css" rel="stylesheet" />
     <title>주문 내역</title>
 </head>
 <body>
-<h1>주문 내역</h1>
-<table border="1">
-    <tr>
-        <th>주문 번호</th>
-        <th>주문 지점</th>
-        <th>주문 항목</th>
-        <th>진행 상황</th>
-    </tr>
-    <% orders.forEach(order => { %>
-        <tr>
-            <td><%= order.id %></td>
-            <td><%= order.campus %></td>
-            <td>
-                <ul>
-                    <% order.items.forEach(item => { %>
-                        <li><%= item.name %> - <%= item.quantity %>개, <%= item.price %>원</li>
-                    <% }) %>
-                </ul>
-            </td>
-            <td><%= order.completed ? '완료 방문해서 수령해주세요' : '주문 진행중' %></td>
-        </tr>
-    <% }) %>
-</table>
-
+    <div class="background">
+        <div class="background_image"></div>
+        <div class="menubar">         <!--상단 메뉴바 -->
+            <a href="/menu"><span class="fonts_1">MENU</span></a>
+            <a href="/add-money"><span class="fonts_2">CASH</span></a>
+            <a href="/map"> <span class="fonts_3">MAP</span></a>
+            <a href="/"><span class="fonts_4">HOME</span></a>
+            <div class="line_1"></div> <!-- 구분선 -->
+            <div class="icon_1"></div> <!--공대 6호관 옆 아이콘-->
+            <span id="현재위치" class="fonts_5">승학 캠퍼스</span>
+            <div class="icon_2"></div>  <!--카트 아이콘-->
+            <div class="signup_bg"></div>  <!--SIGN UP 배경-->
+            <a href="/join"><span class="fonts_6">SIGN UP</span></a>
+            <div class="icon_3"></div>  <!--SIGN UP 옆 사람 아이콘-->
+            <a href="/login"><span class="fonts_7">SIGN IN</span></a>
+        </div>
+        <div class="order_all_bg"></div>
+        <table border="1">
+            <tr>
+                <th>주문 번호</th>
+                <th>주문 지점</th>
+                <th>주문 항목</th>
+                <th>진행 상황</th>
+            </tr>
+            <% orders.forEach(order => { %>
+                <tr>
+                    <td><%= order.id %></td>
+                    <td><%= order.campus %></td>
+                    <td>
+                        <ul>
+                            <% order.items.forEach(item => { %>
+                                <li><%= item.name %> - <%= item.quantity %>개, <%= item.price %>원</li>
+                            <% }) %>
+                        </ul>
+                    </td>
+                    <td><%= order.completed ? '완료 방문해서 수령해주세요' : '주문 진행중' %></td>
+                </tr>
+            <% }) %>
+        </table>
+        <div class="line_"></div>
+        <span class="font_4_1">학교 생협 카페 온라인 주문관리</span>
+    </div>
 <script>
     function completeOrder(orderId) {
         fetch('/completeOrder', {
