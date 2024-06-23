@@ -130,8 +130,7 @@ exports.addMoney = (req, res) => {
             return res.status(500).json({ success: false, message: '금액 충전에 실패했습니다.' }); 
         }
         req.session.user.amount = newAmount;
-        res.json({ success: true, message: '충전에 성공했습니다.' });
-        //res.redirect('/add-money');
+        res.redirect('/add-money');
     });
 };
 // 로그아웃
