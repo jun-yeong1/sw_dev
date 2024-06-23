@@ -19,57 +19,47 @@
     <link href="/stylesheets/cash.css" rel="stylesheet" />
     <title>입금 페이지</title>
     <script>
-        // Select the reset button and the input field
-        const resetButton = document.getElementById('resetButton');
-        const amountInput = document.getElementById('amount');
+        document.addEventListener('DOMContentLoaded', function() {
+            // Select the reset button and the input field
+            const resetButton = document.getElementsByClassName('cancel_font');
+            const amountInput = document.getElementById('amount');
+            const add1000Button = document.getElementById('add1000');
+            const add10000Button = document.getElementById('add10000');
+            const add50000Button = document.getElementById('add50000');
 
-        // Add a click event listener to the reset button
-        resetButton.addEventListener('click', function() {
-            // Set the value of the input field to zero
-            amountInput.value = 0;
-        });
-        const add1000Button = document.getElementById('add1000');
-        const add10000Button = document.getElementById('add10000');
-        const add50000Button = document.getElementById('add50000');
+            Array.from(resetButton).forEach(function(button) {
+                button.addEventListener('click', function(event) {
+                    amountInput.value = 0;  // Clear the value of the amount input
+                    event.preventDefault();  // Prevent default action
+                });
+            });
 
-        // Add event listeners to the add amount buttons
-        add1000Button.addEventListener('click', function() {
-            event.preventDefault();
-            amountInput.value = parseInt(amountInput.value || 0) + 1000;
-        });
-
-        add10000Button.addEventListener('click', function() {
-            event.preventDefault();
-            amountInput.value = parseInt(amountInput.value || 0) + 10000;
-        });
-
-        add50000Button.addEventListener('click', function() {
-            event.preventDefault();
-            amountInput.value = parseInt(amountInput.value || 0) + 50000;
-        });
-
-        const moneyForm = document.getElementById('moneyForm');
-        moneyForm.addEventListener('submit', function(event) {
-            event.preventDefault(); // Prevent the default form submission
-
-            const formData = new FormData(moneyForm);
-
-            fetch(moneyForm.action, {
-                method: 'POST',
-                body: formData,
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    alert("충전이 정상적으로 완료되었습니다!");
-                    window.location.href = '/'; // Redirect to the main page
+            add1000Button.addEventListener('click', function(event) {
+                const currentValue = parseInt(amountInput.value);
+                if (!isNaN(currentValue)) {
+                    amountInput.value = currentValue + 1000;
                 } else {
-                    alert(data.message || '충전에 실패했습니다. 다시 시도해 주세요.');
+                    amountInput.value = 1000; // If the value is not a number, set it to 1000
                 }
-            })
-            .catch(error => {
-                console.error('There was a problem with the fetch operation:', error);
-                alert("충전에 실패했습니다. 다시 시도해 주세요.");
+                event.preventDefault();
+            });
+            add10000Button.addEventListener('click', function(event) {
+                const currentValue = parseInt(amountInput.value);
+                if (!isNaN(currentValue)) {
+                    amountInput.value = currentValue + 10000;
+                } else {
+                    amountInput.value = 10000; // If the value is not a number, set it to 10000
+                }
+                event.preventDefault();
+            });
+            add50000Button.addEventListener('click', function(event) {
+                const currentValue = parseInt(amountInput.value);
+                if (!isNaN(currentValue)) {
+                    amountInput.value = currentValue + 50000;
+                } else {
+                    amountInput.value = 50000; // If the value is not a number, set it to 50000
+                }
+                event.preventDefault();
             });
         });
     </script>
@@ -96,9 +86,9 @@
                 <span class="fonts_8">충전 금액 (현재 잔액: <%= user.amount %>원)</span>
                 <div class="cash_menu">    <!--충전 세부 메뉴-->
                 <!--<div class="cash_total"></div>-->
-                <input class="cash_total" type="number" id="amount" name="amount" min="0" required>
-                <div class="cancel_bg"></div> <!--금액 취소 배경-->
-                <button><span class="cancel_font">x</span></button> <!--금액 취소 X-->
+                <input class="cash_total" type="number" id="amount" name="amount" value="0">
+                <button><div class="cancel_bg"></div></button><!--금액 취소 배경-->
+                <span class="cancel_font">x</span> <!--금액 취소 X-->
                 <span class="fonts_9">원</span>
 
                 <button id="add1000"><div class="bg_1000"></div></button>
