@@ -38,7 +38,7 @@ body {
   opacity: 1;
   position: absolute;
   top: 214px;
-  left: 638px;
+  left: 420px;
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
   border-bottom-left-radius: 20px;
@@ -62,7 +62,7 @@ body {
   color: rgba(0,0,0,1);
   position: absolute;
   top: 50px;
-  left: 691px;
+  left: 626px;
   font-family: "Numans", sans-serif;
   font-style: normal;
   font-size: 25px;
@@ -86,7 +86,7 @@ body {
   color: rgba(0,0,0,1);
   position: absolute;
   top: 50px;
-  left: 553px;
+  left: 488px;
   font-family: "Numans", sans-serif;
   font-style: normal;
   font-size: 25px;
@@ -98,7 +98,7 @@ body {
   color: rgba(0,0,0,1);
   position: absolute;
   top: 50px;
-  left: 425px;
+  left: 360px;
   font-family: "Numans", sans-serif;
   font-style: normal;
   font-size: 25px;
@@ -114,7 +114,7 @@ body {
   opacity: 1;
   position: absolute;
   top: 50px;
-  left: 434px;
+  left: 369px;
   overflow: hidden;
 }
 
@@ -129,14 +129,14 @@ body {
   opacity: 1;
   position: absolute;
   top: 48px;
-  left: 138px;
+  left: 104px;
 }
 .fonts_5 { /*공대 6호관 카페*/
   width: 348px;
   color: rgba(0,0,0,1);
   position: absolute;
   top: 48px;
-  left: 128px;
+  left: 53px;
   font-family: "Numans", sans-serif;
   font-style: normal;
   font-size: 25px;
@@ -155,7 +155,7 @@ body {
   opacity: 1;
   position: absolute;
   top: 50px;
-  left: 1707px;
+  left: 1447px;
 }
 
 /*SIGN UP 배경*/
@@ -166,7 +166,7 @@ body {
   opacity: 1;
   position: absolute;
   top: 47px;
-  left: 1514px;
+  left: 1254px;
   border-top-left-radius: 70px;
   border-top-right-radius: 70px;
   border-bottom-left-radius: 70px;
@@ -178,7 +178,7 @@ body {
   color: rgba(255,255,255,1);
   position: absolute;
   top: 52px;
-  left: 1554px;
+  left: 1294px;
   font-family: "Nanum Gothic", sans-serif;
   font-weight: Bold;
   font-size: 21px;
@@ -196,7 +196,7 @@ body {
   opacity: 1;
   position: absolute;
   top: 50px;
-  left: 1523px;
+  left: 1263px;
 }
 
 .fonts_7 { /*SIGN IN*/
@@ -204,7 +204,7 @@ body {
   color: rgba(0,0,0,1);
   position: absolute;
   top: 50px;
-  left: 1347px;
+  left: 1087px;
   font-family: "Nanum Gothic", sans-serif;
   font-weight: Bold;
   font-size: 25px;
@@ -223,7 +223,7 @@ body {
   opacity: 1;
   position: absolute;
   top: 344px;
-  left: 668px;
+  left: 449px;
   overflow: hidden;
 }
 /*아이디*/
@@ -498,7 +498,7 @@ body {
   color: rgba(96,96,96,1);
   position: absolute;
   top: 240px;
-  left: 888px;
+  left: 662px;
   font-family: "Nanum Gothic", sans-serif;
   font-weight: bold;
   font-size: 23px;
@@ -512,6 +512,6 @@ body {
   opacity: 1;
   position: absolute;
   top: 289px;
-  left:638px;
+  left: 420px;
   overflow: hidden;
 }
