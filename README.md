@@ -9,6 +9,41 @@
 실행시 설치할 것
 npm install express body-parser mysql axios express-session dotenv
 
+#db 설정은 db/db.js에서
+
+실행전 테이블 생성
+
+CREATE TABLE `order_items` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `order_id` int NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `price` decimal(10,2) NOT NULL,
+  `quantity` int NOT NULL,
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  KEY `order_id` (`order_id`),
+  CONSTRAINT `order_items_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`)
+);
+CREATE TABLE `orders` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `user_id` varchar(10) NOT NULL,
+  `campus` varchar(255) NOT NULL,
+  `completed` tinyint(1) DEFAULT '0',
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  KEY `user_id` (`user_id`),
+  CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
+);
+CREATE TABLE `user` (
+  `id` varchar(10) NOT NULL,
+  `name` varchar(10) NOT NULL,
+  `password` varchar(20) NOT NULL,
+  `amount` int unsigned DEFAULT '0',
+  PRIMARY KEY (`id`)
+;
+
+
+
 ## 주제
 사용자 위치 기반 동아대학교 카페 이용 사이트
 
