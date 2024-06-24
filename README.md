@@ -1,13 +1,16 @@
 # sw_dev
 소프트웨어 실습 최종 조별과제
 
-#조원 깃허브 아이디
+조원 깃허브 아이디
 |조원|이준영|박준현|조아정|정성훈|
 |:-:|:-:|:-:|:-:|:-:|
 |깃허브 아이디|jun-yeong1|p-jh0|Ajms1104|SeongHun0915|
 
 실행시 설치할 것
 npm install express body-parser mysql axios express-session dotenv
+
+## 주제
+사용자 위치 기반 동아대학교 카페 이용 사이트
 
 ## 기능
 - 사용자 위치 기반으로 현재 위치와 학교 카페들의 위치 차이와 이동 시간 출력
